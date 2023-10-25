@@ -1,0 +1,58 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity UART_RX is 
+	port (
+		RX_sig : in std_logic;
+		
+		);
+		
+		
+		
+		
+		
+		
+		
+		---------------------------------------------------------------------------------------------------------
+		-- Procedure for setting chosen display segment to chosen number
+		---------------------------------------------------------------------------------------------------------
+		procedure seg_display_num (signal show_num    	: in unsigned; 
+											signal hex_display 	: out std_logic_vector) is 
+			constant hex_show_0: std_logic_vector(7 downto 0) := "11000000";
+			constant hex_show_1: std_logic_vector(7 downto 0) := "11111001";
+			constant hex_show_2: std_logic_vector(7 downto 0) := "10100100";
+			constant hex_show_3: std_logic_vector(7 downto 0) := "10110000";
+			constant hex_show_4: std_logic_vector(7 downto 0) := "10011001";
+			constant hex_show_5: std_logic_vector(7 downto 0) := "10010010";
+			constant hex_show_6: std_logic_vector(7 downto 0) := "10000010";
+			constant hex_show_7: std_logic_vector(7 downto 0) := "11111000";
+			constant hex_show_8: std_logic_vector(7 downto 0) := "10000000";
+			constant hex_show_9: std_logic_vector(7 downto 0) := "10010000";
+		begin
+			case show_num is
+				when "0000" => -- 0
+					hex_display <= hex_show_0;
+				when "0001" => -- 1
+					hex_display <= hex_show_1;
+				when "0010" => -- 2
+					hex_display <= hex_show_2;
+				when "0011" => -- 3
+					hex_display <= hex_show_3;
+				when "0100" => -- 4
+					hex_display <= hex_show_4;
+				when "0101" => -- 5
+					hex_display <= hex_show_5;
+				when "0110" => -- 6
+					hex_display <= hex_show_6;
+				when "0111" => -- 7
+					hex_display <= hex_show_7;
+				when "1000" => -- 8
+					hex_display <= hex_show_8;
+				when others	=> -- 9
+					hex_display <= hex_show_9;
+			end case;
+		end procedure;
+		-------------------------------------------------------------------------
+		-- ######################################################################
+		-------------------------------------------------------------------------	
