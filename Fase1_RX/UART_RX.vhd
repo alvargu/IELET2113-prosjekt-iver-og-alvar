@@ -6,15 +6,15 @@ entity UART_RX is
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant BAUD_RATE: integer := 9600;
-		constant o_smp_bits: integer := 8);
+		constant o_smp_bits: integer := 8
 		);
 	port (
 		RX_sig : in std_logic;
 		clk: in std_logic;
 		utgang: out std_logic
 		);
-		
-		
+end entity;		
+
 		
 architecture rtl of UART_RX is 
 ---------------------------------------------------------------------------------------------------------
@@ -60,16 +60,36 @@ architecture rtl of UART_RX is
 -- Begin architecture
 -------------------------------------------------------------------------------
 begin
-
+	
+	-------------------------------------------------------------------------
+	-- Process to handle segment display
+	-------------------------------------------------------------------------
 	p_seg_handler : process ()
-		
-		
+	begin	
+	 	case show_num is
+			when "00000000" =>	hex_display <= "11000000"; -- 0
+			when "00000001" =>	hex_display <= "11111001"; -- 1
+			when "00000011" =>	hex_display <= "10100100"; -- 3
+			when "00000010" =>	hex_display <= "10110000"; -- 2
+			when "00000100" =>	hex_display <= "10011001"; -- 4
+			when "00000101" =>	hex_display <= "10010010"; -- 5
+			when "00000110" =>	hex_display <= "10000010"; -- 6
+			when "00000111" =>	hex_display <= "11111000"; -- 7
+			when "00001000" =>	hex_display <= "10000000"; -- 8
+			when "00001001" =>	hex_display <= "10010000"; -- 9
+			when "00000000" =>	hex_display <= "10001000"; -- A
+			when "00000000" =>	hex_display <= "10000011"; -- B
+			when "00000000" =>	hex_display <= "11000110"; -- C
+			when "00000000" =>	hex_display <= "10000000"; -- D
+			when "00000000" =>	hex_display <= "10000110"; -- E
+			when others	 =>	hex_display <= "10001110"; -- F
+		end case;
 	end process;
 	
 	-------------------------------------------------------------------------
-	-- ######################################################################
+	-- Use system clock to generate oversampling clock and clk for baud rate.
 	-------------------------------------------------------------------------
-	clock_division: process(clk) is
+	p_clock_division: process(clk)
 		constant o_smp_factor: integer := f_clk/(baud_rate * o_smp_bits);
 		variable o_smp_clk_cnt: integer := 0;
 		variable BAUD_clk_cnt: integer := 0;
@@ -90,18 +110,9 @@ begin
 	end process;
 	
 	-------------------------------------------------------------------------
-	-- ######################################################################
+	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation_SM : process ()
-		cnt_data
-		begin
-		
-	end process;
-	
-	-------------------------------------------------------------------------
-	-- ######################################################################
-	-------------------------------------------------------------------------
-	data_seperation : process(clk, rx_bit) is
+	p_data_seperation : process(clk, rx_bit)
 		type t_state is (n_data, r_data);
 		variable state: t_state <= n_data;
 		variable cnt_data: integer := 0:
@@ -122,11 +133,11 @@ begin
 		end case;
 	end process;
 	
-	---------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
 	-- the 7 rightmost readings to decide value of the recieved bit.
-	---------------------------------------------------------------------------------------------------------
-	p_read_bit_val :process (RX_bit, RX_o_smp) is
+	--------------------------------------------------------------------------
+	p_read_bit_val :process (RX_bit, RX_o_smp)
 		variable o_smp_cnt : integer range 0 to 8;
 	begin
 		if rising_edge(o_smp_clk) then 
@@ -144,9 +155,9 @@ begin
 		end if;
 	end process;
 	-------------------------------------------------------------------------
-	-- ######################################################################
+	-- Set signals that go out equal to their inn system counterparts
 	-------------------------------------------------------------------------
-	
+	seg_ut <= hex_display;
 	utgang <= baud_rate_clk;
 	
 end architecture;
