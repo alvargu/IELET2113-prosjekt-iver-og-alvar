@@ -4,11 +4,14 @@ use ieee.numeric_std.all;
 
 entity UART_RX is 
 	generic (
-		BAUD_RATE 
+		constant f_clk: integer := 50_000_000;
+		constant BAUD_RATE: integer := 9600;
+		constant o_smp_bits: integer := 8);
 		);
 	port (
 		RX_sig : in std_logic;
-		
+		clk: in std_logic;
+		utgang: out std_logic
 		);
 		
 		
@@ -20,13 +23,17 @@ architecture rtl of UART_RX is
 -- clk signals
 	signal BAUD_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
--- counter signals
-	
+-- hold signals
+	signal rx_busy: std_logic := '0';
 -- data signals
 	signal RX_bit 		: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
 	signal RX_o_smp	: std_logic_vector(6 downto 0);
 	signal v_RX_data 	: std_logic_vector(7 downto 0);
+	
+-- iver signals
+	signal o_smp_clk: std_logic := '0';
+	signal BAUD_clk: std_logic := '0';
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -48,41 +55,78 @@ architecture rtl of UART_RX is
 		end if;
 		return majority_val;
 	end function;
-	
+
+-------------------------------------------------------------------------------
+-- Begin architecture
+-------------------------------------------------------------------------------
 begin
+
 	p_seg_handler : process ()
 		
 		
 	end process;
 	
-	p_BAUD_clk : process ()
-		
-		begin
-		
+	-------------------------------------------------------------------------
+	-- ######################################################################
+	-------------------------------------------------------------------------
+	clock_division: process(clk) is
+		constant o_smp_factor: integer := f_clk/(baud_rate * o_smp_bits);
+		variable o_smp_clk_cnt: integer := 0;
+		variable BAUD_clk_cnt: integer := 0;
+	begin
+		if rising_edge(clk) then
+			o_smp_clk_cnt := o_smp_clk_cnt + 1;
+			if (o_smp_clk_cnt >= o_smp_factor) then
+				o_smp_clk_cnt := 0;
+				o_smp_clk <= not o_smp_clk;
+				
+				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
+				if (BAUD_clk_cnt >= o_smp_bits) then -- Baud rate clk sjekkes her for å effektivisere 
+					BAUD_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
+					BAUD_clk <= not BAUD_clk;
+				end if;
+			end if;
+		end if;	
 	end process;
-		
-	p_oversampling_clk : process ()
-		
-		begin
-		
-	end process;
-		
+	
+	-------------------------------------------------------------------------
+	-- ######################################################################
+	-------------------------------------------------------------------------
 	p_data_seperation_SM : process ()
-		
+		cnt_data
 		begin
 		
 	end process;
-		
-	p_receiving_LED : process ()
-		
-		begin
-		
+	
+	-------------------------------------------------------------------------
+	-- ######################################################################
+	-------------------------------------------------------------------------
+	data_seperation : process(clk, rx_bit) is
+		type t_state is (n_data, r_data);
+		variable state: t_state <= n_data;
+		variable cnt_data: integer := 0:
+	begin
+		case state is 
+			when n_data =>
+				rx_busy <= '0';
+				if rx_data = '0' then 
+					state := r_data;
+				end if;
+			when r_data =>
+				rx_busy <= '1';
+				if cnt_data < 8 then
+					v_rx_data(cnt_data) <= rx_bit;
+					cnt_data := cnt_data + 1;
+				elsif cnt_data = 8 then
+					state := n_data;
+		end case;
 	end process;
+	
 	---------------------------------------------------------------------------------------------------------
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	---------------------------------------------------------------------------------------------------------
-	p_read_bit_val :process (RX_bit, RX_o_smp)
+	p_read_bit_val :process (RX_bit, RX_o_smp) is
 		variable o_smp_cnt : integer range 0 to 8;
 	begin
 		if rising_edge(o_smp_clk) then 
@@ -102,5 +146,7 @@ begin
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
+	
+	utgang <= baud_rate_clk;
+	
 end architecture;
-		
