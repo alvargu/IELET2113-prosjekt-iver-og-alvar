@@ -129,7 +129,7 @@ begin
 				if cnt_data < 8 then
 					v_rx_data(cnt_data) <= rx_bit;
 					cnt_data := cnt_data + 1;
-				elsif cnt_data = 8 then
+				elsif cnt_data >= 8 then
 					state := n_data;
 		end case;
 	end process;
