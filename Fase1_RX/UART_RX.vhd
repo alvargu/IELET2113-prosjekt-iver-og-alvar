@@ -11,15 +11,16 @@ entity UART_RX is
 	port (
 		RX_sig : in std_logic;
 		clk: in std_logic;
+		seg_ut: out std_logic_vector(7 downto 0);
 		utgang: out std_logic
 		);
 end entity;		
 
 		
 architecture rtl of UART_RX is 
----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- Define internal signals of circuit
----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- clk signals
 	signal BAUD_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
@@ -42,13 +43,13 @@ architecture rtl of UART_RX is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	check_vector(0) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(1) = '1' then count_ones := count_ones + 1;
+		if 	check_vector(1) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(7) = '1' then count_ones := count_ones + 1;
 		end if;
 		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
