@@ -11,6 +11,7 @@ entity UART_RX is
 	port (
 		RX_sig : in std_logic;
 		clk: in std_logic;
+		seg_ut: out std_logic_vector(7 downto 0);
 		utgang: out std_logic
 		);
 end entity;		
@@ -24,31 +25,33 @@ architecture rtl of UART_RX is
 	signal BAUD_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
 -- hold signals
-	signal rx_busy: std_logic := '0';
+	signal rx_busy			: std_logic := '0';
 -- data signals
-	signal RX_bit 		: std_logic := '1';
+	signal RX_bit 			: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
-	signal RX_o_smp	: std_logic_vector(6 downto 0);
-	signal v_RX_data 	: std_logic_vector(7 downto 0);
+	signal RX_o_smp		: std_logic_vector(7 downto 0);
+	signal v_RX_data 		: std_logic_vector(7 downto 0);
+	signal show_num 		: std_logic_vector(7 downto 0);
+	signal hex_display 		: std_logic_vector(7 downto 0);
 	
 -- iver signals
-	signal o_smp_clk: std_logic := '0';
-	signal BAUD_clk: std_logic := '0';
+	-- signal o_smp_clk: std_logic := '0';
+	-- signal BAUD_clk: std_logic := '0';
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
 ---------------------------------------------------------------------------------------------------------
-	pure function majority_check(check_vector : std_logic_vector := "0000000") return std_logic is;
+	pure function majority_check(check_vector : std_logic_vector := "0000000") return std_logic is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	check_vector(0) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(1) = '1' then count_ones := count_ones + 1;
+		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(7) = '1' then count_ones := count_ones + 1;
 		end if;
 		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
@@ -64,7 +67,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Process to handle segment display
 	-------------------------------------------------------------------------
-	p_seg_handler : process ()
+	p_seg_handler : process (show_num)
 	begin	
 	 	case show_num is
 			when "00000000" =>	hex_display <= "11000000"; -- 0
@@ -77,11 +80,11 @@ begin
 			when "00000111" =>	hex_display <= "11111000"; -- 7
 			when "00001000" =>	hex_display <= "10000000"; -- 8
 			when "00001001" =>	hex_display <= "10010000"; -- 9
-			when "00000000" =>	hex_display <= "10001000"; -- A
-			when "00000000" =>	hex_display <= "10000011"; -- B
-			when "00000000" =>	hex_display <= "11000110"; -- C
-			when "00000000" =>	hex_display <= "10000000"; -- D
-			when "00000000" =>	hex_display <= "10000110"; -- E
+			when "00001010" =>	hex_display <= "10001000"; -- A
+			when "00001011" =>	hex_display <= "10000011"; -- B
+			when "00001100" =>	hex_display <= "11000110"; -- C
+			when "00001101" =>	hex_display <= "10000000"; -- D
+			when "00001110" =>	hex_display <= "10000110"; -- E
 			when others	 =>	hex_display <= "10001110"; -- F
 		end case;
 	end process;
@@ -114,13 +117,13 @@ begin
 	-------------------------------------------------------------------------
 	p_data_seperation : process(clk, rx_bit)
 		type t_state is (n_data, r_data);
-		variable state: t_state <= n_data;
-		variable cnt_data: integer := 0:
+		variable state: t_state := n_data;
+		variable cnt_data: integer := 0;
 	begin
 		case state is 
 			when n_data =>
 				rx_busy <= '0';
-				if rx_data = '0' then 
+				if rx_bit = '0' then 
 					state := r_data;
 				end if;
 			when r_data =>
@@ -130,6 +133,8 @@ begin
 					cnt_data := cnt_data + 1;
 				elsif cnt_data = 8 then
 					state := n_data;
+					show_num <= v_rx_data;
+				end if;
 		end case;
 	end process;
 	
@@ -138,12 +143,11 @@ begin
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	--------------------------------------------------------------------------
 	p_read_bit_val :process (RX_bit, RX_o_smp)
-		variable o_smp_cnt : integer range 0 to 8;
+		variable o_smp_cnt : integer range 0 to 8 := 0;
 	begin
 		if rising_edge(o_smp_clk) then 
 			if o_smp_cnt > 0 then 
-				shift_left(RX_o_smp, 1);
-				RX_o_smp(0) <= RX_sig;
+				RX_o_smp <= RX_o_smp(7 downto 1) & RX_sig;
 				if o_smp_cnt = 7 then 
 					RX_bit <= majority_check(RX_o_smp);
 				end if;
@@ -158,6 +162,6 @@ begin
 	-- Set signals that go out equal to their inn system counterparts
 	-------------------------------------------------------------------------
 	seg_ut <= hex_display;
-	utgang <= baud_rate_clk;
+	--utgang <= baud_rate_clk;
 	
 end architecture;

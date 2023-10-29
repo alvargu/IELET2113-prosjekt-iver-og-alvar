@@ -4,6 +4,7 @@
 ---------------------------------------------------------------------------------------------------------
 -- function that takes inn a logic vector of a number and outputs  chosen number
 ---------------------------------------------------------------------------------------------------------
+/*
 function seg_display_num (signal show_num    	: in std_logic_vector; 
 								  signal hex_display 	: out std_logic_vector) is 
 	constant hex_show_0: std_logic_vector(7 downto 0) := "11000000";
@@ -42,6 +43,7 @@ begin
 	end if;
 	return hex_display;
 end procedure;
+*/
 -------------------------------------------------------------------------
 -- ######################################################################
 -------------------------------------------------------------------------	
