@@ -1,0 +1,5 @@
+Fase1_RX/db/
+Fase1_RX/incremental_db/
+Fase1_RX/output/
+*.sof
+*.pof
