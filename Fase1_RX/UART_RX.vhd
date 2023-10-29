@@ -18,9 +18,9 @@ end entity;
 
 		
 architecture rtl of UART_RX is 
----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- Define internal signals of circuit
----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- clk signals
 	signal BAUD_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
@@ -131,7 +131,7 @@ begin
 				if cnt_data < 8 then
 					v_rx_data(cnt_data) <= rx_bit;
 					cnt_data := cnt_data + 1;
-				elsif cnt_data = 8 then
+				elsif cnt_data >= 8 then
 					state := n_data;
 					show_num <= v_rx_data;
 				end if;
