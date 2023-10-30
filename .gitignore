@@ -1,5 +1,5 @@
 Fase1_RX/db/
 Fase1_RX/incremental_db/
 Fase1_RX/output_files/
-*.sof
-*.pof
+git add -f Fase1_RX/output_files/*.sof
+git add -f Fase1_RX/output_files/*.pof
