@@ -147,8 +147,10 @@ begin
 	--------------------------------------------------------------------------
 	p_read_bit_val :process (o_smp_clk, RX_bit, RX_o_smp)
 		variable o_smp_cnt : integer range 0 to 8 := 0;
+		variable prev_o_smp_clk : std_logic := '0'
 	begin
-		if rising_edge(o_smp_clk) then 
+		-- if rising_edge(o_smp_clk) then 
+		if (o_smp_clk = '1') and (o_smp_clk != prev_o_smp_clk) then
 			if o_smp_cnt > 0 then 
 				RX_o_smp <= RX_o_smp(7 downto 1) & RX_sig;
 				if o_smp_cnt = 7 then 
@@ -160,6 +162,7 @@ begin
 				o_smp_cnt := 0;
 			end if;
 		end if;
+		prev_o_smp_clk := o_smp_clk;
 	end process;
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts
