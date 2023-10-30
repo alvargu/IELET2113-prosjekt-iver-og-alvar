@@ -1,0 +1,18 @@
+Fitter Status : Successful - Fri Oct 27 15:35:37 2023
+Quartus Prime Version : 22.1std.2 Build 922 07/20/2023 SC Lite Edition
+Revision Name : UART_RX
+Top-level Entity Name : UART_RX
+Family : MAX 10
+Device : 10M08DAF484C8G
+Timing Models : Final
+Total logic elements : 196 / 8,064 ( 2 % )
+    Total combinational functions : 195 / 8,064 ( 2 % )
+    Dedicated logic registers : 37 / 8,064 ( < 1 % )
+Total registers : 37
+Total pins : 11 / 250 ( 4 % )
+Total virtual pins : 0
+Total memory bits : 0 / 387,072 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 48 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 1 ( 0 % )

@@ -1,0 +1,149 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'RX_bit'
+Slack : -18.158
+TNS   : -624.692
+
+Type  : Slow 1200mV 85C Model Setup '\p_data_seperation:cnt_data[10]'
+Slack : -17.136
+TNS   : -575.333
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -7.777
+TNS   : -162.055
+
+Type  : Slow 1200mV 85C Model Setup 'o_smp_clk'
+Slack : -1.908
+TNS   : -2.426
+
+Type  : Slow 1200mV 85C Model Hold '\p_data_seperation:cnt_data[10]'
+Slack : -2.177
+TNS   : -17.892
+
+Type  : Slow 1200mV 85C Model Hold 'RX_bit'
+Slack : -0.980
+TNS   : -3.833
+
+Type  : Slow 1200mV 85C Model Hold 'o_smp_clk'
+Slack : 0.360
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.709
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width '\p_data_seperation:cnt_data[10]'
+Slack : -3.199
+TNS   : -560.841
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -52.071
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'o_smp_clk'
+Slack : -1.487
+TNS   : -5.948
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RX_bit'
+Slack : -0.837
+TNS   : -14.321
+
+Type  : Slow 1200mV 0C Model Setup 'RX_bit'
+Slack : -17.075
+TNS   : -594.581
+
+Type  : Slow 1200mV 0C Model Setup '\p_data_seperation:cnt_data[10]'
+Slack : -16.045
+TNS   : -543.871
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -7.214
+TNS   : -147.220
+
+Type  : Slow 1200mV 0C Model Setup 'o_smp_clk'
+Slack : -1.780
+TNS   : -2.131
+
+Type  : Slow 1200mV 0C Model Hold '\p_data_seperation:cnt_data[10]'
+Slack : -2.410
+TNS   : -18.600
+
+Type  : Slow 1200mV 0C Model Hold 'RX_bit'
+Slack : -0.975
+TNS   : -3.837
+
+Type  : Slow 1200mV 0C Model Hold 'o_smp_clk'
+Slack : 0.323
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.668
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width '\p_data_seperation:cnt_data[10]'
+Slack : -3.223
+TNS   : -523.239
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -52.071
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'o_smp_clk'
+Slack : -1.487
+TNS   : -5.948
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RX_bit'
+Slack : -0.987
+TNS   : -13.484
+
+Type  : Fast 1200mV 0C Model Setup 'RX_bit'
+Slack : -7.069
+TNS   : -230.354
+
+Type  : Fast 1200mV 0C Model Setup '\p_data_seperation:cnt_data[10]'
+Slack : -6.446
+TNS   : -207.953
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -2.307
+TNS   : -39.765
+
+Type  : Fast 1200mV 0C Model Setup 'o_smp_clk'
+Slack : -0.197
+TNS   : -0.197
+
+Type  : Fast 1200mV 0C Model Hold '\p_data_seperation:cnt_data[10]'
+Slack : -0.742
+TNS   : -6.790
+
+Type  : Fast 1200mV 0C Model Hold 'RX_bit'
+Slack : -0.430
+TNS   : -1.651
+
+Type  : Fast 1200mV 0C Model Hold 'o_smp_clk'
+Slack : 0.151
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.241
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -36.961
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'o_smp_clk'
+Slack : -1.000
+TNS   : -4.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width '\p_data_seperation:cnt_data[10]'
+Slack : -0.962
+TNS   : -130.637
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RX_bit'
+Slack : -0.063
+TNS   : -0.382
+
+------------------------------------------------------------
