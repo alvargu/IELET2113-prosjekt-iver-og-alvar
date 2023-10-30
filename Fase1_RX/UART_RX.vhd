@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity Prosjekt is 
+entity uart_rx is 
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant BAUD_RATE: integer := 9600;
@@ -17,7 +17,7 @@ entity Prosjekt is
 end entity;		
 
 		
-architecture rtl of Prosjekt is 
+architecture rtl of uart_rx is 
 -------------------------------------------------------------------------------
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
@@ -147,10 +147,10 @@ begin
 	--------------------------------------------------------------------------
 	p_read_bit_val :process (o_smp_clk, RX_bit, RX_o_smp)
 		variable o_smp_cnt : integer range 0 to 8 := 0;
-		variable prev_o_smp_clk : std_logic := '0'
+		variable prev_o_smp_clk : std_logic := '0';
 	begin
 		-- if rising_edge(o_smp_clk) then 
-		if (o_smp_clk = '1') and (o_smp_clk != prev_o_smp_clk) then
+		if (o_smp_clk = '1') and (o_smp_clk /= prev_o_smp_clk) then
 			if o_smp_cnt > 0 then 
 				RX_o_smp <= RX_o_smp(7 downto 1) & RX_sig;
 				if o_smp_cnt = 7 then 
