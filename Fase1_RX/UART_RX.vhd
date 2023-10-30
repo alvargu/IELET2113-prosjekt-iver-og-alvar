@@ -15,7 +15,7 @@ entity uart_rx is
 		utgang: out std_logic
 		);
 end entity;		
-
+-- hei iver fikset github
 		
 architecture rtl of uart_rx is 
 -------------------------------------------------------------------------------
