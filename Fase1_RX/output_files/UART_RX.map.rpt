@@ -1,5 +1,5 @@
 Analysis & Synthesis report for UART_RX
-Mon Oct 30 15:08:03 2023
+Mon Oct 30 15:37:49 2023
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -45,7 +45,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Oct 30 15:08:03 2023          ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 30 15:37:49 2023          ;
 ; Quartus Prime Version              ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                      ; UART_RX                                        ;
 ; Top-level Entity Name              ; uart_rx                                        ;
@@ -280,7 +280,7 @@ The equations can be found in C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-    Info: Processing started: Mon Oct 30 15:07:54 2023
+    Info: Processing started: Mon Oct 30 15:37:42 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off UART_RX -c UART_RX
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -291,20 +291,20 @@ Info (12021): Found 0 design units, including 0 entities, in source file seg_han
 Info (12127): Elaborating entity "UART_RX" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at UART_RX.vhd(15): used implicit default value for signal "utgang" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
 Warning (10036): Verilog HDL or VHDL warning at UART_RX.vhd(28): object "rx_busy" assigned a value but never read File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at UART_RX.vhd(139): signal "v_RX_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 139
+Warning (10492): VHDL Process Statement warning at UART_RX.vhd(141): signal "v_rx_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 141
 Warning (10631): VHDL Process Statement warning at UART_RX.vhd(121): inferring latch(es) for signal or variable "state", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(121): inferring latch(es) for signal or variable "v_RX_data", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Warning (10631): VHDL Process Statement warning at UART_RX.vhd(121): inferring latch(es) for signal or variable "v_rx_data", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Warning (10631): VHDL Process Statement warning at UART_RX.vhd(121): inferring latch(es) for signal or variable "cnt_data", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Warning (10631): VHDL Process Statement warning at UART_RX.vhd(121): inferring latch(es) for signal or variable "show_num", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Warning (10492): VHDL Process Statement warning at UART_RX.vhd(155): signal "RX_sig" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 155
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(148): inferring latch(es) for signal or variable "RX_o_smp", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 148
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(148): inferring latch(es) for signal or variable "RX_bit", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 148
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(148): inferring latch(es) for signal or variable "o_smp_cnt", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 148
-Info (10041): Inferred latch for "RX_bit" at UART_RX.vhd(148) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 148
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[0]" at UART_RX.vhd(153) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[1]" at UART_RX.vhd(153) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[2]" at UART_RX.vhd(153) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[3]" at UART_RX.vhd(153) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
+Warning (10492): VHDL Process Statement warning at UART_RX.vhd(159): signal "RX_sig" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 159
+Warning (10631): VHDL Process Statement warning at UART_RX.vhd(152): inferring latch(es) for signal or variable "rx_o_smp", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 152
+Warning (10631): VHDL Process Statement warning at UART_RX.vhd(152): inferring latch(es) for signal or variable "rx_bit", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 152
+Warning (10631): VHDL Process Statement warning at UART_RX.vhd(152): inferring latch(es) for signal or variable "o_smp_cnt", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 152
+Info (10041): Inferred latch for "rx_bit" at UART_RX.vhd(152) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 152
+Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[0]" at UART_RX.vhd(157) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 157
+Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[1]" at UART_RX.vhd(157) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 157
+Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[2]" at UART_RX.vhd(157) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 157
+Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[3]" at UART_RX.vhd(157) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 157
 Info (10041): Inferred latch for "show_num[0]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Info (10041): Inferred latch for "show_num[1]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Info (10041): Inferred latch for "show_num[2]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
@@ -313,47 +313,47 @@ Info (10041): Inferred latch for "show_num[4]" at UART_RX.vhd(121) File: C:/User
 Info (10041): Inferred latch for "show_num[5]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Info (10041): Inferred latch for "show_num[6]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
 Info (10041): Inferred latch for "show_num[7]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[0]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[1]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[2]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[3]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[4]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[5]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[6]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[7]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[8]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[9]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[10]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[11]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[12]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[13]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[14]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[15]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[16]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[17]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[18]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[19]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[20]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[21]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[22]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[23]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[24]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[25]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[26]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[27]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[28]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[29]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[30]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[31]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[0]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[1]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[2]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[3]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[4]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[5]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[6]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "v_RX_data[7]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
-Info (10041): Inferred latch for "p_data_seperation:state" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[0]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[1]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[2]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[3]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[4]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[5]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[6]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "v_rx_data[7]" at UART_RX.vhd(121) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 121
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[0]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[1]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[2]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[3]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[4]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[5]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[6]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[7]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[8]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[9]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[10]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[11]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[12]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[13]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[14]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[15]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[16]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[17]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[18]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[19]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[20]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[21]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[22]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[23]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[24]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[25]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[26]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[27]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[28]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[29]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[30]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:cnt_data[31]" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
+Info (10041): Inferred latch for "p_data_seperation:state" at UART_RX.vhd(127) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 127
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "seg_ut[0]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 14
     Warning (13410): Pin "seg_ut[1]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 14
@@ -373,9 +373,9 @@ Info (21057): Implemented 11 device resources after synthesis - the final resour
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 9 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 4800 megabytes
-    Info: Processing ended: Mon Oct 30 15:08:03 2023
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:08
+    Info: Peak virtual memory: 4794 megabytes
+    Info: Processing ended: Mon Oct 30 15:37:49 2023
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
 
 

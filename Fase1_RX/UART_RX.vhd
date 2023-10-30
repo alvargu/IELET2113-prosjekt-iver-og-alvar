@@ -22,21 +22,21 @@ architecture rtl of uart_rx is
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
 -- clk signals
-	signal BAUD_clk 		: std_logic := '0';
+	signal baud_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
 -- hold signals
 	signal rx_busy			: std_logic := '0';
 -- data signals
-	signal RX_bit 			: std_logic := '1';
+	signal rx_bit 			: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
-	signal RX_o_smp		: std_logic_vector(7 downto 0);
-	signal v_RX_data 		: std_logic_vector(7 downto 0);
+	signal rx_o_smp		: std_logic_vector(7 downto 0);
+	signal v_rx_data 		: std_logic_vector(7 downto 0);
 	signal show_num 		: std_logic_vector(7 downto 0);
 	signal hex_display 		: std_logic_vector(7 downto 0);
 	
 -- iver signals
 	-- signal o_smp_clk: std_logic := '0';
-	-- signal BAUD_clk: std_logic := '0';
+	-- signal baud_clk: std_logic := '0';
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -98,7 +98,7 @@ begin
 	p_clock_division: process(clk)
 		constant o_smp_factor: integer := f_clk/(baud_rate * o_smp_bits);
 		variable o_smp_clk_cnt: integer := 0;
-		variable BAUD_clk_cnt: integer := 0;
+		variable baud_clk_cnt: integer := 0;
 	begin
 		if rising_edge(clk) then
 			o_smp_clk_cnt := o_smp_clk_cnt + 1;
@@ -106,39 +106,43 @@ begin
 				o_smp_clk_cnt := 0;			-- periode, men man jo endre to ganger i løpe av en
 				o_smp_clk <= not o_smp_clk;		-- periode for å skape en puls.
 				
-				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
-				if (BAUD_clk_cnt >= o_smp_bits / 2) then -- Baud rate clk sjekkes her for å effektivisere 
-					BAUD_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
-					BAUD_clk <= not BAUD_clk;
+				baud_clk_cnt := baud_clk_cnt + 1; 
+				if (baud_clk_cnt >= o_smp_bits / 2) then -- Baud rate clk sjekkes her for å effektivisere 
+					baud_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
+					baud_clk <= not baud_clk;
 				end if;
 			end if;
-		end if;	
+		end if;
 	end process;
 	
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation : process(clk, rx_bit)
+	p_data_seperation : process(baud_clk, rx_bit)
 		type t_state is (n_data, r_data);
-		variable state: t_state := n_data;
-		variable cnt_data: integer := 0;
+		variable state : t_state := n_data;
+		variable cnt_data : integer := 0;
+		variable prev_baud_clk : std_logic := '0';
 	begin
-		case state is 
-			when n_data =>
-				rx_busy <= '0';
-				if rx_bit = '0' then 
-					state := r_data;
-				end if;
-			when r_data =>
-				rx_busy <= '1';
-				if cnt_data < 8 then
-					v_rx_data(cnt_data) <= rx_bit;
-					cnt_data := cnt_data + 1;
-				elsif cnt_data >= 8 then
-					state := n_data;
-					show_num <= v_rx_data;
-				end if;
-		end case;
+		if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
+			case state is 
+				when n_data =>
+					rx_busy <= '0';
+					if rx_bit = '0' then 
+						state := r_data;
+					end if;
+				when r_data =>
+					rx_busy <= '1';
+					if cnt_data < 8 then
+						v_rx_data(cnt_data) <= rx_bit;
+						cnt_data := cnt_data + 1;
+					elsif cnt_data >= 8 then
+						state := n_data;
+						show_num <= v_rx_data;
+					end if;
+			end case;
+		end if;
+		prev_baud_clk := baud_clk;
 	end process;
 	
 	--------------------------------------------------------------------------
