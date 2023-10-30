@@ -22,8 +22,8 @@ architecture rtl of uart_rx is
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
 -- clk signals
-	signal baud_clk 		: std_logic := '0';
-	signal o_smp_clk 		: std_logic := '0';
+	signal baud_clk 		: std_logic := '1';
+	signal o_smp_clk 		: std_logic := '1';
 -- hold signals
 	signal rx_busy			: std_logic := '0';
 -- data signals
