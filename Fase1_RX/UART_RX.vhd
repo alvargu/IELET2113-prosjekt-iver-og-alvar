@@ -15,7 +15,7 @@ entity uart_rx is
 		utgang: out std_logic
 		);
 end entity;		
--- hei iver fikset github
+
 		
 architecture rtl of uart_rx is 
 -------------------------------------------------------------------------------
@@ -106,13 +106,13 @@ begin
 				o_smp_clk_cnt := 0;			-- periode, men man jo endre to ganger i løpe av en
 				o_smp_clk <= not o_smp_clk;		-- periode for å skape en puls.
 				
-				baud_clk_cnt := baud_clk_cnt + 1; 
-				if (baud_clk_cnt >= o_smp_bits / 2) then -- Baud rate clk sjekkes her for å effektivisere 
-					baud_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
-					baud_clk <= not baud_clk;
+				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
+				if (BAUD_clk_cnt >= o_smp_bits) then -- Baud rate clk sjekkes her for å effektivisere 
+					BAUD_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
+					BAUD_clk <= not BAUD_clk;
 				end if;
 			end if;
-		end if;
+		end if;	
 	end process;
 	
 	-------------------------------------------------------------------------
@@ -122,26 +122,26 @@ begin
 		type t_state is (n_data, r_data);
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
-		variable prev_baud_clk : std_logic := '0';
+variable prev_baud_clk : std_logic := '0';
 	begin
-		if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
-			case state is 
-				when n_data =>
-					rx_busy <= '0';
-					if rx_bit = '0' then 
-						state := r_data;
-					end if;
-				when r_data =>
-					rx_busy <= '1';
-					if cnt_data < 8 then
-						v_rx_data(cnt_data) <= rx_bit;
-						cnt_data := cnt_data + 1;
-					elsif cnt_data >= 8 then
-						state := n_data;
-						show_num <= v_rx_data;
-					end if;
-			end case;
-		end if;
+if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
+		case state is 
+			when n_data =>
+				rx_busy <= '0';
+				if rx_bit = '0' then 
+					state := r_data;
+				end if;
+			when r_data =>
+				rx_busy <= '1';
+				if cnt_data < 8 then
+					v_rx_data(cnt_data) <= rx_bit;
+					cnt_data := cnt_data + 1;
+				elsif cnt_data >= 8 then
+					state := n_data;
+					show_num <= v_rx_data;
+				end if;
+		end case;
+end if;
 		prev_baud_clk := baud_clk;
 	end process;
 	
