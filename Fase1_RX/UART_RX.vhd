@@ -45,15 +45,15 @@ architecture rtl of UART_RX is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
+		if 	 check_vector(3) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(7) = '1' then count_ones := count_ones + 1;
+		-- elsif check_vector(4) = '1' then count_ones := count_ones + 1;
+		-- elsif check_vector(5) = '1' then count_ones := count_ones + 1;
+		-- elsif check_vector(6) = '1' then count_ones := count_ones + 1;
+		-- elsif check_vector(7) = '1' then count_ones := count_ones + 1;
 		end if;
-		if count_ones > 3 then majority_val := '1';
+		if count_ones > 1 then majority_val := '1';
 		else majority_val := '0';
 		end if;
 		return majority_val;
