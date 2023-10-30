@@ -66,6 +66,9 @@ begin
 	
 	-------------------------------------------------------------------------
 	-- Process to handle segment display
+	-- 
+	-- TODO
+	-- turn what is now binary values to ASCII values
 	-------------------------------------------------------------------------
 	p_seg_handler : process (show_num)
 	begin	
