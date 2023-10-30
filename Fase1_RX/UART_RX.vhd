@@ -102,12 +102,12 @@ begin
 	begin
 		if rising_edge(clk) then
 			o_smp_clk_cnt := o_smp_clk_cnt + 1;
-			if (o_smp_clk_cnt >= o_smp_factor) then
-				o_smp_clk_cnt := 0;
-				o_smp_clk <= not o_smp_clk;
+			if (o_smp_clk_cnt >= o_smp_factor / 2) then 	-- Man deler på to fordi man endrer klokka etter en
+				o_smp_clk_cnt := 0;			-- periode, men man jo endre to ganger i løpe av en
+				o_smp_clk <= not o_smp_clk;		-- periode for å skape en puls.
 				
 				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
-				if (BAUD_clk_cnt >= o_smp_bits) then -- Baud rate clk sjekkes her for å effektivisere 
+				if (BAUD_clk_cnt >= o_smp_bits / 2) then -- Baud rate clk sjekkes her for å effektivisere 
 					BAUD_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
 					BAUD_clk <= not BAUD_clk;
 				end if;
