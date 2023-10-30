@@ -2,14 +2,14 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity UART_RX is 
+entity Prosjekt is 
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant BAUD_RATE: integer := 9600;
 		constant o_smp_bits: integer := 8
 		);
 	port (
-		rx_sig : in std_logic;
+		RX_sig : in std_logic;
 		clk: in std_logic;
 		seg_ut: out std_logic_vector(7 downto 0);
 		utgang: out std_logic
@@ -17,19 +17,19 @@ entity UART_RX is
 end entity;		
 
 		
-architecture rtl of UART_RX is 
+architecture rtl of Prosjekt is 
 -------------------------------------------------------------------------------
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
 -- clk signals
-	signal baud_clk 		: std_logic := '0';
+	signal BAUD_clk 		: std_logic := '0';
 	signal o_smp_clk 		: std_logic := '0';
 -- hold signals
 	signal rx_busy			: std_logic := '0';
 -- data signals
-	signal rx_bit 			: std_logic := '1';
+	signal RX_bit 			: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
-	signal rx_o_smp		: std_logic_vector(7 downto 0);
+	signal RX_o_smp		: std_logic_vector(7 downto 0);
 	signal v_RX_data 		: std_logic_vector(7 downto 0);
 	signal show_num 		: std_logic_vector(7 downto 0);
 	signal hex_display 		: std_logic_vector(7 downto 0);
@@ -45,15 +45,15 @@ architecture rtl of UART_RX is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	 check_vector(3) = '1' then count_ones := count_ones + 1;
+		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
-		-- elsif check_vector(4) = '1' then count_ones := count_ones + 1;
-		-- elsif check_vector(5) = '1' then count_ones := count_ones + 1;
-		-- elsif check_vector(6) = '1' then count_ones := count_ones + 1;
-		-- elsif check_vector(7) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(7) = '1' then count_ones := count_ones + 1;
 		end if;
-		if count_ones > 1 then majority_val := '1';
+		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
 		end if;
 		return majority_val;
@@ -118,7 +118,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_sep_SM : process(clk, rx_bit)
+	p_data_seperation : process(clk, rx_bit)
 		type t_state is (n_data, r_data);
 		variable state: t_state := n_data;
 		variable cnt_data: integer := 0;
@@ -129,15 +129,11 @@ begin
 				if rx_bit = '0' then 
 					state := r_data;
 				end if;
-				if RX_bit = '1' then
-					state := n_data;
-				end if;
 			when r_data =>
 				rx_busy <= '1';
 				if cnt_data < 8 then
 					v_rx_data(cnt_data) <= rx_bit;
 					cnt_data := cnt_data + 1;
-					state := r_data;
 				elsif cnt_data >= 8 then
 					state := n_data;
 					show_num <= v_rx_data;
@@ -149,7 +145,7 @@ begin
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	--------------------------------------------------------------------------
-	p_read_bit_val :process (RX_bit, RX_o_smp)
+	p_read_bit_val :process (o_smp_clk, RX_bit, RX_o_smp)
 		variable o_smp_cnt : integer range 0 to 8 := 0;
 	begin
 		if rising_edge(o_smp_clk) then 
