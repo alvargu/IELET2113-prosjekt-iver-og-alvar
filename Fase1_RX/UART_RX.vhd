@@ -136,10 +136,12 @@ if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
 				if cnt_data < 8 then
 					v_rx_data(cnt_data) <= rx_bit;
 					cnt_data := cnt_data + 1;
-				elsif cnt_data >= 8 then
-					state := n_data;
-					show_num <= v_rx_data;
 				end if;
+				if cnt_data >= 8 then
+					state := n_data;
+					show_num <= v_rx_data; -- Burde ikke denne sendes på syv og ikke åtte?
+					cnt_data := 0;
+				end if;						-- cnt_data blir aldri satt til null? equiv. får bare gå en runde...
 		end case;
 end if;
 		prev_baud_clk := baud_clk;
@@ -149,7 +151,7 @@ end if;
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	--------------------------------------------------------------------------
-	p_read_bit_val :process (o_smp_clk, RX_bit, RX_o_smp)
+	p_read_bit_val :process (o_smp_clk)
 		variable o_smp_cnt : integer range 0 to 8 := 0;
 		variable prev_o_smp_clk : std_logic := '0';
 	begin
@@ -162,7 +164,7 @@ end if;
 				end if;
 			end if;
 			o_smp_cnt := o_smp_cnt + 1;
-			if o_smp_cnt >= 8 then 
+			if o_smp_cnt >= 8 then
 				o_smp_cnt := 0;
 			end if;
 		end if;
