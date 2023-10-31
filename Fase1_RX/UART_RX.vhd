@@ -174,8 +174,8 @@ begin
 				end if;
 			end if;
 			o_smp_cnt := o_smp_cnt + 1;
-			if o_smp_cnt >= 8 then
-				o_smp_cnt := 0;
+			if o_smp_cnt >= 8 then -- siden vi sjekker etter at vi har økt telleren må
+				o_smp_cnt := 0;	  -- vi øke med en når man skal sjekke for samme tall.
 			end if;
 		end if;
 		-- solution 2

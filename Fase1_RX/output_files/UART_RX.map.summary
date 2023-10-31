@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Analysis & Synthesis Status : Successful - Tue Oct 31 19:13:51 2023
+=======
+Analysis & Synthesis Status : Successful - Tue Oct 31 18:41:44 2023
+>>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
 Quartus Prime Version : 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 Revision Name : UART_RX
 Top-level Entity Name : uart_rx
