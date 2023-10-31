@@ -29,7 +29,7 @@ architecture rtl of uart_rx is
 -- data signals
 	signal rx_bit 			: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
-	signal rx_o_smp		: std_logic_vector(7 downto 0);
+	
 	signal v_rx_data 		: std_logic_vector(7 downto 0);
 	signal show_num 		: std_logic_vector(7 downto 0);
 	signal hex_display 		: std_logic_vector(7 downto 0);
@@ -51,7 +51,6 @@ architecture rtl of uart_rx is
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(7) = '1' then count_ones := count_ones + 1;
 		end if;
 		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
@@ -150,13 +149,14 @@ end if;
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	--------------------------------------------------------------------------
 	p_read_bit_val :process (o_smp_clk, RX_bit, RX_o_smp)
-		variable o_smp_cnt : integer range 0 to 8 := 0;
-		variable prev_o_smp_clk : std_logic := '0';
+		variable o_smp_cnt 		: integer range 0 to 8 := 0;
+		variable prev_o_smp_clk 	: std_logic := '0';
+		variable rx_o_smp		: std_logic_vector(6 downto 0);
 	begin
 		-- if rising_edge(o_smp_clk) then 
 		if (o_smp_clk = '1') and (o_smp_clk /= prev_o_smp_clk) then
 			if o_smp_cnt > 0 then 
-				RX_o_smp <= RX_o_smp(7 downto 1) & RX_sig;
+				RX_o_smp <= RX_o_smp(5 downto 0) & RX_sig;
 				if o_smp_cnt = 7 then 
 					RX_bit <= majority_check(RX_o_smp);
 				end if;
