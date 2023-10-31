@@ -163,12 +163,12 @@ end if;
 					RX_bit <= majority_check(RX_o_smp);
 				end if;
 			end if;
+			prev_o_smp_clk := o_smp_clk;
 			o_smp_cnt := o_smp_cnt + 1;
 			if o_smp_cnt >= 8 then
 				o_smp_cnt := 0;
 			end if;
 		end if;
-		prev_o_smp_clk := o_smp_clk;
 	end process;
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts
