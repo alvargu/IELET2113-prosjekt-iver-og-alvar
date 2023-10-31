@@ -161,7 +161,7 @@ begin
 		variable o_smp_cnt 		: integer range 0 to 8 := 0;
 		variable prev_o_smp_clk 	: std_logic := '0';
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
-	begi
+	begin
 		-- solution 1: gave logic elements but dosent seem to work
 		-- if rising_edge(o_smp_clk) then 
 		-- solution 2: gives system 1 logic element
