@@ -150,7 +150,7 @@ end if;
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
 	-- the 7 rightmost readings to decide value of the recieved bit.
 	--------------------------------------------------------------------------
-	p_read_bit_val :process (o_smp_clk)
+	p_read_bit_val :process (o_smp_clk, rx_sig)
 		variable o_smp_cnt 		: integer range 0 to 8 := 0;
 		variable prev_o_smp_clk 	: std_logic := '0';
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
