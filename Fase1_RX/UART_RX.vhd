@@ -139,9 +139,9 @@ if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
 				end if;
 				if cnt_data >= 8 then
 					state := n_data;
-					show_num <= v_rx_data; -- Burde ikke denne sendes på syv og ikke åtte?
+					show_num <= v_rx_data; 
 					cnt_data := 0;
-				end if;						-- cnt_data blir aldri satt til null? equiv. får bare gå en runde...
+				end if;						
 		end case;
 end if;
 		prev_baud_clk := baud_clk;
