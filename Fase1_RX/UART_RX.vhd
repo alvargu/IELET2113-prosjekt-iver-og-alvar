@@ -147,7 +147,6 @@ begin
 						cnt_data := 0;
 					end if;						
 			end case;
-		end if;
 		-- if baud_clk = '0' then 
 		-- 	prev_baud_clk := '0';
 		-- end if;
@@ -177,7 +176,6 @@ begin
 			if o_smp_cnt >= 8 then -- siden vi sjekker etter at vi har økt telleren må
 				o_smp_cnt := 0;	  -- vi øke med en når man skal sjekke for samme tall.
 			end if;
-		end if;
 		-- solution 2
 		-- if (o_smp_clk = '0') then
 		-- 	prev_o_smp_clk := '0';
