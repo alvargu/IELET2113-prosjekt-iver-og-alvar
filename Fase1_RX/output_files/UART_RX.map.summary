@@ -1,4 +1,4 @@
-Analysis & Synthesis Status : Successful - Tue Oct 31 16:29:52 2023
+Analysis & Synthesis Status : Successful - Tue Oct 31 19:13:51 2023
 Quartus Prime Version : 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 Revision Name : UART_RX
 Top-level Entity Name : uart_rx
@@ -7,7 +7,7 @@ Total logic elements : 0
     Total combinational functions : 0
     Dedicated logic registers : 0
 Total registers : 0
-Total pins : 11
+Total pins : 10
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

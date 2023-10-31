@@ -22,27 +22,27 @@ RX_sig = INPUT();
 clk = INPUT();
 
 
---A1L8 is seg_ut[0]~output at IOOBUF_X3_Y0_N9
+--A1L8 is seg_ut[0]~output at IOOBUF_X31_Y4_N2
 A1L8 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[0] is seg_ut[0] at PIN_W6
+--seg_ut[0] is seg_ut[0] at PIN_P22
 seg_ut[0] = OUTPUT();
 
 
---A1L10 is seg_ut[1]~output at IOOBUF_X31_Y21_N16
+--A1L10 is seg_ut[1]~output at IOOBUF_X0_Y4_N2
 A1L10 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[1] is seg_ut[1] at PIN_K15
+--seg_ut[1] is seg_ut[1] at PIN_T1
 seg_ut[1] = OUTPUT();
 
 
---A1L12 is seg_ut[2]~output at IOOBUF_X0_Y4_N2
+--A1L12 is seg_ut[2]~output at IOOBUF_X0_Y2_N9
 A1L12 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[2] is seg_ut[2] at PIN_T1
+--seg_ut[2] is seg_ut[2] at PIN_R2
 seg_ut[2] = OUTPUT();
 
 
@@ -54,48 +54,40 @@ A1L14 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 seg_ut[3] = OUTPUT();
 
 
---A1L16 is seg_ut[4]~output at IOOBUF_X31_Y3_N2
+--A1L16 is seg_ut[4]~output at IOOBUF_X3_Y10_N2
 A1L16 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[4] is seg_ut[4] at PIN_R20
+--seg_ut[4] is seg_ut[4] at PIN_C5
 seg_ut[4] = OUTPUT();
 
 
---A1L18 is seg_ut[5]~output at IOOBUF_X0_Y8_N23
+--A1L18 is seg_ut[5]~output at IOOBUF_X1_Y10_N16
 A1L18 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[5] is seg_ut[5] at PIN_J1
+--seg_ut[5] is seg_ut[5] at PIN_E6
 seg_ut[5] = OUTPUT();
 
 
---A1L20 is seg_ut[6]~output at IOOBUF_X15_Y25_N30
+--A1L20 is seg_ut[6]~output at IOOBUF_X15_Y25_N23
 A1L20 = OUTPUT_BUFFER.O(.I(VCC), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[6] is seg_ut[6] at PIN_A5
+--seg_ut[6] is seg_ut[6] at PIN_D9
 seg_ut[6] = OUTPUT();
 
 
---A1L22 is seg_ut[7]~output at IOOBUF_X29_Y25_N30
+--A1L22 is seg_ut[7]~output at IOOBUF_X31_Y11_N2
 A1L22 = OUTPUT_BUFFER.O(.I(VCC), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[7] is seg_ut[7] at PIN_H14
+--seg_ut[7] is seg_ut[7] at PIN_J21
 seg_ut[7] = OUTPUT();
 
 
---A1L24 is utgang~output at IOOBUF_X15_Y0_N9
-A1L24 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
-
-
---utgang is utgang at PIN_AA8
-utgang = OUTPUT();
-
-
---A1L42 is ~QUARTUS_CREATED_GND~I at LCCOMB_X11_Y24_N24
-A1L42 = GND;
+--A1L40 is ~QUARTUS_CREATED_GND~I at LCCOMB_X11_Y12_N16
+A1L40 = GND;
 
 
 

@@ -1,0 +1,97 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1_ModelSim
+Euart_rx
+Z0 w1698774856
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+Z4 dC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX
+Z5 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
+Z6 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
+l0
+L5 1
+VAF=^Va1E@TJHTZj4Gh4ZB2
+!s100 ?]e6MC2cDJk6[Nk=XzWG_2
+Z7 OV;C;2020.1;71
+33
+Z8 !s110 1698775501
+!i10b 1
+Z9 !s108 1698775501.000000
+Z10 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
+Z11 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
+!i113 1
+Z12 o-work work
+Z13 tExplicit 1 NoCoverage 1 CvgOpt 0
+Artl
+R1
+R2
+R3
+DEx4 work 7 uart_rx 0 22 AF=^Va1E@TJHTZj4Gh4ZB2
+!i122 4
+l64
+L20 164
+VNgP>fn66MnObM=ZYAXBMR2
+!s100 LRPKaVlK>M?;H>>cC>Z[90
+R7
+33
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Euart_rx_tb
+Z14 w1698775483
+R1
+R2
+R3
+!i122 5
+R4
+Z15 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
+Z16 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
+l0
+L5 1
+V`6mGWVKIXk4ADnneWUhaP0
+!s100 nkMZ[^^aG5;F@fE1O>[ie2
+R7
+33
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
+Z18 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
+!i113 1
+R12
+R13
+Asimulationmodel
+R1
+R2
+R3
+Z19 DEx4 work 10 uart_rx_tb 0 22 `6mGWVKIXk4ADnneWUhaP0
+!i122 5
+l38
+Z20 L9 148
+Z21 VQTYml:bORh^:YYRQ_3R`b3
+Z22 !s100 nRZ<gi2hFRmE``bc29ljn0
+R7
+33
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13

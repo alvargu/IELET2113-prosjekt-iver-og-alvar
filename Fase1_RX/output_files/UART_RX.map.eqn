@@ -21,46 +21,42 @@ clk = INPUT();
 
 
 --seg_ut[0] is seg_ut[0]
-seg_ut[0] = OUTPUT(A1L13);
+seg_ut[0] = OUTPUT(A1L12);
 
 
 --seg_ut[1] is seg_ut[1]
-seg_ut[1] = OUTPUT(A1L13);
+seg_ut[1] = OUTPUT(A1L12);
 
 
 --seg_ut[2] is seg_ut[2]
-seg_ut[2] = OUTPUT(A1L13);
+seg_ut[2] = OUTPUT(A1L12);
 
 
 --seg_ut[3] is seg_ut[3]
-seg_ut[3] = OUTPUT(A1L13);
+seg_ut[3] = OUTPUT(A1L12);
 
 
 --seg_ut[4] is seg_ut[4]
-seg_ut[4] = OUTPUT(A1L13);
+seg_ut[4] = OUTPUT(A1L12);
 
 
 --seg_ut[5] is seg_ut[5]
-seg_ut[5] = OUTPUT(A1L13);
+seg_ut[5] = OUTPUT(A1L12);
 
 
 --seg_ut[6] is seg_ut[6]
-seg_ut[6] = OUTPUT(A1L14);
+seg_ut[6] = OUTPUT(A1L13);
 
 
 --seg_ut[7] is seg_ut[7]
-seg_ut[7] = OUTPUT(A1L14);
+seg_ut[7] = OUTPUT(A1L13);
 
 
---utgang is utgang
-utgang = OUTPUT(A1L13);
+--A1L12 is ~GND
+A1L12 = GND;
 
 
---A1L13 is ~GND
-A1L13 = GND;
-
-
---A1L14 is ~VCC
-A1L14 = VCC;
+--A1L13 is ~VCC
+A1L13 = VCC;
 
 

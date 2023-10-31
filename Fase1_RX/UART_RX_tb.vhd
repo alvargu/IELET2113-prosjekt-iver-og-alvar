@@ -124,7 +124,9 @@ begin
 			report "RX changed the information."
 			severity error;
 		----------------------
-          RX_sig <= '0';				-- start bit
+          RX_sig <= '0';				-- wait two periods
+          wait for CLK_PER*5208*2;
+		RX_sig <= '0';				-- start bit
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 1
           wait for CLK_PER*5208;

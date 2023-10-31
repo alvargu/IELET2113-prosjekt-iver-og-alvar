@@ -11,8 +11,8 @@ entity uart_rx is
 	port (
 		RX_sig : in std_logic;
 		clk: in std_logic;
-		seg_ut: out std_logic_vector(7 downto 0);
-		utgang: out std_logic
+		-- utgang: out std_logic;
+		seg_ut: out std_logic_vector(7 downto 0)
 		);
 end entity;		
 
@@ -52,7 +52,7 @@ architecture rtl of uart_rx is
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
 		end if;
-		if count_ones > 3 then majority_val := '1';
+		if count_ones > 2 then majority_val := '1';
 		else majority_val := '0';
 		end if;
 		return majority_val;
@@ -117,24 +117,29 @@ begin
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation : process(baud_clk, rx_bit)
+	p_data_seperation : process(baud_clk, rx_bit, v_rx_data)
 		type t_state is (n_data, r_data);
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
 		variable prev_baud_clk : std_logic := '0';
 	begin
-		if (baud_clk = '1') and (baud_clk /= prev_baud_clk) then
+		-- if rising_edge(baud_clk) then
+		-- if (baud_clk = '1') and (prev_baud_clk = '0') then
+		-- 	prev_baud_clk := '1';
 			case state is 
 				when n_data =>
 					rx_busy <= '0';
 					if rx_bit = '0' then 
 						state := r_data;
+					elsif rx_bit = '1' then 
+						state := n_data;
 					end if;
 				when r_data =>
 					rx_busy <= '1';
 					if cnt_data < 8 then
 						v_rx_data(cnt_data) <= rx_bit;
 						cnt_data := cnt_data + 1;
+						state := r_data;
 					end if;
 					if cnt_data >= 8 then
 						state := n_data;
@@ -143,7 +148,9 @@ begin
 					end if;						
 			end case;
 		end if;
-		prev_baud_clk := baud_clk;
+		-- if baud_clk = '0' then 
+		-- 	prev_baud_clk := '0';
+		-- end if;
 	end process;
 	
 	--------------------------------------------------------------------------
@@ -154,9 +161,12 @@ begin
 		variable o_smp_cnt 		: integer range 0 to 8 := 0;
 		variable prev_o_smp_clk 	: std_logic := '0';
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
-	begin
+	begi
+		-- solution 1: gave logic elements but dosent seem to work
 		-- if rising_edge(o_smp_clk) then 
-		if (o_smp_clk = '1') and (o_smp_clk /= prev_o_smp_clk) then
+		-- solution 2: gives system 1 logic element
+		-- if (o_smp_clk = '1') and (prev_o_smp_clk = '0') then
+		-- 	prev_o_smp_clk := '1';
 			if o_smp_cnt > 0 then 
 				RX_o_smp := RX_o_smp(5 downto 0) & RX_sig;
 				if o_smp_cnt = 7 then 
@@ -168,7 +178,11 @@ begin
 				o_smp_cnt := 0;
 			end if;
 		end if;
-		prev_o_smp_clk := o_smp_clk;
+		-- solution 2
+		-- if (o_smp_clk = '0') then
+		-- 	prev_o_smp_clk := '0';
+		-- for all solutions
+		-- end if;
 	end process;
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts
