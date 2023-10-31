@@ -158,7 +158,7 @@ end if;
 		-- if rising_edge(o_smp_clk) then 
 		if (o_smp_clk = '1') and (o_smp_clk /= prev_o_smp_clk) then
 			if o_smp_cnt > 0 then 
-				RX_o_smp <= RX_o_smp(5 downto 0) & RX_sig;
+				RX_o_smp := RX_o_smp(5 downto 0) & RX_sig;
 				if o_smp_cnt = 7 then 
 					RX_bit <= majority_check(RX_o_smp);
 				end if;
