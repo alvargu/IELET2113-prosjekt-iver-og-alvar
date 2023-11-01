@@ -25,7 +25,7 @@ architecture rtl of uart_rx is
 	signal baud_clk 		: std_logic := '1';
 	signal o_smp_clk 		: std_logic := '1';
 -- hold signals
-	-- signal rx_busy			: std_logic := '0';
+	signal rx_busy			: std_logic := '0';
 	-- signal RX_bit_rdy : std_logic := '0';
 -- data signals
 	signal rx_bit 			: std_logic := '1';
@@ -118,7 +118,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation : process(baud_clk, rx_bit)
+	p_data_seperation : process(baud_clk, rx_bit, rx_busy)
 		type t_state is (n_data, r_data);
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
