@@ -30,7 +30,7 @@ architecture rtl of uart_rx is
 	signal rx_bit 			: std_logic := '1';
 	-- signal RX_bit_rdy : std_logic := '0';
 	
-	signal v_rx_data 		: std_logic_vector(7 downto 0);
+	
 	signal show_num 		: std_logic_vector(7 downto 0);
 	signal hex_display 		: std_logic_vector(7 downto 0);
 	
@@ -46,11 +46,16 @@ architecture rtl of uart_rx is
 		variable count_ones : integer := 0;
 	begin
 		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
-		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(2) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(3) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(4) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(5) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(6) = '1' then count_ones := count_ones + 1;
 		end if;
 		if count_ones > 2 then majority_val := '1';
 		else majority_val := '0';
@@ -122,10 +127,9 @@ begin
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
 		variable prev_baud_clk : std_logic := '0';
+		variable v_rx_data 		: std_logic_vector(7 downto 0) := "00000000";
 	begin
-		-- if rising_edge(baud_clk) then
-		-- if (baud_clk = '1') and (prev_baud_clk = '0') then
-		-- 	prev_baud_clk := '1';
+		if rising_edge(baud_clk) then
 			case state is 
 				when n_data =>
 					rx_busy <= '0';
@@ -137,7 +141,7 @@ begin
 				when r_data =>
 					rx_busy <= '1';
 					if cnt_data < 8 then
-						v_rx_data(cnt_data) <= rx_bit;
+						v_rx_data(cnt_data) := rx_bit;
 						cnt_data := cnt_data + 1;
 						state := r_data;
 					end if;
@@ -147,9 +151,7 @@ begin
 						cnt_data := 0;
 					end if;						
 			end case;
-		-- if baud_clk = '0' then 
-		-- 	prev_baud_clk := '0';
-		-- end if;
+		end if;
 	end process;
 	
 	--------------------------------------------------------------------------
@@ -161,11 +163,7 @@ begin
 		variable prev_o_smp_clk 	: std_logic := '0';
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
 	begin
-		-- solution 1: gave logic elements but dosent seem to work
-		-- if rising_edge(o_smp_clk) then 
-		-- solution 2: gives system 1 logic element
-		-- if (o_smp_clk = '1') and (prev_o_smp_clk = '0') then
-		-- 	prev_o_smp_clk := '1';
+		if rising_edge(o_smp_clk) then 
 			if o_smp_cnt > 0 then 
 				RX_o_smp := RX_o_smp(5 downto 0) & RX_sig;
 				if o_smp_cnt = 7 then 
@@ -176,16 +174,12 @@ begin
 			if o_smp_cnt >= 8 then -- siden vi sjekker etter at vi har økt telleren må
 				o_smp_cnt := 0;	  -- vi øke med en når man skal sjekke for samme tall.
 			end if;
-		-- solution 2
-		-- if (o_smp_clk = '0') then
-		-- 	prev_o_smp_clk := '0';
-		-- for all solutions
-		-- end if;
+		end if;
 	end process;
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts
 	-------------------------------------------------------------------------
 	seg_ut <= hex_display;
-	--utgang <= baud_rate_clk;
+	-- utgang <= baud_rate_clk;
 	
 end architecture;
