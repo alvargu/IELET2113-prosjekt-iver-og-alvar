@@ -118,7 +118,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation : process(baud_clk, rx_bit, v_rx_data)
+	p_data_seperation : process(baud_clk, rx_bit)
 		type t_state is (n_data, r_data);
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
