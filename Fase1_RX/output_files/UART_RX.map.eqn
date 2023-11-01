@@ -12,51 +12,2292 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
+--\p_data_seperation:state is \p_data_seperation:state
+--register power-up is low
+
+\p_data_seperation:state = DFFEAS(A1L529, !baud_clk,  ,  ,  , rx_bit,  ,  , !\p_data_seperation:state);
+
+
+--A1L247 is Add2~0
+A1L247 = \p_data_seperation:cnt_data[0] $ (VCC);
+
+--A1L248 is Add2~1
+A1L248 = CARRY(\p_data_seperation:cnt_data[0]);
+
+
+--A1L249 is Add2~2
+A1L249 = (\p_data_seperation:cnt_data[1] & (!A1L248)) # (!\p_data_seperation:cnt_data[1] & ((A1L248) # (GND)));
+
+--A1L250 is Add2~3
+A1L250 = CARRY((!A1L248) # (!\p_data_seperation:cnt_data[1]));
+
+
+--A1L251 is Add2~4
+A1L251 = (\p_data_seperation:cnt_data[2] & (A1L250 $ (GND))) # (!\p_data_seperation:cnt_data[2] & (!A1L250 & VCC));
+
+--A1L252 is Add2~5
+A1L252 = CARRY((\p_data_seperation:cnt_data[2] & !A1L250));
+
+
+--A1L253 is Add2~6
+A1L253 = (\p_data_seperation:cnt_data[3] & (!A1L252)) # (!\p_data_seperation:cnt_data[3] & ((A1L252) # (GND)));
+
+--A1L254 is Add2~7
+A1L254 = CARRY((!A1L252) # (!\p_data_seperation:cnt_data[3]));
+
+
+--A1L255 is Add2~8
+A1L255 = (\p_data_seperation:cnt_data[4] & (A1L254 $ (GND))) # (!\p_data_seperation:cnt_data[4] & (!A1L254 & VCC));
+
+--A1L256 is Add2~9
+A1L256 = CARRY((\p_data_seperation:cnt_data[4] & !A1L254));
+
+
+--A1L257 is Add2~10
+A1L257 = (\p_data_seperation:cnt_data[5] & (!A1L256)) # (!\p_data_seperation:cnt_data[5] & ((A1L256) # (GND)));
+
+--A1L258 is Add2~11
+A1L258 = CARRY((!A1L256) # (!\p_data_seperation:cnt_data[5]));
+
+
+--A1L259 is Add2~12
+A1L259 = (\p_data_seperation:cnt_data[6] & (A1L258 $ (GND))) # (!\p_data_seperation:cnt_data[6] & (!A1L258 & VCC));
+
+--A1L260 is Add2~13
+A1L260 = CARRY((\p_data_seperation:cnt_data[6] & !A1L258));
+
+
+--A1L261 is Add2~14
+A1L261 = (\p_data_seperation:cnt_data[7] & (!A1L260)) # (!\p_data_seperation:cnt_data[7] & ((A1L260) # (GND)));
+
+--A1L262 is Add2~15
+A1L262 = CARRY((!A1L260) # (!\p_data_seperation:cnt_data[7]));
+
+
+--A1L263 is Add2~16
+A1L263 = (\p_data_seperation:cnt_data[8] & (A1L262 $ (GND))) # (!\p_data_seperation:cnt_data[8] & (!A1L262 & VCC));
+
+--A1L264 is Add2~17
+A1L264 = CARRY((\p_data_seperation:cnt_data[8] & !A1L262));
+
+
+--A1L265 is Add2~18
+A1L265 = (\p_data_seperation:cnt_data[9] & (!A1L264)) # (!\p_data_seperation:cnt_data[9] & ((A1L264) # (GND)));
+
+--A1L266 is Add2~19
+A1L266 = CARRY((!A1L264) # (!\p_data_seperation:cnt_data[9]));
+
+
+--A1L267 is Add2~20
+A1L267 = (\p_data_seperation:cnt_data[10] & (A1L266 $ (GND))) # (!\p_data_seperation:cnt_data[10] & (!A1L266 & VCC));
+
+--A1L268 is Add2~21
+A1L268 = CARRY((\p_data_seperation:cnt_data[10] & !A1L266));
+
+
+--A1L269 is Add2~22
+A1L269 = (\p_data_seperation:cnt_data[11] & (!A1L268)) # (!\p_data_seperation:cnt_data[11] & ((A1L268) # (GND)));
+
+--A1L270 is Add2~23
+A1L270 = CARRY((!A1L268) # (!\p_data_seperation:cnt_data[11]));
+
+
+--A1L271 is Add2~24
+A1L271 = (\p_data_seperation:cnt_data[12] & (A1L270 $ (GND))) # (!\p_data_seperation:cnt_data[12] & (!A1L270 & VCC));
+
+--A1L272 is Add2~25
+A1L272 = CARRY((\p_data_seperation:cnt_data[12] & !A1L270));
+
+
+--A1L273 is Add2~26
+A1L273 = (\p_data_seperation:cnt_data[13] & (!A1L272)) # (!\p_data_seperation:cnt_data[13] & ((A1L272) # (GND)));
+
+--A1L274 is Add2~27
+A1L274 = CARRY((!A1L272) # (!\p_data_seperation:cnt_data[13]));
+
+
+--A1L275 is Add2~28
+A1L275 = (\p_data_seperation:cnt_data[14] & (A1L274 $ (GND))) # (!\p_data_seperation:cnt_data[14] & (!A1L274 & VCC));
+
+--A1L276 is Add2~29
+A1L276 = CARRY((\p_data_seperation:cnt_data[14] & !A1L274));
+
+
+--A1L277 is Add2~30
+A1L277 = (\p_data_seperation:cnt_data[15] & (!A1L276)) # (!\p_data_seperation:cnt_data[15] & ((A1L276) # (GND)));
+
+--A1L278 is Add2~31
+A1L278 = CARRY((!A1L276) # (!\p_data_seperation:cnt_data[15]));
+
+
+--A1L279 is Add2~32
+A1L279 = (\p_data_seperation:cnt_data[16] & (A1L278 $ (GND))) # (!\p_data_seperation:cnt_data[16] & (!A1L278 & VCC));
+
+--A1L280 is Add2~33
+A1L280 = CARRY((\p_data_seperation:cnt_data[16] & !A1L278));
+
+
+--A1L281 is Add2~34
+A1L281 = (\p_data_seperation:cnt_data[17] & (!A1L280)) # (!\p_data_seperation:cnt_data[17] & ((A1L280) # (GND)));
+
+--A1L282 is Add2~35
+A1L282 = CARRY((!A1L280) # (!\p_data_seperation:cnt_data[17]));
+
+
+--A1L283 is Add2~36
+A1L283 = (\p_data_seperation:cnt_data[18] & (A1L282 $ (GND))) # (!\p_data_seperation:cnt_data[18] & (!A1L282 & VCC));
+
+--A1L284 is Add2~37
+A1L284 = CARRY((\p_data_seperation:cnt_data[18] & !A1L282));
+
+
+--A1L285 is Add2~38
+A1L285 = (\p_data_seperation:cnt_data[19] & (!A1L284)) # (!\p_data_seperation:cnt_data[19] & ((A1L284) # (GND)));
+
+--A1L286 is Add2~39
+A1L286 = CARRY((!A1L284) # (!\p_data_seperation:cnt_data[19]));
+
+
+--A1L287 is Add2~40
+A1L287 = (\p_data_seperation:cnt_data[20] & (A1L286 $ (GND))) # (!\p_data_seperation:cnt_data[20] & (!A1L286 & VCC));
+
+--A1L288 is Add2~41
+A1L288 = CARRY((\p_data_seperation:cnt_data[20] & !A1L286));
+
+
+--A1L289 is Add2~42
+A1L289 = (\p_data_seperation:cnt_data[21] & (!A1L288)) # (!\p_data_seperation:cnt_data[21] & ((A1L288) # (GND)));
+
+--A1L290 is Add2~43
+A1L290 = CARRY((!A1L288) # (!\p_data_seperation:cnt_data[21]));
+
+
+--A1L291 is Add2~44
+A1L291 = (\p_data_seperation:cnt_data[22] & (A1L290 $ (GND))) # (!\p_data_seperation:cnt_data[22] & (!A1L290 & VCC));
+
+--A1L292 is Add2~45
+A1L292 = CARRY((\p_data_seperation:cnt_data[22] & !A1L290));
+
+
+--A1L293 is Add2~46
+A1L293 = (\p_data_seperation:cnt_data[23] & (!A1L292)) # (!\p_data_seperation:cnt_data[23] & ((A1L292) # (GND)));
+
+--A1L294 is Add2~47
+A1L294 = CARRY((!A1L292) # (!\p_data_seperation:cnt_data[23]));
+
+
+--A1L295 is Add2~48
+A1L295 = (\p_data_seperation:cnt_data[24] & (A1L294 $ (GND))) # (!\p_data_seperation:cnt_data[24] & (!A1L294 & VCC));
+
+--A1L296 is Add2~49
+A1L296 = CARRY((\p_data_seperation:cnt_data[24] & !A1L294));
+
+
+--A1L297 is Add2~50
+A1L297 = (\p_data_seperation:cnt_data[25] & (!A1L296)) # (!\p_data_seperation:cnt_data[25] & ((A1L296) # (GND)));
+
+--A1L298 is Add2~51
+A1L298 = CARRY((!A1L296) # (!\p_data_seperation:cnt_data[25]));
+
+
+--A1L299 is Add2~52
+A1L299 = (\p_data_seperation:cnt_data[26] & (A1L298 $ (GND))) # (!\p_data_seperation:cnt_data[26] & (!A1L298 & VCC));
+
+--A1L300 is Add2~53
+A1L300 = CARRY((\p_data_seperation:cnt_data[26] & !A1L298));
+
+
+--A1L301 is Add2~54
+A1L301 = (\p_data_seperation:cnt_data[27] & (!A1L300)) # (!\p_data_seperation:cnt_data[27] & ((A1L300) # (GND)));
+
+--A1L302 is Add2~55
+A1L302 = CARRY((!A1L300) # (!\p_data_seperation:cnt_data[27]));
+
+
+--A1L303 is Add2~56
+A1L303 = (\p_data_seperation:cnt_data[28] & (A1L302 $ (GND))) # (!\p_data_seperation:cnt_data[28] & (!A1L302 & VCC));
+
+--A1L304 is Add2~57
+A1L304 = CARRY((\p_data_seperation:cnt_data[28] & !A1L302));
+
+
+--A1L305 is Add2~58
+A1L305 = (\p_data_seperation:cnt_data[29] & (!A1L304)) # (!\p_data_seperation:cnt_data[29] & ((A1L304) # (GND)));
+
+--A1L306 is Add2~59
+A1L306 = CARRY((!A1L304) # (!\p_data_seperation:cnt_data[29]));
+
+
+--A1L307 is Add2~60
+A1L307 = (\p_data_seperation:cnt_data[30] & (A1L306 $ (GND))) # (!\p_data_seperation:cnt_data[30] & (!A1L306 & VCC));
+
+--A1L308 is Add2~61
+A1L308 = CARRY((\p_data_seperation:cnt_data[30] & !A1L306));
+
+
+--A1L309 is Add2~62
+A1L309 = \p_data_seperation:cnt_data[31] $ (A1L308);
+
+
+--A1L119 is Add0~0
+A1L119 = \p_clock_division:o_smp_clk_cnt[0] $ (VCC);
+
+--A1L120 is Add0~1
+A1L120 = CARRY(\p_clock_division:o_smp_clk_cnt[0]);
+
+
+--A1L121 is Add0~2
+A1L121 = (\p_clock_division:o_smp_clk_cnt[1] & (!A1L120)) # (!\p_clock_division:o_smp_clk_cnt[1] & ((A1L120) # (GND)));
+
+--A1L122 is Add0~3
+A1L122 = CARRY((!A1L120) # (!\p_clock_division:o_smp_clk_cnt[1]));
+
+
+--A1L123 is Add0~4
+A1L123 = (\p_clock_division:o_smp_clk_cnt[2] & (A1L122 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[2] & (!A1L122 & VCC));
+
+--A1L124 is Add0~5
+A1L124 = CARRY((\p_clock_division:o_smp_clk_cnt[2] & !A1L122));
+
+
+--A1L125 is Add0~6
+A1L125 = (\p_clock_division:o_smp_clk_cnt[3] & (!A1L124)) # (!\p_clock_division:o_smp_clk_cnt[3] & ((A1L124) # (GND)));
+
+--A1L126 is Add0~7
+A1L126 = CARRY((!A1L124) # (!\p_clock_division:o_smp_clk_cnt[3]));
+
+
+--A1L127 is Add0~8
+A1L127 = (\p_clock_division:o_smp_clk_cnt[4] & (A1L126 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[4] & (!A1L126 & VCC));
+
+--A1L128 is Add0~9
+A1L128 = CARRY((\p_clock_division:o_smp_clk_cnt[4] & !A1L126));
+
+
+--A1L129 is Add0~10
+A1L129 = (\p_clock_division:o_smp_clk_cnt[5] & (!A1L128)) # (!\p_clock_division:o_smp_clk_cnt[5] & ((A1L128) # (GND)));
+
+--A1L130 is Add0~11
+A1L130 = CARRY((!A1L128) # (!\p_clock_division:o_smp_clk_cnt[5]));
+
+
+--A1L131 is Add0~12
+A1L131 = (\p_clock_division:o_smp_clk_cnt[6] & (A1L130 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[6] & (!A1L130 & VCC));
+
+--A1L132 is Add0~13
+A1L132 = CARRY((\p_clock_division:o_smp_clk_cnt[6] & !A1L130));
+
+
+--A1L133 is Add0~14
+A1L133 = (\p_clock_division:o_smp_clk_cnt[7] & (!A1L132)) # (!\p_clock_division:o_smp_clk_cnt[7] & ((A1L132) # (GND)));
+
+--A1L134 is Add0~15
+A1L134 = CARRY((!A1L132) # (!\p_clock_division:o_smp_clk_cnt[7]));
+
+
+--A1L135 is Add0~16
+A1L135 = (\p_clock_division:o_smp_clk_cnt[8] & (A1L134 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[8] & (!A1L134 & VCC));
+
+--A1L136 is Add0~17
+A1L136 = CARRY((\p_clock_division:o_smp_clk_cnt[8] & !A1L134));
+
+
+--A1L137 is Add0~18
+A1L137 = (\p_clock_division:o_smp_clk_cnt[9] & (!A1L136)) # (!\p_clock_division:o_smp_clk_cnt[9] & ((A1L136) # (GND)));
+
+--A1L138 is Add0~19
+A1L138 = CARRY((!A1L136) # (!\p_clock_division:o_smp_clk_cnt[9]));
+
+
+--A1L139 is Add0~20
+A1L139 = (\p_clock_division:o_smp_clk_cnt[10] & (A1L138 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[10] & (!A1L138 & VCC));
+
+--A1L140 is Add0~21
+A1L140 = CARRY((\p_clock_division:o_smp_clk_cnt[10] & !A1L138));
+
+
+--A1L141 is Add0~22
+A1L141 = (\p_clock_division:o_smp_clk_cnt[11] & (!A1L140)) # (!\p_clock_division:o_smp_clk_cnt[11] & ((A1L140) # (GND)));
+
+--A1L142 is Add0~23
+A1L142 = CARRY((!A1L140) # (!\p_clock_division:o_smp_clk_cnt[11]));
+
+
+--A1L143 is Add0~24
+A1L143 = (\p_clock_division:o_smp_clk_cnt[12] & (A1L142 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[12] & (!A1L142 & VCC));
+
+--A1L144 is Add0~25
+A1L144 = CARRY((\p_clock_division:o_smp_clk_cnt[12] & !A1L142));
+
+
+--A1L145 is Add0~26
+A1L145 = (\p_clock_division:o_smp_clk_cnt[13] & (!A1L144)) # (!\p_clock_division:o_smp_clk_cnt[13] & ((A1L144) # (GND)));
+
+--A1L146 is Add0~27
+A1L146 = CARRY((!A1L144) # (!\p_clock_division:o_smp_clk_cnt[13]));
+
+
+--A1L147 is Add0~28
+A1L147 = (\p_clock_division:o_smp_clk_cnt[14] & (A1L146 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[14] & (!A1L146 & VCC));
+
+--A1L148 is Add0~29
+A1L148 = CARRY((\p_clock_division:o_smp_clk_cnt[14] & !A1L146));
+
+
+--A1L149 is Add0~30
+A1L149 = (\p_clock_division:o_smp_clk_cnt[15] & (!A1L148)) # (!\p_clock_division:o_smp_clk_cnt[15] & ((A1L148) # (GND)));
+
+--A1L150 is Add0~31
+A1L150 = CARRY((!A1L148) # (!\p_clock_division:o_smp_clk_cnt[15]));
+
+
+--A1L151 is Add0~32
+A1L151 = (\p_clock_division:o_smp_clk_cnt[16] & (A1L150 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[16] & (!A1L150 & VCC));
+
+--A1L152 is Add0~33
+A1L152 = CARRY((\p_clock_division:o_smp_clk_cnt[16] & !A1L150));
+
+
+--A1L153 is Add0~34
+A1L153 = (\p_clock_division:o_smp_clk_cnt[17] & (!A1L152)) # (!\p_clock_division:o_smp_clk_cnt[17] & ((A1L152) # (GND)));
+
+--A1L154 is Add0~35
+A1L154 = CARRY((!A1L152) # (!\p_clock_division:o_smp_clk_cnt[17]));
+
+
+--A1L155 is Add0~36
+A1L155 = (\p_clock_division:o_smp_clk_cnt[18] & (A1L154 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[18] & (!A1L154 & VCC));
+
+--A1L156 is Add0~37
+A1L156 = CARRY((\p_clock_division:o_smp_clk_cnt[18] & !A1L154));
+
+
+--A1L157 is Add0~38
+A1L157 = (\p_clock_division:o_smp_clk_cnt[19] & (!A1L156)) # (!\p_clock_division:o_smp_clk_cnt[19] & ((A1L156) # (GND)));
+
+--A1L158 is Add0~39
+A1L158 = CARRY((!A1L156) # (!\p_clock_division:o_smp_clk_cnt[19]));
+
+
+--A1L159 is Add0~40
+A1L159 = (\p_clock_division:o_smp_clk_cnt[20] & (A1L158 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[20] & (!A1L158 & VCC));
+
+--A1L160 is Add0~41
+A1L160 = CARRY((\p_clock_division:o_smp_clk_cnt[20] & !A1L158));
+
+
+--A1L161 is Add0~42
+A1L161 = (\p_clock_division:o_smp_clk_cnt[21] & (!A1L160)) # (!\p_clock_division:o_smp_clk_cnt[21] & ((A1L160) # (GND)));
+
+--A1L162 is Add0~43
+A1L162 = CARRY((!A1L160) # (!\p_clock_division:o_smp_clk_cnt[21]));
+
+
+--A1L163 is Add0~44
+A1L163 = (\p_clock_division:o_smp_clk_cnt[22] & (A1L162 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[22] & (!A1L162 & VCC));
+
+--A1L164 is Add0~45
+A1L164 = CARRY((\p_clock_division:o_smp_clk_cnt[22] & !A1L162));
+
+
+--A1L165 is Add0~46
+A1L165 = (\p_clock_division:o_smp_clk_cnt[23] & (!A1L164)) # (!\p_clock_division:o_smp_clk_cnt[23] & ((A1L164) # (GND)));
+
+--A1L166 is Add0~47
+A1L166 = CARRY((!A1L164) # (!\p_clock_division:o_smp_clk_cnt[23]));
+
+
+--A1L167 is Add0~48
+A1L167 = (\p_clock_division:o_smp_clk_cnt[24] & (A1L166 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[24] & (!A1L166 & VCC));
+
+--A1L168 is Add0~49
+A1L168 = CARRY((\p_clock_division:o_smp_clk_cnt[24] & !A1L166));
+
+
+--A1L169 is Add0~50
+A1L169 = (\p_clock_division:o_smp_clk_cnt[25] & (!A1L168)) # (!\p_clock_division:o_smp_clk_cnt[25] & ((A1L168) # (GND)));
+
+--A1L170 is Add0~51
+A1L170 = CARRY((!A1L168) # (!\p_clock_division:o_smp_clk_cnt[25]));
+
+
+--A1L171 is Add0~52
+A1L171 = (\p_clock_division:o_smp_clk_cnt[26] & (A1L170 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[26] & (!A1L170 & VCC));
+
+--A1L172 is Add0~53
+A1L172 = CARRY((\p_clock_division:o_smp_clk_cnt[26] & !A1L170));
+
+
+--A1L173 is Add0~54
+A1L173 = (\p_clock_division:o_smp_clk_cnt[27] & (!A1L172)) # (!\p_clock_division:o_smp_clk_cnt[27] & ((A1L172) # (GND)));
+
+--A1L174 is Add0~55
+A1L174 = CARRY((!A1L172) # (!\p_clock_division:o_smp_clk_cnt[27]));
+
+
+--A1L175 is Add0~56
+A1L175 = (\p_clock_division:o_smp_clk_cnt[28] & (A1L174 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[28] & (!A1L174 & VCC));
+
+--A1L176 is Add0~57
+A1L176 = CARRY((\p_clock_division:o_smp_clk_cnt[28] & !A1L174));
+
+
+--A1L177 is Add0~58
+A1L177 = (\p_clock_division:o_smp_clk_cnt[29] & (!A1L176)) # (!\p_clock_division:o_smp_clk_cnt[29] & ((A1L176) # (GND)));
+
+--A1L178 is Add0~59
+A1L178 = CARRY((!A1L176) # (!\p_clock_division:o_smp_clk_cnt[29]));
+
+
+--A1L179 is Add0~60
+A1L179 = (\p_clock_division:o_smp_clk_cnt[30] & (A1L178 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[30] & (!A1L178 & VCC));
+
+--A1L180 is Add0~61
+A1L180 = CARRY((\p_clock_division:o_smp_clk_cnt[30] & !A1L178));
+
+
+--A1L181 is Add0~62
+A1L181 = \p_clock_division:o_smp_clk_cnt[31] $ (A1L180);
+
+
+--A1L183 is Add1~0
+A1L183 = \p_clock_division:baud_clk_cnt[0] $ (VCC);
+
+--A1L184 is Add1~1
+A1L184 = CARRY(\p_clock_division:baud_clk_cnt[0]);
+
+
+--A1L185 is Add1~2
+A1L185 = (\p_clock_division:baud_clk_cnt[1] & (!A1L184)) # (!\p_clock_division:baud_clk_cnt[1] & ((A1L184) # (GND)));
+
+--A1L186 is Add1~3
+A1L186 = CARRY((!A1L184) # (!\p_clock_division:baud_clk_cnt[1]));
+
+
+--A1L187 is Add1~4
+A1L187 = (\p_clock_division:baud_clk_cnt[2] & (A1L186 $ (GND))) # (!\p_clock_division:baud_clk_cnt[2] & (!A1L186 & VCC));
+
+--A1L188 is Add1~5
+A1L188 = CARRY((\p_clock_division:baud_clk_cnt[2] & !A1L186));
+
+
+--A1L189 is Add1~6
+A1L189 = (\p_clock_division:baud_clk_cnt[3] & (!A1L188)) # (!\p_clock_division:baud_clk_cnt[3] & ((A1L188) # (GND)));
+
+--A1L190 is Add1~7
+A1L190 = CARRY((!A1L188) # (!\p_clock_division:baud_clk_cnt[3]));
+
+
+--A1L191 is Add1~8
+A1L191 = (\p_clock_division:baud_clk_cnt[4] & (A1L190 $ (GND))) # (!\p_clock_division:baud_clk_cnt[4] & (!A1L190 & VCC));
+
+--A1L192 is Add1~9
+A1L192 = CARRY((\p_clock_division:baud_clk_cnt[4] & !A1L190));
+
+
+--A1L193 is Add1~10
+A1L193 = (\p_clock_division:baud_clk_cnt[5] & (!A1L192)) # (!\p_clock_division:baud_clk_cnt[5] & ((A1L192) # (GND)));
+
+--A1L194 is Add1~11
+A1L194 = CARRY((!A1L192) # (!\p_clock_division:baud_clk_cnt[5]));
+
+
+--A1L195 is Add1~12
+A1L195 = (\p_clock_division:baud_clk_cnt[6] & (A1L194 $ (GND))) # (!\p_clock_division:baud_clk_cnt[6] & (!A1L194 & VCC));
+
+--A1L196 is Add1~13
+A1L196 = CARRY((\p_clock_division:baud_clk_cnt[6] & !A1L194));
+
+
+--A1L197 is Add1~14
+A1L197 = (\p_clock_division:baud_clk_cnt[7] & (!A1L196)) # (!\p_clock_division:baud_clk_cnt[7] & ((A1L196) # (GND)));
+
+--A1L198 is Add1~15
+A1L198 = CARRY((!A1L196) # (!\p_clock_division:baud_clk_cnt[7]));
+
+
+--A1L199 is Add1~16
+A1L199 = (\p_clock_division:baud_clk_cnt[8] & (A1L198 $ (GND))) # (!\p_clock_division:baud_clk_cnt[8] & (!A1L198 & VCC));
+
+--A1L200 is Add1~17
+A1L200 = CARRY((\p_clock_division:baud_clk_cnt[8] & !A1L198));
+
+
+--A1L201 is Add1~18
+A1L201 = (\p_clock_division:baud_clk_cnt[9] & (!A1L200)) # (!\p_clock_division:baud_clk_cnt[9] & ((A1L200) # (GND)));
+
+--A1L202 is Add1~19
+A1L202 = CARRY((!A1L200) # (!\p_clock_division:baud_clk_cnt[9]));
+
+
+--A1L203 is Add1~20
+A1L203 = (\p_clock_division:baud_clk_cnt[10] & (A1L202 $ (GND))) # (!\p_clock_division:baud_clk_cnt[10] & (!A1L202 & VCC));
+
+--A1L204 is Add1~21
+A1L204 = CARRY((\p_clock_division:baud_clk_cnt[10] & !A1L202));
+
+
+--A1L205 is Add1~22
+A1L205 = (\p_clock_division:baud_clk_cnt[11] & (!A1L204)) # (!\p_clock_division:baud_clk_cnt[11] & ((A1L204) # (GND)));
+
+--A1L206 is Add1~23
+A1L206 = CARRY((!A1L204) # (!\p_clock_division:baud_clk_cnt[11]));
+
+
+--A1L207 is Add1~24
+A1L207 = (\p_clock_division:baud_clk_cnt[12] & (A1L206 $ (GND))) # (!\p_clock_division:baud_clk_cnt[12] & (!A1L206 & VCC));
+
+--A1L208 is Add1~25
+A1L208 = CARRY((\p_clock_division:baud_clk_cnt[12] & !A1L206));
+
+
+--A1L209 is Add1~26
+A1L209 = (\p_clock_division:baud_clk_cnt[13] & (!A1L208)) # (!\p_clock_division:baud_clk_cnt[13] & ((A1L208) # (GND)));
+
+--A1L210 is Add1~27
+A1L210 = CARRY((!A1L208) # (!\p_clock_division:baud_clk_cnt[13]));
+
+
+--A1L211 is Add1~28
+A1L211 = (\p_clock_division:baud_clk_cnt[14] & (A1L210 $ (GND))) # (!\p_clock_division:baud_clk_cnt[14] & (!A1L210 & VCC));
+
+--A1L212 is Add1~29
+A1L212 = CARRY((\p_clock_division:baud_clk_cnt[14] & !A1L210));
+
+
+--A1L213 is Add1~30
+A1L213 = (\p_clock_division:baud_clk_cnt[15] & (!A1L212)) # (!\p_clock_division:baud_clk_cnt[15] & ((A1L212) # (GND)));
+
+--A1L214 is Add1~31
+A1L214 = CARRY((!A1L212) # (!\p_clock_division:baud_clk_cnt[15]));
+
+
+--A1L215 is Add1~32
+A1L215 = (\p_clock_division:baud_clk_cnt[16] & (A1L214 $ (GND))) # (!\p_clock_division:baud_clk_cnt[16] & (!A1L214 & VCC));
+
+--A1L216 is Add1~33
+A1L216 = CARRY((\p_clock_division:baud_clk_cnt[16] & !A1L214));
+
+
+--A1L217 is Add1~34
+A1L217 = (\p_clock_division:baud_clk_cnt[17] & (!A1L216)) # (!\p_clock_division:baud_clk_cnt[17] & ((A1L216) # (GND)));
+
+--A1L218 is Add1~35
+A1L218 = CARRY((!A1L216) # (!\p_clock_division:baud_clk_cnt[17]));
+
+
+--A1L219 is Add1~36
+A1L219 = (\p_clock_division:baud_clk_cnt[18] & (A1L218 $ (GND))) # (!\p_clock_division:baud_clk_cnt[18] & (!A1L218 & VCC));
+
+--A1L220 is Add1~37
+A1L220 = CARRY((\p_clock_division:baud_clk_cnt[18] & !A1L218));
+
+
+--A1L221 is Add1~38
+A1L221 = (\p_clock_division:baud_clk_cnt[19] & (!A1L220)) # (!\p_clock_division:baud_clk_cnt[19] & ((A1L220) # (GND)));
+
+--A1L222 is Add1~39
+A1L222 = CARRY((!A1L220) # (!\p_clock_division:baud_clk_cnt[19]));
+
+
+--A1L223 is Add1~40
+A1L223 = (\p_clock_division:baud_clk_cnt[20] & (A1L222 $ (GND))) # (!\p_clock_division:baud_clk_cnt[20] & (!A1L222 & VCC));
+
+--A1L224 is Add1~41
+A1L224 = CARRY((\p_clock_division:baud_clk_cnt[20] & !A1L222));
+
+
+--A1L225 is Add1~42
+A1L225 = (\p_clock_division:baud_clk_cnt[21] & (!A1L224)) # (!\p_clock_division:baud_clk_cnt[21] & ((A1L224) # (GND)));
+
+--A1L226 is Add1~43
+A1L226 = CARRY((!A1L224) # (!\p_clock_division:baud_clk_cnt[21]));
+
+
+--A1L227 is Add1~44
+A1L227 = (\p_clock_division:baud_clk_cnt[22] & (A1L226 $ (GND))) # (!\p_clock_division:baud_clk_cnt[22] & (!A1L226 & VCC));
+
+--A1L228 is Add1~45
+A1L228 = CARRY((\p_clock_division:baud_clk_cnt[22] & !A1L226));
+
+
+--A1L229 is Add1~46
+A1L229 = (\p_clock_division:baud_clk_cnt[23] & (!A1L228)) # (!\p_clock_division:baud_clk_cnt[23] & ((A1L228) # (GND)));
+
+--A1L230 is Add1~47
+A1L230 = CARRY((!A1L228) # (!\p_clock_division:baud_clk_cnt[23]));
+
+
+--A1L231 is Add1~48
+A1L231 = (\p_clock_division:baud_clk_cnt[24] & (A1L230 $ (GND))) # (!\p_clock_division:baud_clk_cnt[24] & (!A1L230 & VCC));
+
+--A1L232 is Add1~49
+A1L232 = CARRY((\p_clock_division:baud_clk_cnt[24] & !A1L230));
+
+
+--A1L233 is Add1~50
+A1L233 = (\p_clock_division:baud_clk_cnt[25] & (!A1L232)) # (!\p_clock_division:baud_clk_cnt[25] & ((A1L232) # (GND)));
+
+--A1L234 is Add1~51
+A1L234 = CARRY((!A1L232) # (!\p_clock_division:baud_clk_cnt[25]));
+
+
+--A1L235 is Add1~52
+A1L235 = (\p_clock_division:baud_clk_cnt[26] & (A1L234 $ (GND))) # (!\p_clock_division:baud_clk_cnt[26] & (!A1L234 & VCC));
+
+--A1L236 is Add1~53
+A1L236 = CARRY((\p_clock_division:baud_clk_cnt[26] & !A1L234));
+
+
+--A1L237 is Add1~54
+A1L237 = (\p_clock_division:baud_clk_cnt[27] & (!A1L236)) # (!\p_clock_division:baud_clk_cnt[27] & ((A1L236) # (GND)));
+
+--A1L238 is Add1~55
+A1L238 = CARRY((!A1L236) # (!\p_clock_division:baud_clk_cnt[27]));
+
+
+--A1L239 is Add1~56
+A1L239 = (\p_clock_division:baud_clk_cnt[28] & (A1L238 $ (GND))) # (!\p_clock_division:baud_clk_cnt[28] & (!A1L238 & VCC));
+
+--A1L240 is Add1~57
+A1L240 = CARRY((\p_clock_division:baud_clk_cnt[28] & !A1L238));
+
+
+--A1L241 is Add1~58
+A1L241 = (\p_clock_division:baud_clk_cnt[29] & (!A1L240)) # (!\p_clock_division:baud_clk_cnt[29] & ((A1L240) # (GND)));
+
+--A1L242 is Add1~59
+A1L242 = CARRY((!A1L240) # (!\p_clock_division:baud_clk_cnt[29]));
+
+
+--A1L243 is Add1~60
+A1L243 = (\p_clock_division:baud_clk_cnt[30] & (A1L242 $ (GND))) # (!\p_clock_division:baud_clk_cnt[30] & (!A1L242 & VCC));
+
+--A1L244 is Add1~61
+A1L244 = CARRY((\p_clock_division:baud_clk_cnt[30] & !A1L242));
+
+
+--A1L245 is Add1~62
+A1L245 = \p_clock_division:baud_clk_cnt[31] $ (A1L244);
+
+
+--seg_ut[0] is seg_ut[0]
+seg_ut[0] = OUTPUT(A1L412);
+
+
+--seg_ut[1] is seg_ut[1]
+seg_ut[1] = OUTPUT(A1L414);
+
+
+--seg_ut[2] is seg_ut[2]
+seg_ut[2] = OUTPUT(A1L416);
+
+
+--seg_ut[3] is seg_ut[3]
+seg_ut[3] = OUTPUT(A1L418);
+
+
+--seg_ut[4] is seg_ut[4]
+seg_ut[4] = OUTPUT(A1L420);
+
+
+--seg_ut[5] is seg_ut[5]
+seg_ut[5] = OUTPUT(A1L422);
+
+
+--seg_ut[6] is seg_ut[6]
+seg_ut[6] = OUTPUT(A1L424);
+
+
+--seg_ut[7] is seg_ut[7]
+seg_ut[7] = OUTPUT(A1L538);
+
+
+--show_num[3] is show_num[3]
+--register power-up is low
+
+show_num[3] = DFFEAS(A1L530, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[2] is show_num[2]
+--register power-up is low
+
+show_num[2] = DFFEAS(A1L531, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[1] is show_num[1]
+--register power-up is low
+
+show_num[1] = DFFEAS(A1L532, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[0] is show_num[0]
+--register power-up is low
+
+show_num[0] = DFFEAS(A1L533, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--A1L410 is hex_display~0
+A1L410 = (show_num[3] & (!show_num[2] & (show_num[1] & show_num[0]))) # (!show_num[3] & (!show_num[1] & (show_num[2] $ (show_num[0]))));
+
+
+--show_num[6] is show_num[6]
+--register power-up is low
+
+show_num[6] = DFFEAS(A1L534, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[5] is show_num[5]
+--register power-up is low
+
+show_num[5] = DFFEAS(A1L535, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[4] is show_num[4]
+--register power-up is low
+
+show_num[4] = DFFEAS(A1L536, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--show_num[7] is show_num[7]
+--register power-up is low
+
+show_num[7] = DFFEAS(A1L537, !baud_clk,  ,  , A1L527,  ,  ,  ,  );
+
+
+--A1L411 is hex_display~1
+A1L411 = (!show_num[6] & (!show_num[5] & (!show_num[4] & !show_num[7])));
+
+
+--A1L412 is hex_display~2
+A1L412 = (A1L410 & A1L411);
+
+
+--A1L413 is hex_display~3
+A1L413 = (show_num[3] & ((show_num[0] & (show_num[1])) # (!show_num[0] & ((show_num[2]))))) # (!show_num[3] & (show_num[2] & (show_num[1] $ (show_num[0]))));
+
+
+--A1L414 is hex_display~4
+A1L414 = (A1L411 & A1L413);
+
+
+--A1L415 is hex_display~5
+A1L415 = (show_num[3] & (show_num[2] & ((show_num[1]) # (!show_num[0])))) # (!show_num[3] & (!show_num[2] & (show_num[1] & !show_num[0])));
+
+
+--A1L416 is hex_display~6
+A1L416 = (A1L411 & A1L415);
+
+
+--A1L417 is hex_display~7
+A1L417 = (show_num[1] & ((show_num[2] & ((show_num[0]))) # (!show_num[2] & (show_num[3] & !show_num[0])))) # (!show_num[1] & (!show_num[3] & (show_num[2] $ (show_num[0]))));
+
+
+--A1L418 is hex_display~8
+A1L418 = (A1L411 & A1L417);
+
+
+--A1L419 is hex_display~9
+A1L419 = (show_num[1] & (!show_num[3] & ((show_num[0])))) # (!show_num[1] & ((show_num[2] & (!show_num[3])) # (!show_num[2] & ((show_num[0])))));
+
+
+--A1L420 is hex_display~10
+A1L420 = (A1L411 & A1L419);
+
+
+--A1L421 is hex_display~11
+A1L421 = (!show_num[3] & ((show_num[1] & ((show_num[0]) # (!show_num[2]))) # (!show_num[1] & (show_num[0] & !show_num[2]))));
+
+
+--A1L422 is hex_display~12
+A1L422 = (A1L411 & A1L421);
+
+
+--A1L423 is hex_display~13
+A1L423 = (show_num[0] & ((show_num[3]) # (show_num[2] $ (show_num[1])))) # (!show_num[0] & ((show_num[1]) # (show_num[3] $ (show_num[2]))));
+
+
+--A1L424 is hex_display~14
+A1L424 = (!A1L423) # (!A1L411);
+
+
+--\p_data_seperation:v_rx_data[3] is \p_data_seperation:v_rx_data[3]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[3] = DFFEAS(A1L530, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[0] is \p_data_seperation:cnt_data[0]
+--register power-up is low
+
+\p_data_seperation:cnt_data[0] = DFFEAS(A1L370, !baud_clk,  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[1] is \p_data_seperation:cnt_data[1]
+--register power-up is low
+
+\p_data_seperation:cnt_data[1] = DFFEAS(A1L371, !baud_clk,  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[2] is \p_data_seperation:cnt_data[2]
+--register power-up is low
+
+\p_data_seperation:cnt_data[2] = DFFEAS(A1L372, !baud_clk,  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[3] is \p_data_seperation:cnt_data[3]
+--register power-up is low
+
+\p_data_seperation:cnt_data[3] = DFFEAS(A1L373, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[4] is \p_data_seperation:cnt_data[4]
+--register power-up is low
+
+\p_data_seperation:cnt_data[4] = DFFEAS(A1L374, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[5] is \p_data_seperation:cnt_data[5]
+--register power-up is low
+
+\p_data_seperation:cnt_data[5] = DFFEAS(A1L375, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[6] is \p_data_seperation:cnt_data[6]
+--register power-up is low
+
+\p_data_seperation:cnt_data[6] = DFFEAS(A1L376, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L445 is LessThan2~0
+A1L445 = (\p_data_seperation:cnt_data[3]) # ((\p_data_seperation:cnt_data[4]) # ((\p_data_seperation:cnt_data[5]) # (\p_data_seperation:cnt_data[6])));
+
+
+--\p_data_seperation:cnt_data[7] is \p_data_seperation:cnt_data[7]
+--register power-up is low
+
+\p_data_seperation:cnt_data[7] = DFFEAS(A1L377, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[8] is \p_data_seperation:cnt_data[8]
+--register power-up is low
+
+\p_data_seperation:cnt_data[8] = DFFEAS(A1L378, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[9] is \p_data_seperation:cnt_data[9]
+--register power-up is low
+
+\p_data_seperation:cnt_data[9] = DFFEAS(A1L379, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[10] is \p_data_seperation:cnt_data[10]
+--register power-up is low
+
+\p_data_seperation:cnt_data[10] = DFFEAS(A1L380, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L446 is LessThan2~1
+A1L446 = (\p_data_seperation:cnt_data[7]) # ((\p_data_seperation:cnt_data[8]) # ((\p_data_seperation:cnt_data[9]) # (\p_data_seperation:cnt_data[10])));
+
+
+--\p_data_seperation:cnt_data[11] is \p_data_seperation:cnt_data[11]
+--register power-up is low
+
+\p_data_seperation:cnt_data[11] = DFFEAS(A1L381, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[12] is \p_data_seperation:cnt_data[12]
+--register power-up is low
+
+\p_data_seperation:cnt_data[12] = DFFEAS(A1L382, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[13] is \p_data_seperation:cnt_data[13]
+--register power-up is low
+
+\p_data_seperation:cnt_data[13] = DFFEAS(A1L383, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[14] is \p_data_seperation:cnt_data[14]
+--register power-up is low
+
+\p_data_seperation:cnt_data[14] = DFFEAS(A1L384, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L447 is LessThan2~2
+A1L447 = (\p_data_seperation:cnt_data[11]) # ((\p_data_seperation:cnt_data[12]) # ((\p_data_seperation:cnt_data[13]) # (\p_data_seperation:cnt_data[14])));
+
+
+--\p_data_seperation:cnt_data[15] is \p_data_seperation:cnt_data[15]
+--register power-up is low
+
+\p_data_seperation:cnt_data[15] = DFFEAS(A1L385, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[16] is \p_data_seperation:cnt_data[16]
+--register power-up is low
+
+\p_data_seperation:cnt_data[16] = DFFEAS(A1L386, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[17] is \p_data_seperation:cnt_data[17]
+--register power-up is low
+
+\p_data_seperation:cnt_data[17] = DFFEAS(A1L387, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[18] is \p_data_seperation:cnt_data[18]
+--register power-up is low
+
+\p_data_seperation:cnt_data[18] = DFFEAS(A1L388, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L448 is LessThan2~3
+A1L448 = (\p_data_seperation:cnt_data[15]) # ((\p_data_seperation:cnt_data[16]) # ((\p_data_seperation:cnt_data[17]) # (\p_data_seperation:cnt_data[18])));
+
+
+--A1L449 is LessThan2~4
+A1L449 = (A1L445) # ((A1L446) # ((A1L447) # (A1L448)));
+
+
+--\p_data_seperation:cnt_data[19] is \p_data_seperation:cnt_data[19]
+--register power-up is low
+
+\p_data_seperation:cnt_data[19] = DFFEAS(A1L389, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[20] is \p_data_seperation:cnt_data[20]
+--register power-up is low
+
+\p_data_seperation:cnt_data[20] = DFFEAS(A1L390, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[21] is \p_data_seperation:cnt_data[21]
+--register power-up is low
+
+\p_data_seperation:cnt_data[21] = DFFEAS(A1L391, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[22] is \p_data_seperation:cnt_data[22]
+--register power-up is low
+
+\p_data_seperation:cnt_data[22] = DFFEAS(A1L392, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L450 is LessThan2~5
+A1L450 = (\p_data_seperation:cnt_data[19]) # ((\p_data_seperation:cnt_data[20]) # ((\p_data_seperation:cnt_data[21]) # (\p_data_seperation:cnt_data[22])));
+
+
+--\p_data_seperation:cnt_data[23] is \p_data_seperation:cnt_data[23]
+--register power-up is low
+
+\p_data_seperation:cnt_data[23] = DFFEAS(A1L393, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[24] is \p_data_seperation:cnt_data[24]
+--register power-up is low
+
+\p_data_seperation:cnt_data[24] = DFFEAS(A1L394, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[25] is \p_data_seperation:cnt_data[25]
+--register power-up is low
+
+\p_data_seperation:cnt_data[25] = DFFEAS(A1L395, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[26] is \p_data_seperation:cnt_data[26]
+--register power-up is low
+
+\p_data_seperation:cnt_data[26] = DFFEAS(A1L396, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L451 is LessThan2~6
+A1L451 = (\p_data_seperation:cnt_data[23]) # ((\p_data_seperation:cnt_data[24]) # ((\p_data_seperation:cnt_data[25]) # (\p_data_seperation:cnt_data[26])));
+
+
+--\p_data_seperation:cnt_data[27] is \p_data_seperation:cnt_data[27]
+--register power-up is low
+
+\p_data_seperation:cnt_data[27] = DFFEAS(A1L397, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[28] is \p_data_seperation:cnt_data[28]
+--register power-up is low
+
+\p_data_seperation:cnt_data[28] = DFFEAS(A1L398, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[29] is \p_data_seperation:cnt_data[29]
+--register power-up is low
+
+\p_data_seperation:cnt_data[29] = DFFEAS(A1L399, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[30] is \p_data_seperation:cnt_data[30]
+--register power-up is low
+
+\p_data_seperation:cnt_data[30] = DFFEAS(A1L400, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L452 is LessThan2~7
+A1L452 = (\p_data_seperation:cnt_data[27]) # ((\p_data_seperation:cnt_data[28]) # ((\p_data_seperation:cnt_data[29]) # (\p_data_seperation:cnt_data[30])));
+
+
+--A1L453 is LessThan2~8
+A1L453 = (A1L449) # ((A1L450) # ((A1L451) # (A1L452)));
+
+
+--\p_data_seperation:cnt_data[31] is \p_data_seperation:cnt_data[31]
+--register power-up is low
+
+\p_data_seperation:cnt_data[31] = DFFEAS(A1L401, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L454 is LessThan2~9
+A1L454 = (A1L453 & !\p_data_seperation:cnt_data[31]);
+
+
+--A1L402 is Decoder0~0
+A1L402 = (!\p_data_seperation:cnt_data[0] & (!\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--rx_bit is rx_bit
+--register power-up is low
+
+rx_bit = DFFEAS(A1L508, !o_smp_clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L530 is v_rx_data~0
+A1L530 = (A1L402 & ((!rx_bit))) # (!A1L402 & (\p_data_seperation:v_rx_data[3]));
+
+
+--baud_clk is baud_clk
+--register power-up is low
+
+baud_clk = DFFEAS(A1L350, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L352 is cnt_data~4
+A1L352 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L301)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[27]))))) # (!A1L453 & (A1L301));
+
+
+--A1L455 is LessThan3~0
+A1L455 = (!A1L352 & ((A1L454) # ((!A1L307 & !A1L303))));
+
+
+--A1L353 is cnt_data~5
+A1L353 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L305)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[29]))))) # (!A1L453 & (A1L305));
+
+
+--A1L354 is cnt_data~6
+A1L354 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L297)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[25]))))) # (!A1L453 & (A1L297));
+
+
+--A1L355 is cnt_data~7
+A1L355 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L299)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[26]))))) # (!A1L453 & (A1L299));
+
+
+--A1L356 is cnt_data~8
+A1L356 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L255)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[4]))))) # (!A1L453 & (A1L255));
+
+
+--A1L456 is LessThan3~1
+A1L456 = (!A1L356 & ((A1L454 & ((!\p_data_seperation:cnt_data[3]))) # (!A1L454 & (!A1L253))));
+
+
+--A1L357 is cnt_data~9
+A1L357 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L257)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[5]))))) # (!A1L453 & (A1L257));
+
+
+--A1L457 is LessThan3~2
+A1L457 = (!A1L357 & ((A1L454 & ((!\p_data_seperation:cnt_data[6]))) # (!A1L454 & (!A1L259))));
+
+
+--A1L358 is cnt_data~10
+A1L358 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L261)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[7]))))) # (!A1L453 & (A1L261));
+
+
+--A1L458 is LessThan3~3
+A1L458 = (!A1L358 & ((A1L454 & ((!\p_data_seperation:cnt_data[8]))) # (!A1L454 & (!A1L263))));
+
+
+--A1L359 is cnt_data~11
+A1L359 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L265)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[9]))))) # (!A1L453 & (A1L265));
+
+
+--A1L459 is LessThan3~4
+A1L459 = (!A1L359 & ((A1L454 & ((!\p_data_seperation:cnt_data[10]))) # (!A1L454 & (!A1L267))));
+
+
+--A1L460 is LessThan3~5
+A1L460 = (A1L456 & (A1L457 & (A1L458 & A1L459)));
+
+
+--A1L360 is cnt_data~12
+A1L360 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L269)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[11]))))) # (!A1L453 & (A1L269));
+
+
+--A1L461 is LessThan3~6
+A1L461 = (!A1L360 & ((A1L454 & ((!\p_data_seperation:cnt_data[12]))) # (!A1L454 & (!A1L271))));
+
+
+--A1L361 is cnt_data~13
+A1L361 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L273)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[13]))))) # (!A1L453 & (A1L273));
+
+
+--A1L462 is LessThan3~7
+A1L462 = (!A1L361 & ((A1L454 & ((!\p_data_seperation:cnt_data[14]))) # (!A1L454 & (!A1L275))));
+
+
+--A1L362 is cnt_data~14
+A1L362 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L277)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[15]))))) # (!A1L453 & (A1L277));
+
+
+--A1L463 is LessThan3~8
+A1L463 = (!A1L362 & ((A1L454 & ((!\p_data_seperation:cnt_data[16]))) # (!A1L454 & (!A1L279))));
+
+
+--A1L363 is cnt_data~15
+A1L363 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L281)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[17]))))) # (!A1L453 & (A1L281));
+
+
+--A1L464 is LessThan3~9
+A1L464 = (!A1L363 & ((A1L454 & ((!\p_data_seperation:cnt_data[18]))) # (!A1L454 & (!A1L283))));
+
+
+--A1L465 is LessThan3~10
+A1L465 = (A1L461 & (A1L462 & (A1L463 & A1L464)));
+
+
+--A1L364 is cnt_data~16
+A1L364 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L285)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[19]))))) # (!A1L453 & (A1L285));
+
+
+--A1L365 is cnt_data~17
+A1L365 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L287)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[20]))))) # (!A1L453 & (A1L287));
+
+
+--A1L366 is cnt_data~18
+A1L366 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L289)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[21]))))) # (!A1L453 & (A1L289));
+
+
+--A1L367 is cnt_data~19
+A1L367 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L291)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[22]))))) # (!A1L453 & (A1L291));
+
+
+--A1L466 is LessThan3~11
+A1L466 = (!A1L364 & (!A1L365 & (!A1L366 & !A1L367)));
+
+
+--A1L368 is cnt_data~20
+A1L368 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L293)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[23]))))) # (!A1L453 & (A1L293));
+
+
+--A1L467 is LessThan3~12
+A1L467 = (A1L460 & (A1L465 & (A1L466 & !A1L368)));
+
+
+--A1L369 is cnt_data~21
+A1L369 = (A1L453 & ((\p_data_seperation:cnt_data[31] & (A1L295)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[24]))))) # (!A1L453 & (A1L295));
+
+
+--A1L468 is LessThan3~13
+A1L468 = (!A1L369 & (((!\p_data_seperation:cnt_data[30] & !\p_data_seperation:cnt_data[28])) # (!A1L454)));
+
+
+--A1L469 is LessThan3~14
+A1L469 = (!A1L354 & (!A1L355 & (A1L467 & A1L468)));
+
+
+--A1L470 is LessThan3~15
+A1L470 = (!A1L353 & A1L469);
+
+
+--A1L471 is LessThan3~16
+A1L471 = (A1L309 & (((A1L455 & A1L470)) # (!A1L454))) # (!A1L309 & (((A1L455 & A1L470))));
+
+
+--A1L527 is show_num[6]~0
+A1L527 = (\p_data_seperation:state & !A1L471);
+
+
+--\p_data_seperation:v_rx_data[2] is \p_data_seperation:v_rx_data[2]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[2] = DFFEAS(A1L531, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L403 is Decoder0~1
+A1L403 = (\p_data_seperation:cnt_data[0] & (!\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L531 is v_rx_data~1
+A1L531 = (A1L403 & ((!rx_bit))) # (!A1L403 & (\p_data_seperation:v_rx_data[2]));
+
+
+--\p_data_seperation:v_rx_data[1] is \p_data_seperation:v_rx_data[1]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[1] = DFFEAS(A1L532, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L404 is Decoder0~2
+A1L404 = (!\p_data_seperation:cnt_data[0] & (\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L532 is v_rx_data~2
+A1L532 = (A1L404 & ((!rx_bit))) # (!A1L404 & (\p_data_seperation:v_rx_data[1]));
+
+
+--\p_data_seperation:v_rx_data[0] is \p_data_seperation:v_rx_data[0]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[0] = DFFEAS(A1L533, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L405 is Decoder0~3
+A1L405 = (\p_data_seperation:cnt_data[0] & (\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L533 is v_rx_data~3
+A1L533 = (A1L405 & ((!rx_bit))) # (!A1L405 & (\p_data_seperation:v_rx_data[0]));
+
+
+--\p_data_seperation:v_rx_data[6] is \p_data_seperation:v_rx_data[6]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[6] = DFFEAS(A1L534, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L406 is Decoder0~4
+A1L406 = (\p_data_seperation:cnt_data[0] & (!\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L534 is v_rx_data~4
+A1L534 = (A1L406 & ((!rx_bit))) # (!A1L406 & (\p_data_seperation:v_rx_data[6]));
+
+
+--\p_data_seperation:v_rx_data[5] is \p_data_seperation:v_rx_data[5]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[5] = DFFEAS(A1L535, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L407 is Decoder0~5
+A1L407 = (!\p_data_seperation:cnt_data[0] & (\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L535 is v_rx_data~5
+A1L535 = (A1L407 & ((!rx_bit))) # (!A1L407 & (\p_data_seperation:v_rx_data[5]));
+
+
+--\p_data_seperation:v_rx_data[4] is \p_data_seperation:v_rx_data[4]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[4] = DFFEAS(A1L536, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L408 is Decoder0~6
+A1L408 = (\p_data_seperation:cnt_data[0] & (\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L536 is v_rx_data~6
+A1L536 = (A1L408 & ((!rx_bit))) # (!A1L408 & (\p_data_seperation:v_rx_data[4]));
+
+
+--\p_data_seperation:v_rx_data[7] is \p_data_seperation:v_rx_data[7]
+--register power-up is low
+
+\p_data_seperation:v_rx_data[7] = DFFEAS(A1L537, !baud_clk,  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L409 is Decoder0~7
+A1L409 = (!\p_data_seperation:cnt_data[0] & (!\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & !A1L454)));
+
+
+--A1L537 is v_rx_data~7
+A1L537 = (A1L409 & ((!rx_bit))) # (!A1L409 & (\p_data_seperation:v_rx_data[7]));
+
+
+--A1L370 is cnt_data~22
+A1L370 = (A1L247 & A1L471);
+
+
+--A1L371 is cnt_data~23
+A1L371 = (A1L249 & A1L471);
+
+
+--A1L372 is cnt_data~24
+A1L372 = (A1L251 & A1L471);
+
+
+--A1L373 is cnt_data~25
+A1L373 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[3])) # (!A1L454 & ((A1L253)))));
+
+
+--A1L374 is cnt_data~26
+A1L374 = (A1L356 & A1L471);
+
+
+--A1L375 is cnt_data~27
+A1L375 = (A1L357 & A1L471);
+
+
+--A1L376 is cnt_data~28
+A1L376 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[6])) # (!A1L454 & ((A1L259)))));
+
+
+--A1L377 is cnt_data~29
+A1L377 = (A1L358 & A1L471);
+
+
+--A1L378 is cnt_data~30
+A1L378 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[8])) # (!A1L454 & ((A1L263)))));
+
+
+--A1L379 is cnt_data~31
+A1L379 = (A1L359 & A1L471);
+
+
+--A1L380 is cnt_data~32
+A1L380 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[10])) # (!A1L454 & ((A1L267)))));
+
+
+--A1L381 is cnt_data~33
+A1L381 = (A1L360 & A1L471);
+
+
+--A1L382 is cnt_data~34
+A1L382 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[12])) # (!A1L454 & ((A1L271)))));
+
+
+--A1L383 is cnt_data~35
+A1L383 = (A1L361 & A1L471);
+
+
+--A1L384 is cnt_data~36
+A1L384 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[14])) # (!A1L454 & ((A1L275)))));
+
+
+--A1L385 is cnt_data~37
+A1L385 = (A1L362 & A1L471);
+
+
+--A1L386 is cnt_data~38
+A1L386 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[16])) # (!A1L454 & ((A1L279)))));
+
+
+--A1L387 is cnt_data~39
+A1L387 = (A1L363 & A1L471);
+
+
+--A1L388 is cnt_data~40
+A1L388 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[18])) # (!A1L454 & ((A1L283)))));
+
+
+--A1L389 is cnt_data~41
+A1L389 = (A1L364 & A1L471);
+
+
+--A1L390 is cnt_data~42
+A1L390 = (A1L365 & A1L471);
+
+
+--A1L391 is cnt_data~43
+A1L391 = (A1L366 & A1L471);
+
+
+--A1L392 is cnt_data~44
+A1L392 = (A1L367 & A1L471);
+
+
+--A1L393 is cnt_data~45
+A1L393 = (A1L368 & A1L471);
+
+
+--A1L394 is cnt_data~46
+A1L394 = (A1L369 & A1L471);
+
+
+--A1L395 is cnt_data~47
+A1L395 = (A1L354 & A1L471);
+
+
+--A1L396 is cnt_data~48
+A1L396 = (A1L355 & A1L471);
+
+
+--A1L397 is cnt_data~49
+A1L397 = (A1L352 & A1L471);
+
+
+--A1L398 is cnt_data~50
+A1L398 = (A1L471 & ((A1L454 & (\p_data_seperation:cnt_data[28])) # (!A1L454 & ((A1L303)))));
+
+
+--A1L399 is cnt_data~51
+A1L399 = (A1L353 & A1L471);
+
+
+--\p_read_bit_val:o_smp_cnt[2] is \p_read_bit_val:o_smp_cnt[2]
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[2] = DFFEAS(A1L112, !o_smp_clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_read_bit_val:o_smp_cnt[1] is \p_read_bit_val:o_smp_cnt[1]
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[1] = DFFEAS(A1L110, !o_smp_clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_read_bit_val:o_smp_cnt[0] is \p_read_bit_val:o_smp_cnt[0]
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[0] = DFFEAS(A1L108, !o_smp_clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L507 is rx_bit~0
+A1L507 = (\p_read_bit_val:o_smp_cnt[2] & (\p_read_bit_val:o_smp_cnt[1] & \p_read_bit_val:o_smp_cnt[0]));
+
+
+--\p_read_bit_val:rx_o_smp[0] is \p_read_bit_val:rx_o_smp[0]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[0] = DFFEAS(RX_sig, !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
 --RX_sig is RX_sig
 RX_sig = INPUT();
+
+
+--\p_read_bit_val:rx_o_smp[1] is \p_read_bit_val:rx_o_smp[1]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[1] = DFFEAS(\p_read_bit_val:rx_o_smp[0], !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
+--\p_read_bit_val:rx_o_smp[4] is \p_read_bit_val:rx_o_smp[4]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[4] = DFFEAS(\p_read_bit_val:rx_o_smp[3], !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
+--\p_read_bit_val:rx_o_smp[3] is \p_read_bit_val:rx_o_smp[3]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[3] = DFFEAS(\p_read_bit_val:rx_o_smp[2], !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
+--\p_read_bit_val:rx_o_smp[2] is \p_read_bit_val:rx_o_smp[2]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[2] = DFFEAS(\p_read_bit_val:rx_o_smp[1], !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
+--A1L311 is Add7~0
+A1L311 = (\p_read_bit_val:rx_o_smp[1] & (\p_read_bit_val:rx_o_smp[4] $ (\p_read_bit_val:rx_o_smp[3] $ (\p_read_bit_val:rx_o_smp[2])))) # (!\p_read_bit_val:rx_o_smp[1] & ((\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[3] $ (\p_read_bit_val:rx_o_smp[2]))) # (!\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[3] & \p_read_bit_val:rx_o_smp[2]))));
+
+
+--A1L312 is Add7~1
+A1L312 = (\p_read_bit_val:rx_o_smp[1] & ((\p_read_bit_val:rx_o_smp[4] & ((\p_read_bit_val:rx_o_smp[3]) # (\p_read_bit_val:rx_o_smp[2]))) # (!\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[3] & \p_read_bit_val:rx_o_smp[2])))) # (!\p_read_bit_val:rx_o_smp[1] & (\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[3] & \p_read_bit_val:rx_o_smp[2])));
+
+
+--A1L313 is Add7~2
+A1L313 = (\p_read_bit_val:rx_o_smp[0] & ((A1L312) # ((RX_sig & A1L311)))) # (!\p_read_bit_val:rx_o_smp[0] & (A1L312 & ((RX_sig) # (A1L311))));
+
+
+--\p_read_bit_val:rx_o_smp[5] is \p_read_bit_val:rx_o_smp[5]
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[5] = DFFEAS(\p_read_bit_val:rx_o_smp[4], !o_smp_clk,  ,  , A1L472,  ,  ,  ,  );
+
+
+--A1L314 is Add8~0
+A1L314 = \p_read_bit_val:rx_o_smp[0] $ (RX_sig $ (\p_read_bit_val:rx_o_smp[4] $ (\p_read_bit_val:rx_o_smp[2])));
+
+
+--A1L315 is Add8~1
+A1L315 = (\p_read_bit_val:rx_o_smp[0] & ((RX_sig & ((!\p_read_bit_val:rx_o_smp[2]) # (!\p_read_bit_val:rx_o_smp[4]))) # (!RX_sig & ((\p_read_bit_val:rx_o_smp[4]) # (\p_read_bit_val:rx_o_smp[2]))))) # (!\p_read_bit_val:rx_o_smp[0] & ((RX_sig & ((\p_read_bit_val:rx_o_smp[4]) # (\p_read_bit_val:rx_o_smp[2]))) # (!RX_sig & (\p_read_bit_val:rx_o_smp[4] & \p_read_bit_val:rx_o_smp[2]))));
+
+
+--A1L316 is Add8~2
+A1L316 = (\p_read_bit_val:rx_o_smp[1] & ((\p_read_bit_val:rx_o_smp[3] & (A1L314 & !A1L315)) # (!\p_read_bit_val:rx_o_smp[3] & (!A1L314 & A1L315)))) # (!\p_read_bit_val:rx_o_smp[1] & (A1L315 & (\p_read_bit_val:rx_o_smp[3] $ (A1L314))));
+
+
+--A1L317 is Add8~3
+A1L317 = (\p_read_bit_val:rx_o_smp[5] & A1L316);
+
+
+--A1L508 is rx_bit~1
+A1L508 = (A1L507 & (!A1L313 & (!A1L317))) # (!A1L507 & (((rx_bit))));
+
+
+--o_smp_clk is o_smp_clk
+--register power-up is low
+
+o_smp_clk = DFFEAS(A1L505, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[31] is \p_clock_division:o_smp_clk_cnt[31]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[31] = DFFEAS(A1L181, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[30] is \p_clock_division:o_smp_clk_cnt[30]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[30] = DFFEAS(A1L474, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[29] is \p_clock_division:o_smp_clk_cnt[29]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[29] = DFFEAS(A1L475, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[28] is \p_clock_division:o_smp_clk_cnt[28]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[28] = DFFEAS(A1L476, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[27] is \p_clock_division:o_smp_clk_cnt[27]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[27] = DFFEAS(A1L477, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[26] is \p_clock_division:o_smp_clk_cnt[26]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[26] = DFFEAS(A1L478, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[25] is \p_clock_division:o_smp_clk_cnt[25]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[25] = DFFEAS(A1L479, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[24] is \p_clock_division:o_smp_clk_cnt[24]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[24] = DFFEAS(A1L480, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[23] is \p_clock_division:o_smp_clk_cnt[23]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[23] = DFFEAS(A1L481, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[22] is \p_clock_division:o_smp_clk_cnt[22]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[22] = DFFEAS(A1L482, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[21] is \p_clock_division:o_smp_clk_cnt[21]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[21] = DFFEAS(A1L483, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[20] is \p_clock_division:o_smp_clk_cnt[20]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[20] = DFFEAS(A1L484, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[19] is \p_clock_division:o_smp_clk_cnt[19]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[19] = DFFEAS(A1L485, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[18] is \p_clock_division:o_smp_clk_cnt[18]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[18] = DFFEAS(A1L486, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[17] is \p_clock_division:o_smp_clk_cnt[17]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[17] = DFFEAS(A1L487, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[16] is \p_clock_division:o_smp_clk_cnt[16]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[16] = DFFEAS(A1L488, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[15] is \p_clock_division:o_smp_clk_cnt[15]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[15] = DFFEAS(A1L489, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[14] is \p_clock_division:o_smp_clk_cnt[14]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[14] = DFFEAS(A1L490, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[13] is \p_clock_division:o_smp_clk_cnt[13]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[13] = DFFEAS(A1L491, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[12] is \p_clock_division:o_smp_clk_cnt[12]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[12] = DFFEAS(A1L492, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[11] is \p_clock_division:o_smp_clk_cnt[11]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[11] = DFFEAS(A1L493, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[10] is \p_clock_division:o_smp_clk_cnt[10]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[10] = DFFEAS(A1L494, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[9] is \p_clock_division:o_smp_clk_cnt[9]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[9] = DFFEAS(A1L495, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[8] is \p_clock_division:o_smp_clk_cnt[8]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[8] = DFFEAS(A1L496, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[7] is \p_clock_division:o_smp_clk_cnt[7]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[7] = DFFEAS(A1L497, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[6] is \p_clock_division:o_smp_clk_cnt[6]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[6] = DFFEAS(A1L498, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[5] is \p_clock_division:o_smp_clk_cnt[5]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[5] = DFFEAS(A1L499, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[4] is \p_clock_division:o_smp_clk_cnt[4]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[4] = DFFEAS(A1L500, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[3] is \p_clock_division:o_smp_clk_cnt[3]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[3] = DFFEAS(A1L501, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[2] is \p_clock_division:o_smp_clk_cnt[2]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[2] = DFFEAS(A1L502, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[1] is \p_clock_division:o_smp_clk_cnt[1]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[1] = DFFEAS(A1L503, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[0] is \p_clock_division:o_smp_clk_cnt[0]
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[0] = DFFEAS(A1L504, clk,  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L425 is LessThan0~0
+A1L425 = (!A1L153 & (!A1L155 & (!A1L157 & !A1L159)));
+
+
+--A1L426 is LessThan0~1
+A1L426 = (A1L425 & (!A1L161 & (!A1L163 & !A1L165)));
+
+
+--A1L427 is LessThan0~2
+A1L427 = ((!A1L119 & !A1L121)) # (!A1L123);
+
+
+--A1L428 is LessThan0~3
+A1L428 = (A1L427 & (!A1L125 & (!A1L127 & !A1L129)));
+
+
+--A1L429 is LessThan0~4
+A1L429 = ((!A1L133 & ((A1L428) # (!A1L131)))) # (!A1L135);
+
+
+--A1L430 is LessThan0~5
+A1L430 = (!A1L137 & (!A1L139 & (!A1L141 & !A1L143)));
+
+
+--A1L431 is LessThan0~6
+A1L431 = (!A1L145 & (!A1L147 & (!A1L149 & !A1L151)));
+
+
+--A1L432 is LessThan0~7
+A1L432 = (A1L429 & (A1L430 & (A1L431 & !A1L167)));
+
+
+--A1L433 is LessThan0~8
+A1L433 = (!A1L169 & (!A1L171 & (A1L426 & A1L432)));
+
+
+--A1L434 is LessThan0~9
+A1L434 = (!A1L173 & (!A1L175 & A1L433));
+
+
+--A1L435 is LessThan0~10
+A1L435 = (!A1L181 & ((A1L177) # ((A1L179) # (!A1L434))));
+
+
+--\p_clock_division:baud_clk_cnt[31] is \p_clock_division:baud_clk_cnt[31]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[31] = DFFEAS(A1L245, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[30] is \p_clock_division:baud_clk_cnt[30]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[30] = DFFEAS(A1L319, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[29] is \p_clock_division:baud_clk_cnt[29]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[29] = DFFEAS(A1L320, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[28] is \p_clock_division:baud_clk_cnt[28]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[28] = DFFEAS(A1L321, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[27] is \p_clock_division:baud_clk_cnt[27]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[27] = DFFEAS(A1L322, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[26] is \p_clock_division:baud_clk_cnt[26]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[26] = DFFEAS(A1L323, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[25] is \p_clock_division:baud_clk_cnt[25]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[25] = DFFEAS(A1L324, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[24] is \p_clock_division:baud_clk_cnt[24]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[24] = DFFEAS(A1L325, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[23] is \p_clock_division:baud_clk_cnt[23]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[23] = DFFEAS(A1L326, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[22] is \p_clock_division:baud_clk_cnt[22]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[22] = DFFEAS(A1L327, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[21] is \p_clock_division:baud_clk_cnt[21]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[21] = DFFEAS(A1L328, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[20] is \p_clock_division:baud_clk_cnt[20]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[20] = DFFEAS(A1L329, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[19] is \p_clock_division:baud_clk_cnt[19]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[19] = DFFEAS(A1L330, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[18] is \p_clock_division:baud_clk_cnt[18]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[18] = DFFEAS(A1L331, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[17] is \p_clock_division:baud_clk_cnt[17]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[17] = DFFEAS(A1L332, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[16] is \p_clock_division:baud_clk_cnt[16]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[16] = DFFEAS(A1L333, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[15] is \p_clock_division:baud_clk_cnt[15]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[15] = DFFEAS(A1L334, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[14] is \p_clock_division:baud_clk_cnt[14]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[14] = DFFEAS(A1L335, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[13] is \p_clock_division:baud_clk_cnt[13]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[13] = DFFEAS(A1L336, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[12] is \p_clock_division:baud_clk_cnt[12]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[12] = DFFEAS(A1L337, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[11] is \p_clock_division:baud_clk_cnt[11]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[11] = DFFEAS(A1L338, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[10] is \p_clock_division:baud_clk_cnt[10]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[10] = DFFEAS(A1L339, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[9] is \p_clock_division:baud_clk_cnt[9]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[9] = DFFEAS(A1L340, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[8] is \p_clock_division:baud_clk_cnt[8]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[8] = DFFEAS(A1L341, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[7] is \p_clock_division:baud_clk_cnt[7]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[7] = DFFEAS(A1L342, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[6] is \p_clock_division:baud_clk_cnt[6]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[6] = DFFEAS(A1L343, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[5] is \p_clock_division:baud_clk_cnt[5]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[5] = DFFEAS(A1L344, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[4] is \p_clock_division:baud_clk_cnt[4]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[4] = DFFEAS(A1L345, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[3] is \p_clock_division:baud_clk_cnt[3]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[3] = DFFEAS(A1L346, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[2] is \p_clock_division:baud_clk_cnt[2]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[2] = DFFEAS(A1L347, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[1] is \p_clock_division:baud_clk_cnt[1]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[1] = DFFEAS(A1L348, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[0] is \p_clock_division:baud_clk_cnt[0]
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[0] = DFFEAS(A1L349, clk,  ,  , A1L435,  ,  ,  ,  );
+
+
+--A1L436 is LessThan1~0
+A1L436 = (!A1L189 & (!A1L191 & (!A1L193 & !A1L195)));
+
+
+--A1L437 is LessThan1~1
+A1L437 = (!A1L197 & (!A1L199 & (!A1L201 & !A1L203)));
+
+
+--A1L438 is LessThan1~2
+A1L438 = (!A1L205 & (!A1L207 & (!A1L209 & !A1L211)));
+
+
+--A1L439 is LessThan1~3
+A1L439 = (!A1L213 & (!A1L215 & (!A1L217 & !A1L219)));
+
+
+--A1L440 is LessThan1~4
+A1L440 = (A1L436 & (A1L437 & (A1L438 & A1L439)));
+
+
+--A1L441 is LessThan1~5
+A1L441 = (!A1L221 & (!A1L223 & (!A1L225 & !A1L227)));
+
+
+--A1L442 is LessThan1~6
+A1L442 = (A1L440 & (!A1L229 & (!A1L231 & A1L441)));
+
+
+--A1L443 is LessThan1~7
+A1L443 = (!A1L237 & (!A1L233 & (!A1L235 & A1L442)));
+
+
+--A1L444 is LessThan1~8
+A1L444 = (!A1L239 & (!A1L241 & (!A1L243 & A1L443)));
+
+
+--A1L350 is baud_clk~0
+A1L350 = baud_clk $ (((A1L435 & (!A1L245 & !A1L444))));
 
 
 --clk is clk
 clk = INPUT();
 
 
---seg_ut[0] is seg_ut[0]
-seg_ut[0] = OUTPUT(A1L12);
+--A1L112 is \p_read_bit_val:o_smp_cnt[2]~0
+A1L112 = \p_read_bit_val:o_smp_cnt[2] $ (((\p_read_bit_val:o_smp_cnt[1] & \p_read_bit_val:o_smp_cnt[0])));
 
 
---seg_ut[1] is seg_ut[1]
-seg_ut[1] = OUTPUT(A1L12);
+--A1L110 is \p_read_bit_val:o_smp_cnt[1]~0
+A1L110 = \p_read_bit_val:o_smp_cnt[1] $ (\p_read_bit_val:o_smp_cnt[0]);
 
 
---seg_ut[2] is seg_ut[2]
-seg_ut[2] = OUTPUT(A1L12);
+--A1L472 is LessThan4~0
+A1L472 = (\p_read_bit_val:o_smp_cnt[2]) # ((\p_read_bit_val:o_smp_cnt[1]) # (\p_read_bit_val:o_smp_cnt[0]));
 
 
---seg_ut[3] is seg_ut[3]
-seg_ut[3] = OUTPUT(A1L12);
+--A1L474 is o_smp_clk_cnt~0
+A1L474 = (A1L179 & A1L181);
 
 
---seg_ut[4] is seg_ut[4]
-seg_ut[4] = OUTPUT(A1L12);
+--A1L475 is o_smp_clk_cnt~1
+A1L475 = (A1L177 & A1L181);
 
 
---seg_ut[5] is seg_ut[5]
-seg_ut[5] = OUTPUT(A1L12);
+--A1L476 is o_smp_clk_cnt~2
+A1L476 = (A1L175 & A1L181);
 
 
---seg_ut[6] is seg_ut[6]
-seg_ut[6] = OUTPUT(A1L13);
+--A1L477 is o_smp_clk_cnt~3
+A1L477 = (A1L173 & A1L181);
 
 
---seg_ut[7] is seg_ut[7]
-seg_ut[7] = OUTPUT(A1L13);
+--A1L478 is o_smp_clk_cnt~4
+A1L478 = (A1L171 & A1L181);
 
 
---A1L12 is ~GND
-A1L12 = GND;
+--A1L479 is o_smp_clk_cnt~5
+A1L479 = (A1L169 & A1L181);
 
 
---A1L13 is ~VCC
-A1L13 = VCC;
+--A1L480 is o_smp_clk_cnt~6
+A1L480 = (A1L167 & A1L181);
+
+
+--A1L481 is o_smp_clk_cnt~7
+A1L481 = (A1L165 & A1L181);
+
+
+--A1L482 is o_smp_clk_cnt~8
+A1L482 = (A1L163 & A1L181);
+
+
+--A1L483 is o_smp_clk_cnt~9
+A1L483 = (A1L161 & A1L181);
+
+
+--A1L484 is o_smp_clk_cnt~10
+A1L484 = (A1L159 & A1L181);
+
+
+--A1L485 is o_smp_clk_cnt~11
+A1L485 = (A1L157 & A1L181);
+
+
+--A1L486 is o_smp_clk_cnt~12
+A1L486 = (A1L155 & A1L181);
+
+
+--A1L487 is o_smp_clk_cnt~13
+A1L487 = (A1L153 & A1L181);
+
+
+--A1L488 is o_smp_clk_cnt~14
+A1L488 = (A1L151 & A1L181);
+
+
+--A1L489 is o_smp_clk_cnt~15
+A1L489 = (A1L149 & A1L181);
+
+
+--A1L490 is o_smp_clk_cnt~16
+A1L490 = (A1L147 & A1L181);
+
+
+--A1L491 is o_smp_clk_cnt~17
+A1L491 = (A1L145 & A1L181);
+
+
+--A1L492 is o_smp_clk_cnt~18
+A1L492 = (A1L143 & A1L181);
+
+
+--A1L493 is o_smp_clk_cnt~19
+A1L493 = (A1L141 & A1L181);
+
+
+--A1L494 is o_smp_clk_cnt~20
+A1L494 = (A1L139 & A1L181);
+
+
+--A1L495 is o_smp_clk_cnt~21
+A1L495 = (A1L137 & A1L181);
+
+
+--A1L496 is o_smp_clk_cnt~22
+A1L496 = (A1L135 & !A1L435);
+
+
+--A1L497 is o_smp_clk_cnt~23
+A1L497 = (A1L133 & !A1L435);
+
+
+--A1L498 is o_smp_clk_cnt~24
+A1L498 = (A1L131 & !A1L435);
+
+
+--A1L499 is o_smp_clk_cnt~25
+A1L499 = (A1L129 & !A1L435);
+
+
+--A1L500 is o_smp_clk_cnt~26
+A1L500 = (A1L127 & !A1L435);
+
+
+--A1L501 is o_smp_clk_cnt~27
+A1L501 = (A1L125 & !A1L435);
+
+
+--A1L502 is o_smp_clk_cnt~28
+A1L502 = (A1L123 & !A1L435);
+
+
+--A1L503 is o_smp_clk_cnt~29
+A1L503 = (A1L121 & !A1L435);
+
+
+--A1L504 is o_smp_clk_cnt~30
+A1L504 = (A1L119 & !A1L435);
+
+
+--A1L319 is baud_clk_cnt~0
+A1L319 = (A1L243 & A1L245);
+
+
+--A1L320 is baud_clk_cnt~1
+A1L320 = (A1L241 & A1L245);
+
+
+--A1L321 is baud_clk_cnt~2
+A1L321 = (A1L239 & A1L245);
+
+
+--A1L322 is baud_clk_cnt~3
+A1L322 = (A1L237 & A1L245);
+
+
+--A1L323 is baud_clk_cnt~4
+A1L323 = (A1L235 & A1L245);
+
+
+--A1L324 is baud_clk_cnt~5
+A1L324 = (A1L233 & A1L245);
+
+
+--A1L325 is baud_clk_cnt~6
+A1L325 = (A1L231 & A1L245);
+
+
+--A1L326 is baud_clk_cnt~7
+A1L326 = (A1L229 & A1L245);
+
+
+--A1L327 is baud_clk_cnt~8
+A1L327 = (A1L227 & A1L245);
+
+
+--A1L328 is baud_clk_cnt~9
+A1L328 = (A1L225 & A1L245);
+
+
+--A1L329 is baud_clk_cnt~10
+A1L329 = (A1L223 & A1L245);
+
+
+--A1L330 is baud_clk_cnt~11
+A1L330 = (A1L221 & A1L245);
+
+
+--A1L331 is baud_clk_cnt~12
+A1L331 = (A1L219 & A1L245);
+
+
+--A1L332 is baud_clk_cnt~13
+A1L332 = (A1L217 & A1L245);
+
+
+--A1L333 is baud_clk_cnt~14
+A1L333 = (A1L215 & A1L245);
+
+
+--A1L334 is baud_clk_cnt~15
+A1L334 = (A1L213 & A1L245);
+
+
+--A1L335 is baud_clk_cnt~16
+A1L335 = (A1L211 & A1L245);
+
+
+--A1L336 is baud_clk_cnt~17
+A1L336 = (A1L209 & A1L245);
+
+
+--A1L337 is baud_clk_cnt~18
+A1L337 = (A1L207 & A1L245);
+
+
+--A1L338 is baud_clk_cnt~19
+A1L338 = (A1L205 & A1L245);
+
+
+--A1L339 is baud_clk_cnt~20
+A1L339 = (A1L203 & A1L245);
+
+
+--A1L340 is baud_clk_cnt~21
+A1L340 = (A1L201 & A1L245);
+
+
+--A1L341 is baud_clk_cnt~22
+A1L341 = (A1L199 & A1L245);
+
+
+--A1L342 is baud_clk_cnt~23
+A1L342 = (A1L197 & A1L245);
+
+
+--A1L343 is baud_clk_cnt~24
+A1L343 = (A1L195 & A1L245);
+
+
+--A1L344 is baud_clk_cnt~25
+A1L344 = (A1L193 & A1L245);
+
+
+--A1L345 is baud_clk_cnt~26
+A1L345 = (A1L191 & A1L245);
+
+
+--A1L346 is baud_clk_cnt~27
+A1L346 = (A1L189 & A1L245);
+
+
+--A1L347 is baud_clk_cnt~28
+A1L347 = (A1L187 & ((A1L245) # (A1L444)));
+
+
+--A1L348 is baud_clk_cnt~29
+A1L348 = (A1L185 & ((A1L245) # (A1L444)));
+
+
+--A1L349 is baud_clk_cnt~30
+A1L349 = (A1L183 & ((A1L245) # (A1L444)));
+
+
+--A1L68 is \p_data_seperation:cnt_data[2]~2
+A1L68 = (\p_data_seperation:state & (((\p_data_seperation:cnt_data[31]) # (!A1L471)) # (!A1L453)));
+
+
+--A1L400 is cnt_data~52
+A1L400 = (A1L307 & (A1L309 & ((\p_data_seperation:cnt_data[31]) # (!A1L453))));
+
+
+--A1L401 is cnt_data~53
+A1L401 = (A1L309 & ((\p_data_seperation:cnt_data[31]) # (!A1L453)));
+
+
+--A1L529 is state~2
+A1L529 = (A1L471 & (((\p_data_seperation:cnt_data[31]) # (\p_data_seperation:state)) # (!A1L453)));
+
+
+--A1L108 is \p_read_bit_val:o_smp_cnt[0]~0
+A1L108 = !\p_read_bit_val:o_smp_cnt[0];
+
+
+--A1L505 is o_smp_clk~0
+A1L505 = !o_smp_clk;
+
+
+--A1L538 is ~VCC
+A1L538 = VCC;
 
 

@@ -12,82 +12,2333 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
+--\p_data_seperation:state is \p_data_seperation:state at FF_X25_Y22_N9
+--register power-up is low
 
---RX_sig is RX_sig at PIN_A6
-RX_sig = INPUT();
-
-
-
---clk is clk at PIN_P11
-clk = INPUT();
+\p_data_seperation:state = DFFEAS(A1L550, !GLOBAL(A1L356),  ,  ,  , rx_bit,  ,  , !\p_data_seperation:state);
 
 
---A1L8 is seg_ut[0]~output at IOOBUF_X31_Y4_N2
-A1L8 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L251 is Add2~0 at LCCOMB_X22_Y23_N0
+A1L251 = \p_data_seperation:cnt_data[0] $ (VCC);
+
+--A1L252 is Add2~1 at LCCOMB_X22_Y23_N0
+A1L252 = CARRY(\p_data_seperation:cnt_data[0]);
 
 
---seg_ut[0] is seg_ut[0] at PIN_P22
+--A1L253 is Add2~2 at LCCOMB_X22_Y23_N2
+A1L253 = (\p_data_seperation:cnt_data[1] & (!A1L252)) # (!\p_data_seperation:cnt_data[1] & ((A1L252) # (GND)));
+
+--A1L254 is Add2~3 at LCCOMB_X22_Y23_N2
+A1L254 = CARRY((!A1L252) # (!\p_data_seperation:cnt_data[1]));
+
+
+--A1L255 is Add2~4 at LCCOMB_X22_Y23_N4
+A1L255 = (\p_data_seperation:cnt_data[2] & (A1L254 $ (GND))) # (!\p_data_seperation:cnt_data[2] & (!A1L254 & VCC));
+
+--A1L256 is Add2~5 at LCCOMB_X22_Y23_N4
+A1L256 = CARRY((\p_data_seperation:cnt_data[2] & !A1L254));
+
+
+--A1L257 is Add2~6 at LCCOMB_X22_Y23_N6
+A1L257 = (\p_data_seperation:cnt_data[3] & (!A1L256)) # (!\p_data_seperation:cnt_data[3] & ((A1L256) # (GND)));
+
+--A1L258 is Add2~7 at LCCOMB_X22_Y23_N6
+A1L258 = CARRY((!A1L256) # (!\p_data_seperation:cnt_data[3]));
+
+
+--A1L259 is Add2~8 at LCCOMB_X22_Y23_N8
+A1L259 = (\p_data_seperation:cnt_data[4] & (A1L258 $ (GND))) # (!\p_data_seperation:cnt_data[4] & (!A1L258 & VCC));
+
+--A1L260 is Add2~9 at LCCOMB_X22_Y23_N8
+A1L260 = CARRY((\p_data_seperation:cnt_data[4] & !A1L258));
+
+
+--A1L261 is Add2~10 at LCCOMB_X22_Y23_N10
+A1L261 = (\p_data_seperation:cnt_data[5] & (!A1L260)) # (!\p_data_seperation:cnt_data[5] & ((A1L260) # (GND)));
+
+--A1L262 is Add2~11 at LCCOMB_X22_Y23_N10
+A1L262 = CARRY((!A1L260) # (!\p_data_seperation:cnt_data[5]));
+
+
+--A1L263 is Add2~12 at LCCOMB_X22_Y23_N12
+A1L263 = (\p_data_seperation:cnt_data[6] & (A1L262 $ (GND))) # (!\p_data_seperation:cnt_data[6] & (!A1L262 & VCC));
+
+--A1L264 is Add2~13 at LCCOMB_X22_Y23_N12
+A1L264 = CARRY((\p_data_seperation:cnt_data[6] & !A1L262));
+
+
+--A1L265 is Add2~14 at LCCOMB_X22_Y23_N14
+A1L265 = (\p_data_seperation:cnt_data[7] & (!A1L264)) # (!\p_data_seperation:cnt_data[7] & ((A1L264) # (GND)));
+
+--A1L266 is Add2~15 at LCCOMB_X22_Y23_N14
+A1L266 = CARRY((!A1L264) # (!\p_data_seperation:cnt_data[7]));
+
+
+--A1L267 is Add2~16 at LCCOMB_X22_Y23_N16
+A1L267 = (\p_data_seperation:cnt_data[8] & (A1L266 $ (GND))) # (!\p_data_seperation:cnt_data[8] & (!A1L266 & VCC));
+
+--A1L268 is Add2~17 at LCCOMB_X22_Y23_N16
+A1L268 = CARRY((\p_data_seperation:cnt_data[8] & !A1L266));
+
+
+--A1L269 is Add2~18 at LCCOMB_X22_Y23_N18
+A1L269 = (\p_data_seperation:cnt_data[9] & (!A1L268)) # (!\p_data_seperation:cnt_data[9] & ((A1L268) # (GND)));
+
+--A1L270 is Add2~19 at LCCOMB_X22_Y23_N18
+A1L270 = CARRY((!A1L268) # (!\p_data_seperation:cnt_data[9]));
+
+
+--A1L271 is Add2~20 at LCCOMB_X22_Y23_N20
+A1L271 = (\p_data_seperation:cnt_data[10] & (A1L270 $ (GND))) # (!\p_data_seperation:cnt_data[10] & (!A1L270 & VCC));
+
+--A1L272 is Add2~21 at LCCOMB_X22_Y23_N20
+A1L272 = CARRY((\p_data_seperation:cnt_data[10] & !A1L270));
+
+
+--A1L273 is Add2~22 at LCCOMB_X22_Y23_N22
+A1L273 = (\p_data_seperation:cnt_data[11] & (!A1L272)) # (!\p_data_seperation:cnt_data[11] & ((A1L272) # (GND)));
+
+--A1L274 is Add2~23 at LCCOMB_X22_Y23_N22
+A1L274 = CARRY((!A1L272) # (!\p_data_seperation:cnt_data[11]));
+
+
+--A1L275 is Add2~24 at LCCOMB_X22_Y23_N24
+A1L275 = (\p_data_seperation:cnt_data[12] & (A1L274 $ (GND))) # (!\p_data_seperation:cnt_data[12] & (!A1L274 & VCC));
+
+--A1L276 is Add2~25 at LCCOMB_X22_Y23_N24
+A1L276 = CARRY((\p_data_seperation:cnt_data[12] & !A1L274));
+
+
+--A1L277 is Add2~26 at LCCOMB_X22_Y23_N26
+A1L277 = (\p_data_seperation:cnt_data[13] & (!A1L276)) # (!\p_data_seperation:cnt_data[13] & ((A1L276) # (GND)));
+
+--A1L278 is Add2~27 at LCCOMB_X22_Y23_N26
+A1L278 = CARRY((!A1L276) # (!\p_data_seperation:cnt_data[13]));
+
+
+--A1L279 is Add2~28 at LCCOMB_X22_Y23_N28
+A1L279 = (\p_data_seperation:cnt_data[14] & (A1L278 $ (GND))) # (!\p_data_seperation:cnt_data[14] & (!A1L278 & VCC));
+
+--A1L280 is Add2~29 at LCCOMB_X22_Y23_N28
+A1L280 = CARRY((\p_data_seperation:cnt_data[14] & !A1L278));
+
+
+--A1L281 is Add2~30 at LCCOMB_X22_Y23_N30
+A1L281 = (\p_data_seperation:cnt_data[15] & (!A1L280)) # (!\p_data_seperation:cnt_data[15] & ((A1L280) # (GND)));
+
+--A1L282 is Add2~31 at LCCOMB_X22_Y23_N30
+A1L282 = CARRY((!A1L280) # (!\p_data_seperation:cnt_data[15]));
+
+
+--A1L283 is Add2~32 at LCCOMB_X22_Y22_N0
+A1L283 = (\p_data_seperation:cnt_data[16] & (A1L282 $ (GND))) # (!\p_data_seperation:cnt_data[16] & (!A1L282 & VCC));
+
+--A1L284 is Add2~33 at LCCOMB_X22_Y22_N0
+A1L284 = CARRY((\p_data_seperation:cnt_data[16] & !A1L282));
+
+
+--A1L285 is Add2~34 at LCCOMB_X22_Y22_N2
+A1L285 = (\p_data_seperation:cnt_data[17] & (!A1L284)) # (!\p_data_seperation:cnt_data[17] & ((A1L284) # (GND)));
+
+--A1L286 is Add2~35 at LCCOMB_X22_Y22_N2
+A1L286 = CARRY((!A1L284) # (!\p_data_seperation:cnt_data[17]));
+
+
+--A1L287 is Add2~36 at LCCOMB_X22_Y22_N4
+A1L287 = (\p_data_seperation:cnt_data[18] & (A1L286 $ (GND))) # (!\p_data_seperation:cnt_data[18] & (!A1L286 & VCC));
+
+--A1L288 is Add2~37 at LCCOMB_X22_Y22_N4
+A1L288 = CARRY((\p_data_seperation:cnt_data[18] & !A1L286));
+
+
+--A1L289 is Add2~38 at LCCOMB_X22_Y22_N6
+A1L289 = (\p_data_seperation:cnt_data[19] & (!A1L288)) # (!\p_data_seperation:cnt_data[19] & ((A1L288) # (GND)));
+
+--A1L290 is Add2~39 at LCCOMB_X22_Y22_N6
+A1L290 = CARRY((!A1L288) # (!\p_data_seperation:cnt_data[19]));
+
+
+--A1L291 is Add2~40 at LCCOMB_X22_Y22_N8
+A1L291 = (\p_data_seperation:cnt_data[20] & (A1L290 $ (GND))) # (!\p_data_seperation:cnt_data[20] & (!A1L290 & VCC));
+
+--A1L292 is Add2~41 at LCCOMB_X22_Y22_N8
+A1L292 = CARRY((\p_data_seperation:cnt_data[20] & !A1L290));
+
+
+--A1L293 is Add2~42 at LCCOMB_X22_Y22_N10
+A1L293 = (\p_data_seperation:cnt_data[21] & (!A1L292)) # (!\p_data_seperation:cnt_data[21] & ((A1L292) # (GND)));
+
+--A1L294 is Add2~43 at LCCOMB_X22_Y22_N10
+A1L294 = CARRY((!A1L292) # (!\p_data_seperation:cnt_data[21]));
+
+
+--A1L295 is Add2~44 at LCCOMB_X22_Y22_N12
+A1L295 = (\p_data_seperation:cnt_data[22] & (A1L294 $ (GND))) # (!\p_data_seperation:cnt_data[22] & (!A1L294 & VCC));
+
+--A1L296 is Add2~45 at LCCOMB_X22_Y22_N12
+A1L296 = CARRY((\p_data_seperation:cnt_data[22] & !A1L294));
+
+
+--A1L297 is Add2~46 at LCCOMB_X22_Y22_N14
+A1L297 = (\p_data_seperation:cnt_data[23] & (!A1L296)) # (!\p_data_seperation:cnt_data[23] & ((A1L296) # (GND)));
+
+--A1L298 is Add2~47 at LCCOMB_X22_Y22_N14
+A1L298 = CARRY((!A1L296) # (!\p_data_seperation:cnt_data[23]));
+
+
+--A1L299 is Add2~48 at LCCOMB_X22_Y22_N16
+A1L299 = (\p_data_seperation:cnt_data[24] & (A1L298 $ (GND))) # (!\p_data_seperation:cnt_data[24] & (!A1L298 & VCC));
+
+--A1L300 is Add2~49 at LCCOMB_X22_Y22_N16
+A1L300 = CARRY((\p_data_seperation:cnt_data[24] & !A1L298));
+
+
+--A1L301 is Add2~50 at LCCOMB_X22_Y22_N18
+A1L301 = (\p_data_seperation:cnt_data[25] & (!A1L300)) # (!\p_data_seperation:cnt_data[25] & ((A1L300) # (GND)));
+
+--A1L302 is Add2~51 at LCCOMB_X22_Y22_N18
+A1L302 = CARRY((!A1L300) # (!\p_data_seperation:cnt_data[25]));
+
+
+--A1L303 is Add2~52 at LCCOMB_X22_Y22_N20
+A1L303 = (\p_data_seperation:cnt_data[26] & (A1L302 $ (GND))) # (!\p_data_seperation:cnt_data[26] & (!A1L302 & VCC));
+
+--A1L304 is Add2~53 at LCCOMB_X22_Y22_N20
+A1L304 = CARRY((\p_data_seperation:cnt_data[26] & !A1L302));
+
+
+--A1L305 is Add2~54 at LCCOMB_X22_Y22_N22
+A1L305 = (\p_data_seperation:cnt_data[27] & (!A1L304)) # (!\p_data_seperation:cnt_data[27] & ((A1L304) # (GND)));
+
+--A1L306 is Add2~55 at LCCOMB_X22_Y22_N22
+A1L306 = CARRY((!A1L304) # (!\p_data_seperation:cnt_data[27]));
+
+
+--A1L307 is Add2~56 at LCCOMB_X22_Y22_N24
+A1L307 = (\p_data_seperation:cnt_data[28] & (A1L306 $ (GND))) # (!\p_data_seperation:cnt_data[28] & (!A1L306 & VCC));
+
+--A1L308 is Add2~57 at LCCOMB_X22_Y22_N24
+A1L308 = CARRY((\p_data_seperation:cnt_data[28] & !A1L306));
+
+
+--A1L309 is Add2~58 at LCCOMB_X22_Y22_N26
+A1L309 = (\p_data_seperation:cnt_data[29] & (!A1L308)) # (!\p_data_seperation:cnt_data[29] & ((A1L308) # (GND)));
+
+--A1L310 is Add2~59 at LCCOMB_X22_Y22_N26
+A1L310 = CARRY((!A1L308) # (!\p_data_seperation:cnt_data[29]));
+
+
+--A1L311 is Add2~60 at LCCOMB_X22_Y22_N28
+A1L311 = (\p_data_seperation:cnt_data[30] & (A1L310 $ (GND))) # (!\p_data_seperation:cnt_data[30] & (!A1L310 & VCC));
+
+--A1L312 is Add2~61 at LCCOMB_X22_Y22_N28
+A1L312 = CARRY((\p_data_seperation:cnt_data[30] & !A1L310));
+
+
+--A1L313 is Add2~62 at LCCOMB_X22_Y22_N30
+A1L313 = \p_data_seperation:cnt_data[31] $ (A1L312);
+
+
+--A1L123 is Add0~0 at LCCOMB_X15_Y9_N0
+A1L123 = \p_clock_division:o_smp_clk_cnt[0] $ (VCC);
+
+--A1L124 is Add0~1 at LCCOMB_X15_Y9_N0
+A1L124 = CARRY(\p_clock_division:o_smp_clk_cnt[0]);
+
+
+--A1L125 is Add0~2 at LCCOMB_X15_Y9_N2
+A1L125 = (\p_clock_division:o_smp_clk_cnt[1] & (!A1L124)) # (!\p_clock_division:o_smp_clk_cnt[1] & ((A1L124) # (GND)));
+
+--A1L126 is Add0~3 at LCCOMB_X15_Y9_N2
+A1L126 = CARRY((!A1L124) # (!\p_clock_division:o_smp_clk_cnt[1]));
+
+
+--A1L127 is Add0~4 at LCCOMB_X15_Y9_N4
+A1L127 = (\p_clock_division:o_smp_clk_cnt[2] & (A1L126 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[2] & (!A1L126 & VCC));
+
+--A1L128 is Add0~5 at LCCOMB_X15_Y9_N4
+A1L128 = CARRY((\p_clock_division:o_smp_clk_cnt[2] & !A1L126));
+
+
+--A1L129 is Add0~6 at LCCOMB_X15_Y9_N6
+A1L129 = (\p_clock_division:o_smp_clk_cnt[3] & (!A1L128)) # (!\p_clock_division:o_smp_clk_cnt[3] & ((A1L128) # (GND)));
+
+--A1L130 is Add0~7 at LCCOMB_X15_Y9_N6
+A1L130 = CARRY((!A1L128) # (!\p_clock_division:o_smp_clk_cnt[3]));
+
+
+--A1L131 is Add0~8 at LCCOMB_X15_Y9_N8
+A1L131 = (\p_clock_division:o_smp_clk_cnt[4] & (A1L130 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[4] & (!A1L130 & VCC));
+
+--A1L132 is Add0~9 at LCCOMB_X15_Y9_N8
+A1L132 = CARRY((\p_clock_division:o_smp_clk_cnt[4] & !A1L130));
+
+
+--A1L133 is Add0~10 at LCCOMB_X15_Y9_N10
+A1L133 = (\p_clock_division:o_smp_clk_cnt[5] & (!A1L132)) # (!\p_clock_division:o_smp_clk_cnt[5] & ((A1L132) # (GND)));
+
+--A1L134 is Add0~11 at LCCOMB_X15_Y9_N10
+A1L134 = CARRY((!A1L132) # (!\p_clock_division:o_smp_clk_cnt[5]));
+
+
+--A1L135 is Add0~12 at LCCOMB_X15_Y9_N12
+A1L135 = (\p_clock_division:o_smp_clk_cnt[6] & (A1L134 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[6] & (!A1L134 & VCC));
+
+--A1L136 is Add0~13 at LCCOMB_X15_Y9_N12
+A1L136 = CARRY((\p_clock_division:o_smp_clk_cnt[6] & !A1L134));
+
+
+--A1L137 is Add0~14 at LCCOMB_X15_Y9_N14
+A1L137 = (\p_clock_division:o_smp_clk_cnt[7] & (!A1L136)) # (!\p_clock_division:o_smp_clk_cnt[7] & ((A1L136) # (GND)));
+
+--A1L138 is Add0~15 at LCCOMB_X15_Y9_N14
+A1L138 = CARRY((!A1L136) # (!\p_clock_division:o_smp_clk_cnt[7]));
+
+
+--A1L139 is Add0~16 at LCCOMB_X15_Y9_N16
+A1L139 = (\p_clock_division:o_smp_clk_cnt[8] & (A1L138 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[8] & (!A1L138 & VCC));
+
+--A1L140 is Add0~17 at LCCOMB_X15_Y9_N16
+A1L140 = CARRY((\p_clock_division:o_smp_clk_cnt[8] & !A1L138));
+
+
+--A1L141 is Add0~18 at LCCOMB_X15_Y9_N18
+A1L141 = (\p_clock_division:o_smp_clk_cnt[9] & (!A1L140)) # (!\p_clock_division:o_smp_clk_cnt[9] & ((A1L140) # (GND)));
+
+--A1L142 is Add0~19 at LCCOMB_X15_Y9_N18
+A1L142 = CARRY((!A1L140) # (!\p_clock_division:o_smp_clk_cnt[9]));
+
+
+--A1L143 is Add0~20 at LCCOMB_X15_Y9_N20
+A1L143 = (\p_clock_division:o_smp_clk_cnt[10] & (A1L142 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[10] & (!A1L142 & VCC));
+
+--A1L144 is Add0~21 at LCCOMB_X15_Y9_N20
+A1L144 = CARRY((\p_clock_division:o_smp_clk_cnt[10] & !A1L142));
+
+
+--A1L145 is Add0~22 at LCCOMB_X15_Y9_N22
+A1L145 = (\p_clock_division:o_smp_clk_cnt[11] & (!A1L144)) # (!\p_clock_division:o_smp_clk_cnt[11] & ((A1L144) # (GND)));
+
+--A1L146 is Add0~23 at LCCOMB_X15_Y9_N22
+A1L146 = CARRY((!A1L144) # (!\p_clock_division:o_smp_clk_cnt[11]));
+
+
+--A1L147 is Add0~24 at LCCOMB_X15_Y9_N24
+A1L147 = (\p_clock_division:o_smp_clk_cnt[12] & (A1L146 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[12] & (!A1L146 & VCC));
+
+--A1L148 is Add0~25 at LCCOMB_X15_Y9_N24
+A1L148 = CARRY((\p_clock_division:o_smp_clk_cnt[12] & !A1L146));
+
+
+--A1L149 is Add0~26 at LCCOMB_X15_Y9_N26
+A1L149 = (\p_clock_division:o_smp_clk_cnt[13] & (!A1L148)) # (!\p_clock_division:o_smp_clk_cnt[13] & ((A1L148) # (GND)));
+
+--A1L150 is Add0~27 at LCCOMB_X15_Y9_N26
+A1L150 = CARRY((!A1L148) # (!\p_clock_division:o_smp_clk_cnt[13]));
+
+
+--A1L151 is Add0~28 at LCCOMB_X15_Y9_N28
+A1L151 = (\p_clock_division:o_smp_clk_cnt[14] & (A1L150 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[14] & (!A1L150 & VCC));
+
+--A1L152 is Add0~29 at LCCOMB_X15_Y9_N28
+A1L152 = CARRY((\p_clock_division:o_smp_clk_cnt[14] & !A1L150));
+
+
+--A1L153 is Add0~30 at LCCOMB_X15_Y9_N30
+A1L153 = (\p_clock_division:o_smp_clk_cnt[15] & (!A1L152)) # (!\p_clock_division:o_smp_clk_cnt[15] & ((A1L152) # (GND)));
+
+--A1L154 is Add0~31 at LCCOMB_X15_Y9_N30
+A1L154 = CARRY((!A1L152) # (!\p_clock_division:o_smp_clk_cnt[15]));
+
+
+--A1L155 is Add0~32 at LCCOMB_X15_Y8_N0
+A1L155 = (\p_clock_division:o_smp_clk_cnt[16] & (A1L154 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[16] & (!A1L154 & VCC));
+
+--A1L156 is Add0~33 at LCCOMB_X15_Y8_N0
+A1L156 = CARRY((\p_clock_division:o_smp_clk_cnt[16] & !A1L154));
+
+
+--A1L157 is Add0~34 at LCCOMB_X15_Y8_N2
+A1L157 = (\p_clock_division:o_smp_clk_cnt[17] & (!A1L156)) # (!\p_clock_division:o_smp_clk_cnt[17] & ((A1L156) # (GND)));
+
+--A1L158 is Add0~35 at LCCOMB_X15_Y8_N2
+A1L158 = CARRY((!A1L156) # (!\p_clock_division:o_smp_clk_cnt[17]));
+
+
+--A1L159 is Add0~36 at LCCOMB_X15_Y8_N4
+A1L159 = (\p_clock_division:o_smp_clk_cnt[18] & (A1L158 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[18] & (!A1L158 & VCC));
+
+--A1L160 is Add0~37 at LCCOMB_X15_Y8_N4
+A1L160 = CARRY((\p_clock_division:o_smp_clk_cnt[18] & !A1L158));
+
+
+--A1L161 is Add0~38 at LCCOMB_X15_Y8_N6
+A1L161 = (\p_clock_division:o_smp_clk_cnt[19] & (!A1L160)) # (!\p_clock_division:o_smp_clk_cnt[19] & ((A1L160) # (GND)));
+
+--A1L162 is Add0~39 at LCCOMB_X15_Y8_N6
+A1L162 = CARRY((!A1L160) # (!\p_clock_division:o_smp_clk_cnt[19]));
+
+
+--A1L163 is Add0~40 at LCCOMB_X15_Y8_N8
+A1L163 = (\p_clock_division:o_smp_clk_cnt[20] & (A1L162 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[20] & (!A1L162 & VCC));
+
+--A1L164 is Add0~41 at LCCOMB_X15_Y8_N8
+A1L164 = CARRY((\p_clock_division:o_smp_clk_cnt[20] & !A1L162));
+
+
+--A1L165 is Add0~42 at LCCOMB_X15_Y8_N10
+A1L165 = (\p_clock_division:o_smp_clk_cnt[21] & (!A1L164)) # (!\p_clock_division:o_smp_clk_cnt[21] & ((A1L164) # (GND)));
+
+--A1L166 is Add0~43 at LCCOMB_X15_Y8_N10
+A1L166 = CARRY((!A1L164) # (!\p_clock_division:o_smp_clk_cnt[21]));
+
+
+--A1L167 is Add0~44 at LCCOMB_X15_Y8_N12
+A1L167 = (\p_clock_division:o_smp_clk_cnt[22] & (A1L166 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[22] & (!A1L166 & VCC));
+
+--A1L168 is Add0~45 at LCCOMB_X15_Y8_N12
+A1L168 = CARRY((\p_clock_division:o_smp_clk_cnt[22] & !A1L166));
+
+
+--A1L169 is Add0~46 at LCCOMB_X15_Y8_N14
+A1L169 = (\p_clock_division:o_smp_clk_cnt[23] & (!A1L168)) # (!\p_clock_division:o_smp_clk_cnt[23] & ((A1L168) # (GND)));
+
+--A1L170 is Add0~47 at LCCOMB_X15_Y8_N14
+A1L170 = CARRY((!A1L168) # (!\p_clock_division:o_smp_clk_cnt[23]));
+
+
+--A1L171 is Add0~48 at LCCOMB_X15_Y8_N16
+A1L171 = (\p_clock_division:o_smp_clk_cnt[24] & (A1L170 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[24] & (!A1L170 & VCC));
+
+--A1L172 is Add0~49 at LCCOMB_X15_Y8_N16
+A1L172 = CARRY((\p_clock_division:o_smp_clk_cnt[24] & !A1L170));
+
+
+--A1L173 is Add0~50 at LCCOMB_X15_Y8_N18
+A1L173 = (\p_clock_division:o_smp_clk_cnt[25] & (!A1L172)) # (!\p_clock_division:o_smp_clk_cnt[25] & ((A1L172) # (GND)));
+
+--A1L174 is Add0~51 at LCCOMB_X15_Y8_N18
+A1L174 = CARRY((!A1L172) # (!\p_clock_division:o_smp_clk_cnt[25]));
+
+
+--A1L175 is Add0~52 at LCCOMB_X15_Y8_N20
+A1L175 = (\p_clock_division:o_smp_clk_cnt[26] & (A1L174 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[26] & (!A1L174 & VCC));
+
+--A1L176 is Add0~53 at LCCOMB_X15_Y8_N20
+A1L176 = CARRY((\p_clock_division:o_smp_clk_cnt[26] & !A1L174));
+
+
+--A1L177 is Add0~54 at LCCOMB_X15_Y8_N22
+A1L177 = (\p_clock_division:o_smp_clk_cnt[27] & (!A1L176)) # (!\p_clock_division:o_smp_clk_cnt[27] & ((A1L176) # (GND)));
+
+--A1L178 is Add0~55 at LCCOMB_X15_Y8_N22
+A1L178 = CARRY((!A1L176) # (!\p_clock_division:o_smp_clk_cnt[27]));
+
+
+--A1L179 is Add0~56 at LCCOMB_X15_Y8_N24
+A1L179 = (\p_clock_division:o_smp_clk_cnt[28] & (A1L178 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[28] & (!A1L178 & VCC));
+
+--A1L180 is Add0~57 at LCCOMB_X15_Y8_N24
+A1L180 = CARRY((\p_clock_division:o_smp_clk_cnt[28] & !A1L178));
+
+
+--A1L181 is Add0~58 at LCCOMB_X15_Y8_N26
+A1L181 = (\p_clock_division:o_smp_clk_cnt[29] & (!A1L180)) # (!\p_clock_division:o_smp_clk_cnt[29] & ((A1L180) # (GND)));
+
+--A1L182 is Add0~59 at LCCOMB_X15_Y8_N26
+A1L182 = CARRY((!A1L180) # (!\p_clock_division:o_smp_clk_cnt[29]));
+
+
+--A1L183 is Add0~60 at LCCOMB_X15_Y8_N28
+A1L183 = (\p_clock_division:o_smp_clk_cnt[30] & (A1L182 $ (GND))) # (!\p_clock_division:o_smp_clk_cnt[30] & (!A1L182 & VCC));
+
+--A1L184 is Add0~61 at LCCOMB_X15_Y8_N28
+A1L184 = CARRY((\p_clock_division:o_smp_clk_cnt[30] & !A1L182));
+
+
+--A1L185 is Add0~62 at LCCOMB_X15_Y8_N30
+A1L185 = \p_clock_division:o_smp_clk_cnt[31] $ (A1L184);
+
+
+--A1L187 is Add1~0 at LCCOMB_X13_Y11_N0
+A1L187 = \p_clock_division:baud_clk_cnt[0] $ (VCC);
+
+--A1L188 is Add1~1 at LCCOMB_X13_Y11_N0
+A1L188 = CARRY(\p_clock_division:baud_clk_cnt[0]);
+
+
+--A1L189 is Add1~2 at LCCOMB_X13_Y11_N2
+A1L189 = (\p_clock_division:baud_clk_cnt[1] & (!A1L188)) # (!\p_clock_division:baud_clk_cnt[1] & ((A1L188) # (GND)));
+
+--A1L190 is Add1~3 at LCCOMB_X13_Y11_N2
+A1L190 = CARRY((!A1L188) # (!\p_clock_division:baud_clk_cnt[1]));
+
+
+--A1L191 is Add1~4 at LCCOMB_X13_Y11_N4
+A1L191 = (\p_clock_division:baud_clk_cnt[2] & (A1L190 $ (GND))) # (!\p_clock_division:baud_clk_cnt[2] & (!A1L190 & VCC));
+
+--A1L192 is Add1~5 at LCCOMB_X13_Y11_N4
+A1L192 = CARRY((\p_clock_division:baud_clk_cnt[2] & !A1L190));
+
+
+--A1L193 is Add1~6 at LCCOMB_X13_Y11_N6
+A1L193 = (\p_clock_division:baud_clk_cnt[3] & (!A1L192)) # (!\p_clock_division:baud_clk_cnt[3] & ((A1L192) # (GND)));
+
+--A1L194 is Add1~7 at LCCOMB_X13_Y11_N6
+A1L194 = CARRY((!A1L192) # (!\p_clock_division:baud_clk_cnt[3]));
+
+
+--A1L195 is Add1~8 at LCCOMB_X13_Y11_N8
+A1L195 = (\p_clock_division:baud_clk_cnt[4] & (A1L194 $ (GND))) # (!\p_clock_division:baud_clk_cnt[4] & (!A1L194 & VCC));
+
+--A1L196 is Add1~9 at LCCOMB_X13_Y11_N8
+A1L196 = CARRY((\p_clock_division:baud_clk_cnt[4] & !A1L194));
+
+
+--A1L197 is Add1~10 at LCCOMB_X13_Y11_N10
+A1L197 = (\p_clock_division:baud_clk_cnt[5] & (!A1L196)) # (!\p_clock_division:baud_clk_cnt[5] & ((A1L196) # (GND)));
+
+--A1L198 is Add1~11 at LCCOMB_X13_Y11_N10
+A1L198 = CARRY((!A1L196) # (!\p_clock_division:baud_clk_cnt[5]));
+
+
+--A1L199 is Add1~12 at LCCOMB_X13_Y11_N12
+A1L199 = (\p_clock_division:baud_clk_cnt[6] & (A1L198 $ (GND))) # (!\p_clock_division:baud_clk_cnt[6] & (!A1L198 & VCC));
+
+--A1L200 is Add1~13 at LCCOMB_X13_Y11_N12
+A1L200 = CARRY((\p_clock_division:baud_clk_cnt[6] & !A1L198));
+
+
+--A1L201 is Add1~14 at LCCOMB_X13_Y11_N14
+A1L201 = (\p_clock_division:baud_clk_cnt[7] & (!A1L200)) # (!\p_clock_division:baud_clk_cnt[7] & ((A1L200) # (GND)));
+
+--A1L202 is Add1~15 at LCCOMB_X13_Y11_N14
+A1L202 = CARRY((!A1L200) # (!\p_clock_division:baud_clk_cnt[7]));
+
+
+--A1L203 is Add1~16 at LCCOMB_X13_Y11_N16
+A1L203 = (\p_clock_division:baud_clk_cnt[8] & (A1L202 $ (GND))) # (!\p_clock_division:baud_clk_cnt[8] & (!A1L202 & VCC));
+
+--A1L204 is Add1~17 at LCCOMB_X13_Y11_N16
+A1L204 = CARRY((\p_clock_division:baud_clk_cnt[8] & !A1L202));
+
+
+--A1L205 is Add1~18 at LCCOMB_X13_Y11_N18
+A1L205 = (\p_clock_division:baud_clk_cnt[9] & (!A1L204)) # (!\p_clock_division:baud_clk_cnt[9] & ((A1L204) # (GND)));
+
+--A1L206 is Add1~19 at LCCOMB_X13_Y11_N18
+A1L206 = CARRY((!A1L204) # (!\p_clock_division:baud_clk_cnt[9]));
+
+
+--A1L207 is Add1~20 at LCCOMB_X13_Y11_N20
+A1L207 = (\p_clock_division:baud_clk_cnt[10] & (A1L206 $ (GND))) # (!\p_clock_division:baud_clk_cnt[10] & (!A1L206 & VCC));
+
+--A1L208 is Add1~21 at LCCOMB_X13_Y11_N20
+A1L208 = CARRY((\p_clock_division:baud_clk_cnt[10] & !A1L206));
+
+
+--A1L209 is Add1~22 at LCCOMB_X13_Y11_N22
+A1L209 = (\p_clock_division:baud_clk_cnt[11] & (!A1L208)) # (!\p_clock_division:baud_clk_cnt[11] & ((A1L208) # (GND)));
+
+--A1L210 is Add1~23 at LCCOMB_X13_Y11_N22
+A1L210 = CARRY((!A1L208) # (!\p_clock_division:baud_clk_cnt[11]));
+
+
+--A1L211 is Add1~24 at LCCOMB_X13_Y11_N24
+A1L211 = (\p_clock_division:baud_clk_cnt[12] & (A1L210 $ (GND))) # (!\p_clock_division:baud_clk_cnt[12] & (!A1L210 & VCC));
+
+--A1L212 is Add1~25 at LCCOMB_X13_Y11_N24
+A1L212 = CARRY((\p_clock_division:baud_clk_cnt[12] & !A1L210));
+
+
+--A1L213 is Add1~26 at LCCOMB_X13_Y11_N26
+A1L213 = (\p_clock_division:baud_clk_cnt[13] & (!A1L212)) # (!\p_clock_division:baud_clk_cnt[13] & ((A1L212) # (GND)));
+
+--A1L214 is Add1~27 at LCCOMB_X13_Y11_N26
+A1L214 = CARRY((!A1L212) # (!\p_clock_division:baud_clk_cnt[13]));
+
+
+--A1L215 is Add1~28 at LCCOMB_X13_Y11_N28
+A1L215 = (\p_clock_division:baud_clk_cnt[14] & (A1L214 $ (GND))) # (!\p_clock_division:baud_clk_cnt[14] & (!A1L214 & VCC));
+
+--A1L216 is Add1~29 at LCCOMB_X13_Y11_N28
+A1L216 = CARRY((\p_clock_division:baud_clk_cnt[14] & !A1L214));
+
+
+--A1L217 is Add1~30 at LCCOMB_X13_Y11_N30
+A1L217 = (\p_clock_division:baud_clk_cnt[15] & (!A1L216)) # (!\p_clock_division:baud_clk_cnt[15] & ((A1L216) # (GND)));
+
+--A1L218 is Add1~31 at LCCOMB_X13_Y11_N30
+A1L218 = CARRY((!A1L216) # (!\p_clock_division:baud_clk_cnt[15]));
+
+
+--A1L219 is Add1~32 at LCCOMB_X13_Y10_N0
+A1L219 = (\p_clock_division:baud_clk_cnt[16] & (A1L218 $ (GND))) # (!\p_clock_division:baud_clk_cnt[16] & (!A1L218 & VCC));
+
+--A1L220 is Add1~33 at LCCOMB_X13_Y10_N0
+A1L220 = CARRY((\p_clock_division:baud_clk_cnt[16] & !A1L218));
+
+
+--A1L221 is Add1~34 at LCCOMB_X13_Y10_N2
+A1L221 = (\p_clock_division:baud_clk_cnt[17] & (!A1L220)) # (!\p_clock_division:baud_clk_cnt[17] & ((A1L220) # (GND)));
+
+--A1L222 is Add1~35 at LCCOMB_X13_Y10_N2
+A1L222 = CARRY((!A1L220) # (!\p_clock_division:baud_clk_cnt[17]));
+
+
+--A1L223 is Add1~36 at LCCOMB_X13_Y10_N4
+A1L223 = (\p_clock_division:baud_clk_cnt[18] & (A1L222 $ (GND))) # (!\p_clock_division:baud_clk_cnt[18] & (!A1L222 & VCC));
+
+--A1L224 is Add1~37 at LCCOMB_X13_Y10_N4
+A1L224 = CARRY((\p_clock_division:baud_clk_cnt[18] & !A1L222));
+
+
+--A1L225 is Add1~38 at LCCOMB_X13_Y10_N6
+A1L225 = (\p_clock_division:baud_clk_cnt[19] & (!A1L224)) # (!\p_clock_division:baud_clk_cnt[19] & ((A1L224) # (GND)));
+
+--A1L226 is Add1~39 at LCCOMB_X13_Y10_N6
+A1L226 = CARRY((!A1L224) # (!\p_clock_division:baud_clk_cnt[19]));
+
+
+--A1L227 is Add1~40 at LCCOMB_X13_Y10_N8
+A1L227 = (\p_clock_division:baud_clk_cnt[20] & (A1L226 $ (GND))) # (!\p_clock_division:baud_clk_cnt[20] & (!A1L226 & VCC));
+
+--A1L228 is Add1~41 at LCCOMB_X13_Y10_N8
+A1L228 = CARRY((\p_clock_division:baud_clk_cnt[20] & !A1L226));
+
+
+--A1L229 is Add1~42 at LCCOMB_X13_Y10_N10
+A1L229 = (\p_clock_division:baud_clk_cnt[21] & (!A1L228)) # (!\p_clock_division:baud_clk_cnt[21] & ((A1L228) # (GND)));
+
+--A1L230 is Add1~43 at LCCOMB_X13_Y10_N10
+A1L230 = CARRY((!A1L228) # (!\p_clock_division:baud_clk_cnt[21]));
+
+
+--A1L231 is Add1~44 at LCCOMB_X13_Y10_N12
+A1L231 = (\p_clock_division:baud_clk_cnt[22] & (A1L230 $ (GND))) # (!\p_clock_division:baud_clk_cnt[22] & (!A1L230 & VCC));
+
+--A1L232 is Add1~45 at LCCOMB_X13_Y10_N12
+A1L232 = CARRY((\p_clock_division:baud_clk_cnt[22] & !A1L230));
+
+
+--A1L233 is Add1~46 at LCCOMB_X13_Y10_N14
+A1L233 = (\p_clock_division:baud_clk_cnt[23] & (!A1L232)) # (!\p_clock_division:baud_clk_cnt[23] & ((A1L232) # (GND)));
+
+--A1L234 is Add1~47 at LCCOMB_X13_Y10_N14
+A1L234 = CARRY((!A1L232) # (!\p_clock_division:baud_clk_cnt[23]));
+
+
+--A1L235 is Add1~48 at LCCOMB_X13_Y10_N16
+A1L235 = (\p_clock_division:baud_clk_cnt[24] & (A1L234 $ (GND))) # (!\p_clock_division:baud_clk_cnt[24] & (!A1L234 & VCC));
+
+--A1L236 is Add1~49 at LCCOMB_X13_Y10_N16
+A1L236 = CARRY((\p_clock_division:baud_clk_cnt[24] & !A1L234));
+
+
+--A1L237 is Add1~50 at LCCOMB_X13_Y10_N18
+A1L237 = (\p_clock_division:baud_clk_cnt[25] & (!A1L236)) # (!\p_clock_division:baud_clk_cnt[25] & ((A1L236) # (GND)));
+
+--A1L238 is Add1~51 at LCCOMB_X13_Y10_N18
+A1L238 = CARRY((!A1L236) # (!\p_clock_division:baud_clk_cnt[25]));
+
+
+--A1L239 is Add1~52 at LCCOMB_X13_Y10_N20
+A1L239 = (\p_clock_division:baud_clk_cnt[26] & (A1L238 $ (GND))) # (!\p_clock_division:baud_clk_cnt[26] & (!A1L238 & VCC));
+
+--A1L240 is Add1~53 at LCCOMB_X13_Y10_N20
+A1L240 = CARRY((\p_clock_division:baud_clk_cnt[26] & !A1L238));
+
+
+--A1L241 is Add1~54 at LCCOMB_X13_Y10_N22
+A1L241 = (\p_clock_division:baud_clk_cnt[27] & (!A1L240)) # (!\p_clock_division:baud_clk_cnt[27] & ((A1L240) # (GND)));
+
+--A1L242 is Add1~55 at LCCOMB_X13_Y10_N22
+A1L242 = CARRY((!A1L240) # (!\p_clock_division:baud_clk_cnt[27]));
+
+
+--A1L243 is Add1~56 at LCCOMB_X13_Y10_N24
+A1L243 = (\p_clock_division:baud_clk_cnt[28] & (A1L242 $ (GND))) # (!\p_clock_division:baud_clk_cnt[28] & (!A1L242 & VCC));
+
+--A1L244 is Add1~57 at LCCOMB_X13_Y10_N24
+A1L244 = CARRY((\p_clock_division:baud_clk_cnt[28] & !A1L242));
+
+
+--A1L245 is Add1~58 at LCCOMB_X13_Y10_N26
+A1L245 = (\p_clock_division:baud_clk_cnt[29] & (!A1L244)) # (!\p_clock_division:baud_clk_cnt[29] & ((A1L244) # (GND)));
+
+--A1L246 is Add1~59 at LCCOMB_X13_Y10_N26
+A1L246 = CARRY((!A1L244) # (!\p_clock_division:baud_clk_cnt[29]));
+
+
+--A1L247 is Add1~60 at LCCOMB_X13_Y10_N28
+A1L247 = (\p_clock_division:baud_clk_cnt[30] & (A1L246 $ (GND))) # (!\p_clock_division:baud_clk_cnt[30] & (!A1L246 & VCC));
+
+--A1L248 is Add1~61 at LCCOMB_X13_Y10_N28
+A1L248 = CARRY((\p_clock_division:baud_clk_cnt[30] & !A1L246));
+
+
+--A1L249 is Add1~62 at LCCOMB_X13_Y10_N30
+A1L249 = \p_clock_division:baud_clk_cnt[31] $ (A1L248);
+
+
+--show_num[3] is show_num[3] at FF_X20_Y22_N29
+--register power-up is low
+
+show_num[3] = DFFEAS(A1L543, !GLOBAL(A1L356),  ,  , A1L548,  ,  ,  ,  );
+
+
+--show_num[2] is show_num[2] at FF_X20_Y22_N23
+--register power-up is low
+
+show_num[2] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L552,  ,  , VCC);
+
+
+--show_num[1] is show_num[1] at FF_X20_Y22_N25
+--register power-up is low
+
+show_num[1] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L553,  ,  , VCC);
+
+
+--show_num[0] is show_num[0] at FF_X20_Y22_N15
+--register power-up is low
+
+show_num[0] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L554,  ,  , VCC);
+
+
+--A1L418 is hex_display~0 at LCCOMB_X20_Y22_N0
+A1L418 = (show_num[2] & (!show_num[3] & (!show_num[0] & !show_num[1]))) # (!show_num[2] & (show_num[0] & (show_num[3] $ (!show_num[1]))));
+
+
+--show_num[6] is show_num[6] at FF_X20_Y22_N31
+--register power-up is low
+
+show_num[6] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L555,  ,  , VCC);
+
+
+--show_num[5] is show_num[5] at FF_X20_Y22_N5
+--register power-up is low
+
+show_num[5] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L556,  ,  , VCC);
+
+
+--show_num[4] is show_num[4] at FF_X20_Y22_N11
+--register power-up is low
+
+show_num[4] = DFFEAS(A1L545, !GLOBAL(A1L356),  ,  , A1L548,  ,  ,  ,  );
+
+
+--show_num[7] is show_num[7] at FF_X20_Y22_N21
+--register power-up is low
+
+show_num[7] = DFFEAS( , !GLOBAL(A1L356),  ,  , A1L548, A1L558,  ,  , VCC);
+
+
+--A1L419 is hex_display~1 at LCCOMB_X20_Y22_N20
+A1L419 = (!show_num[4] & (!show_num[5] & (!show_num[7] & !show_num[6])));
+
+
+--A1L420 is hex_display~2 at LCCOMB_X16_Y22_N28
+A1L420 = (A1L419 & A1L418);
+
+
+--A1L421 is hex_display~3 at LCCOMB_X20_Y22_N6
+A1L421 = (show_num[3] & ((show_num[0] & ((show_num[1]))) # (!show_num[0] & (show_num[2])))) # (!show_num[3] & (show_num[2] & (show_num[0] $ (show_num[1]))));
+
+
+--A1L422 is hex_display~4 at LCCOMB_X16_Y22_N26
+A1L422 = (A1L419 & A1L421);
+
+
+--A1L423 is hex_display~5 at LCCOMB_X20_Y22_N16
+A1L423 = (show_num[2] & (show_num[3] & ((show_num[1]) # (!show_num[0])))) # (!show_num[2] & (!show_num[3] & (!show_num[0] & show_num[1])));
+
+
+--A1L424 is hex_display~6 at LCCOMB_X16_Y22_N24
+A1L424 = (A1L419 & A1L423);
+
+
+--A1L425 is hex_display~7 at LCCOMB_X20_Y22_N2
+A1L425 = (show_num[1] & ((show_num[2] & ((show_num[0]))) # (!show_num[2] & (show_num[3] & !show_num[0])))) # (!show_num[1] & (!show_num[3] & (show_num[2] $ (show_num[0]))));
+
+
+--A1L426 is hex_display~8 at LCCOMB_X16_Y22_N10
+A1L426 = (A1L419 & A1L425);
+
+
+--A1L427 is hex_display~9 at LCCOMB_X20_Y22_N22
+A1L427 = (show_num[1] & (show_num[0] & (!show_num[3]))) # (!show_num[1] & ((show_num[2] & ((!show_num[3]))) # (!show_num[2] & (show_num[0]))));
+
+
+--A1L428 is hex_display~10 at LCCOMB_X16_Y22_N0
+A1L428 = (A1L419 & A1L427);
+
+
+--A1L429 is hex_display~11 at LCCOMB_X20_Y22_N24
+A1L429 = (!show_num[3] & ((show_num[2] & (show_num[0] & show_num[1])) # (!show_num[2] & ((show_num[0]) # (show_num[1])))));
+
+
+--A1L430 is hex_display~12 at LCCOMB_X16_Y22_N30
+A1L430 = (A1L419 & A1L429);
+
+
+--A1L431 is hex_display~13 at LCCOMB_X20_Y22_N14
+A1L431 = (show_num[0] & ((show_num[3]) # (show_num[2] $ (show_num[1])))) # (!show_num[0] & ((show_num[1]) # (show_num[2] $ (show_num[3]))));
+
+
+--A1L432 is hex_display~14 at LCCOMB_X16_Y22_N4
+A1L432 = (!A1L431) # (!A1L419);
+
+
+--\p_data_seperation:v_rx_data[3] is \p_data_seperation:v_rx_data[3] at FF_X19_Y23_N25
+--register power-up is low
+
+\p_data_seperation:v_rx_data[3] = DFFEAS(A1L103, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[0] is \p_data_seperation:cnt_data[0] at FF_X25_Y23_N1
+--register power-up is low
+
+\p_data_seperation:cnt_data[0] = DFFEAS(A1L378, !GLOBAL(A1L356),  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[1] is \p_data_seperation:cnt_data[1] at FF_X25_Y23_N23
+--register power-up is low
+
+\p_data_seperation:cnt_data[1] = DFFEAS(A1L379, !GLOBAL(A1L356),  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[2] is \p_data_seperation:cnt_data[2] at FF_X25_Y23_N5
+--register power-up is low
+
+\p_data_seperation:cnt_data[2] = DFFEAS(A1L380, !GLOBAL(A1L356),  ,  , A1L68,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[3] is \p_data_seperation:cnt_data[3] at FF_X24_Y23_N25
+--register power-up is low
+
+\p_data_seperation:cnt_data[3] = DFFEAS(A1L381, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[4] is \p_data_seperation:cnt_data[4] at FF_X24_Y23_N31
+--register power-up is low
+
+\p_data_seperation:cnt_data[4] = DFFEAS(A1L382, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[5] is \p_data_seperation:cnt_data[5] at FF_X24_Y23_N1
+--register power-up is low
+
+\p_data_seperation:cnt_data[5] = DFFEAS(A1L383, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[6] is \p_data_seperation:cnt_data[6] at FF_X24_Y23_N11
+--register power-up is low
+
+\p_data_seperation:cnt_data[6] = DFFEAS(A1L384, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L453 is LessThan2~0 at LCCOMB_X24_Y23_N20
+A1L453 = (\p_data_seperation:cnt_data[6]) # ((\p_data_seperation:cnt_data[3]) # ((\p_data_seperation:cnt_data[4]) # (\p_data_seperation:cnt_data[5])));
+
+
+--\p_data_seperation:cnt_data[7] is \p_data_seperation:cnt_data[7] at FF_X23_Y23_N21
+--register power-up is low
+
+\p_data_seperation:cnt_data[7] = DFFEAS(A1L385, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[8] is \p_data_seperation:cnt_data[8] at FF_X23_Y23_N31
+--register power-up is low
+
+\p_data_seperation:cnt_data[8] = DFFEAS(A1L386, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[9] is \p_data_seperation:cnt_data[9] at FF_X23_Y23_N13
+--register power-up is low
+
+\p_data_seperation:cnt_data[9] = DFFEAS(A1L387, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[10] is \p_data_seperation:cnt_data[10] at FF_X23_Y23_N11
+--register power-up is low
+
+\p_data_seperation:cnt_data[10] = DFFEAS(A1L388, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L454 is LessThan2~1 at LCCOMB_X23_Y23_N8
+A1L454 = (\p_data_seperation:cnt_data[9]) # ((\p_data_seperation:cnt_data[7]) # ((\p_data_seperation:cnt_data[8]) # (\p_data_seperation:cnt_data[10])));
+
+
+--\p_data_seperation:cnt_data[11] is \p_data_seperation:cnt_data[11] at FF_X23_Y23_N7
+--register power-up is low
+
+\p_data_seperation:cnt_data[11] = DFFEAS(A1L389, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[12] is \p_data_seperation:cnt_data[12] at FF_X23_Y23_N1
+--register power-up is low
+
+\p_data_seperation:cnt_data[12] = DFFEAS(A1L390, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[13] is \p_data_seperation:cnt_data[13] at FF_X24_Y23_N15
+--register power-up is low
+
+\p_data_seperation:cnt_data[13] = DFFEAS(A1L391, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[14] is \p_data_seperation:cnt_data[14] at FF_X24_Y23_N17
+--register power-up is low
+
+\p_data_seperation:cnt_data[14] = DFFEAS(A1L392, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L455 is LessThan2~2 at LCCOMB_X23_Y23_N22
+A1L455 = (\p_data_seperation:cnt_data[11]) # ((\p_data_seperation:cnt_data[12]) # ((\p_data_seperation:cnt_data[13]) # (\p_data_seperation:cnt_data[14])));
+
+
+--\p_data_seperation:cnt_data[15] is \p_data_seperation:cnt_data[15] at FF_X24_Y23_N23
+--register power-up is low
+
+\p_data_seperation:cnt_data[15] = DFFEAS(A1L393, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[16] is \p_data_seperation:cnt_data[16] at FF_X23_Y22_N1
+--register power-up is low
+
+\p_data_seperation:cnt_data[16] = DFFEAS(A1L394, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[17] is \p_data_seperation:cnt_data[17] at FF_X23_Y22_N27
+--register power-up is low
+
+\p_data_seperation:cnt_data[17] = DFFEAS(A1L395, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[18] is \p_data_seperation:cnt_data[18] at FF_X23_Y23_N5
+--register power-up is low
+
+\p_data_seperation:cnt_data[18] = DFFEAS(A1L396, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L456 is LessThan2~3 at LCCOMB_X23_Y23_N2
+A1L456 = (\p_data_seperation:cnt_data[17]) # ((\p_data_seperation:cnt_data[15]) # ((\p_data_seperation:cnt_data[18]) # (\p_data_seperation:cnt_data[16])));
+
+
+--A1L457 is LessThan2~4 at LCCOMB_X23_Y23_N24
+A1L457 = (A1L453) # ((A1L454) # ((A1L455) # (A1L456)));
+
+
+--\p_data_seperation:cnt_data[19] is \p_data_seperation:cnt_data[19] at FF_X23_Y22_N29
+--register power-up is low
+
+\p_data_seperation:cnt_data[19] = DFFEAS(A1L397, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[20] is \p_data_seperation:cnt_data[20] at FF_X23_Y22_N3
+--register power-up is low
+
+\p_data_seperation:cnt_data[20] = DFFEAS(A1L398, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[21] is \p_data_seperation:cnt_data[21] at FF_X23_Y22_N25
+--register power-up is low
+
+\p_data_seperation:cnt_data[21] = DFFEAS(A1L399, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[22] is \p_data_seperation:cnt_data[22] at FF_X23_Y22_N23
+--register power-up is low
+
+\p_data_seperation:cnt_data[22] = DFFEAS(A1L400, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L458 is LessThan2~5 at LCCOMB_X23_Y22_N4
+A1L458 = (\p_data_seperation:cnt_data[22]) # ((\p_data_seperation:cnt_data[19]) # ((\p_data_seperation:cnt_data[21]) # (\p_data_seperation:cnt_data[20])));
+
+
+--\p_data_seperation:cnt_data[23] is \p_data_seperation:cnt_data[23] at FF_X25_Y22_N19
+--register power-up is low
+
+\p_data_seperation:cnt_data[23] = DFFEAS(A1L401, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[24] is \p_data_seperation:cnt_data[24] at FF_X25_Y22_N1
+--register power-up is low
+
+\p_data_seperation:cnt_data[24] = DFFEAS(A1L402, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[25] is \p_data_seperation:cnt_data[25] at FF_X24_Y23_N5
+--register power-up is low
+
+\p_data_seperation:cnt_data[25] = DFFEAS(A1L403, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[26] is \p_data_seperation:cnt_data[26] at FF_X25_Y22_N15
+--register power-up is low
+
+\p_data_seperation:cnt_data[26] = DFFEAS(A1L404, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L459 is LessThan2~6 at LCCOMB_X23_Y23_N14
+A1L459 = (\p_data_seperation:cnt_data[25]) # ((\p_data_seperation:cnt_data[26]) # ((\p_data_seperation:cnt_data[24]) # (\p_data_seperation:cnt_data[23])));
+
+
+--\p_data_seperation:cnt_data[27] is \p_data_seperation:cnt_data[27] at FF_X25_Y22_N5
+--register power-up is low
+
+\p_data_seperation:cnt_data[27] = DFFEAS(A1L405, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[28] is \p_data_seperation:cnt_data[28] at FF_X25_Y22_N11
+--register power-up is low
+
+\p_data_seperation:cnt_data[28] = DFFEAS(A1L406, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[29] is \p_data_seperation:cnt_data[29] at FF_X25_Y22_N21
+--register power-up is low
+
+\p_data_seperation:cnt_data[29] = DFFEAS(A1L407, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--\p_data_seperation:cnt_data[30] is \p_data_seperation:cnt_data[30] at FF_X25_Y22_N31
+--register power-up is low
+
+\p_data_seperation:cnt_data[30] = DFFEAS(A1L408, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L460 is LessThan2~7 at LCCOMB_X25_Y22_N28
+A1L460 = (\p_data_seperation:cnt_data[30]) # ((\p_data_seperation:cnt_data[29]) # ((\p_data_seperation:cnt_data[27]) # (\p_data_seperation:cnt_data[28])));
+
+
+--A1L461 is LessThan2~8 at LCCOMB_X23_Y23_N16
+A1L461 = (A1L458) # ((A1L459) # ((A1L460) # (A1L457)));
+
+
+--\p_data_seperation:cnt_data[31] is \p_data_seperation:cnt_data[31] at FF_X25_Y22_N23
+--register power-up is low
+
+\p_data_seperation:cnt_data[31] = DFFEAS(A1L409, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L462 is LessThan2~9 at LCCOMB_X23_Y23_N26
+A1L462 = (!\p_data_seperation:cnt_data[31] & A1L461);
+
+
+--A1L410 is Decoder0~0 at LCCOMB_X25_Y23_N2
+A1L410 = (!\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & (!A1L462 & !\p_data_seperation:cnt_data[0])));
+
+
+--rx_bit is rx_bit at FF_X20_Y23_N31
+--register power-up is low
+
+rx_bit = DFFEAS(A1L518, !GLOBAL(A1L514),  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L551 is v_rx_data~0 at LCCOMB_X20_Y23_N22
+A1L551 = (A1L410 & ((!rx_bit))) # (!A1L410 & (\p_data_seperation:v_rx_data[3]));
+
+
+--baud_clk is baud_clk at FF_X12_Y10_N23
+--register power-up is low
+
+baud_clk = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L355,  ,  , VCC);
+
+
+--A1L360 is cnt_data~4 at LCCOMB_X25_Y22_N24
+A1L360 = (\p_data_seperation:cnt_data[31] & (((A1L305)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[27])) # (!A1L461 & ((A1L305)))));
+
+
+--A1L463 is LessThan3~0 at LCCOMB_X25_Y22_N26
+A1L463 = (!A1L360 & ((A1L462) # ((!A1L311 & !A1L307))));
+
+
+--A1L361 is cnt_data~5 at LCCOMB_X24_Y22_N12
+A1L361 = (A1L461 & ((\p_data_seperation:cnt_data[31] & (A1L309)) # (!\p_data_seperation:cnt_data[31] & ((\p_data_seperation:cnt_data[29]))))) # (!A1L461 & (((A1L309))));
+
+
+--A1L362 is cnt_data~6 at LCCOMB_X24_Y22_N18
+A1L362 = (\p_data_seperation:cnt_data[31] & (A1L301)) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & ((\p_data_seperation:cnt_data[25]))) # (!A1L461 & (A1L301))));
+
+
+--A1L363 is cnt_data~7 at LCCOMB_X23_Y22_N30
+A1L363 = (\p_data_seperation:cnt_data[31] & (((A1L303)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[26])) # (!A1L461 & ((A1L303)))));
+
+
+--A1L364 is cnt_data~8 at LCCOMB_X24_Y23_N6
+A1L364 = (\p_data_seperation:cnt_data[31] & (((A1L259)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[4])) # (!A1L461 & ((A1L259)))));
+
+
+--A1L464 is LessThan3~1 at LCCOMB_X24_Y23_N28
+A1L464 = (!A1L364 & ((A1L462 & (!\p_data_seperation:cnt_data[3])) # (!A1L462 & ((!A1L257)))));
+
+
+--A1L365 is cnt_data~9 at LCCOMB_X24_Y23_N18
+A1L365 = (\p_data_seperation:cnt_data[31] & (((A1L261)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[5])) # (!A1L461 & ((A1L261)))));
+
+
+--A1L465 is LessThan3~2 at LCCOMB_X24_Y23_N12
+A1L465 = (!A1L365 & ((A1L462 & (!\p_data_seperation:cnt_data[6])) # (!A1L462 & ((!A1L263)))));
+
+
+--A1L366 is cnt_data~10 at LCCOMB_X23_Y22_N12
+A1L366 = (\p_data_seperation:cnt_data[31] & (((A1L265)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & ((\p_data_seperation:cnt_data[7]))) # (!A1L461 & (A1L265))));
+
+
+--A1L466 is LessThan3~3 at LCCOMB_X23_Y22_N6
+A1L466 = (!A1L366 & ((A1L462 & ((!\p_data_seperation:cnt_data[8]))) # (!A1L462 & (!A1L267))));
+
+
+--A1L367 is cnt_data~11 at LCCOMB_X23_Y23_N28
+A1L367 = (A1L461 & ((\p_data_seperation:cnt_data[31] & ((A1L269))) # (!\p_data_seperation:cnt_data[31] & (\p_data_seperation:cnt_data[9])))) # (!A1L461 & (((A1L269))));
+
+
+--A1L467 is LessThan3~4 at LCCOMB_X24_Y22_N28
+A1L467 = (!A1L367 & ((A1L462 & (!\p_data_seperation:cnt_data[10])) # (!A1L462 & ((!A1L271)))));
+
+
+--A1L468 is LessThan3~5 at LCCOMB_X24_Y22_N30
+A1L468 = (A1L465 & (A1L464 & (A1L466 & A1L467)));
+
+
+--A1L368 is cnt_data~12 at LCCOMB_X23_Y22_N8
+A1L368 = (\p_data_seperation:cnt_data[31] & (((A1L273)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[11])) # (!A1L461 & ((A1L273)))));
+
+
+--A1L469 is LessThan3~6 at LCCOMB_X24_Y22_N8
+A1L469 = (!A1L368 & ((A1L462 & (!\p_data_seperation:cnt_data[12])) # (!A1L462 & ((!A1L275)))));
+
+
+--A1L369 is cnt_data~13 at LCCOMB_X24_Y23_N2
+A1L369 = (\p_data_seperation:cnt_data[31] & (((A1L277)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[13])) # (!A1L461 & ((A1L277)))));
+
+
+--A1L470 is LessThan3~7 at LCCOMB_X24_Y23_N8
+A1L470 = (!A1L369 & ((A1L462 & (!\p_data_seperation:cnt_data[14])) # (!A1L462 & ((!A1L279)))));
+
+
+--A1L370 is cnt_data~14 at LCCOMB_X23_Y22_N18
+A1L370 = (\p_data_seperation:cnt_data[31] & (((A1L281)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[15])) # (!A1L461 & ((A1L281)))));
+
+
+--A1L471 is LessThan3~8 at LCCOMB_X23_Y22_N20
+A1L471 = (!A1L370 & ((A1L462 & ((!\p_data_seperation:cnt_data[16]))) # (!A1L462 & (!A1L283))));
+
+
+--A1L371 is cnt_data~15 at LCCOMB_X23_Y22_N10
+A1L371 = (\p_data_seperation:cnt_data[31] & (((A1L285)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[17])) # (!A1L461 & ((A1L285)))));
+
+
+--A1L472 is LessThan3~9 at LCCOMB_X23_Y22_N16
+A1L472 = (!A1L371 & ((A1L462 & (!\p_data_seperation:cnt_data[18])) # (!A1L462 & ((!A1L287)))));
+
+
+--A1L473 is LessThan3~10 at LCCOMB_X24_Y22_N22
+A1L473 = (A1L472 & (A1L470 & (A1L469 & A1L471)));
+
+
+--A1L372 is cnt_data~16 at LCCOMB_X23_Y23_N18
+A1L372 = (\p_data_seperation:cnt_data[31] & (((A1L289)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[19])) # (!A1L461 & ((A1L289)))));
+
+
+--A1L373 is cnt_data~17 at LCCOMB_X24_Y22_N4
+A1L373 = (\p_data_seperation:cnt_data[31] & (((A1L291)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[20])) # (!A1L461 & ((A1L291)))));
+
+
+--A1L374 is cnt_data~18 at LCCOMB_X23_Y22_N14
+A1L374 = (\p_data_seperation:cnt_data[31] & (((A1L293)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[21])) # (!A1L461 & ((A1L293)))));
+
+
+--A1L375 is cnt_data~19 at LCCOMB_X24_Y22_N14
+A1L375 = (\p_data_seperation:cnt_data[31] & (((A1L295)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[22])) # (!A1L461 & ((A1L295)))));
+
+
+--A1L474 is LessThan3~11 at LCCOMB_X24_Y22_N24
+A1L474 = (!A1L374 & (!A1L373 & (!A1L375 & !A1L372)));
+
+
+--A1L376 is cnt_data~20 at LCCOMB_X25_Y22_N12
+A1L376 = (\p_data_seperation:cnt_data[31] & (((A1L297)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[23])) # (!A1L461 & ((A1L297)))));
+
+
+--A1L475 is LessThan3~12 at LCCOMB_X24_Y22_N10
+A1L475 = (A1L468 & (!A1L376 & (A1L473 & A1L474)));
+
+
+--A1L377 is cnt_data~21 at LCCOMB_X24_Y22_N16
+A1L377 = (\p_data_seperation:cnt_data[31] & (((A1L299)))) # (!\p_data_seperation:cnt_data[31] & ((A1L461 & (\p_data_seperation:cnt_data[24])) # (!A1L461 & ((A1L299)))));
+
+
+--A1L476 is LessThan3~13 at LCCOMB_X24_Y22_N26
+A1L476 = (!A1L377 & (((!\p_data_seperation:cnt_data[30] & !\p_data_seperation:cnt_data[28])) # (!A1L462)));
+
+
+--A1L477 is LessThan3~14 at LCCOMB_X24_Y22_N20
+A1L477 = (!A1L362 & (!A1L363 & (A1L476 & A1L475)));
+
+
+--A1L478 is LessThan3~15 at LCCOMB_X24_Y22_N2
+A1L478 = (!A1L361 & A1L477);
+
+
+--A1L479 is LessThan3~16 at LCCOMB_X24_Y22_N0
+A1L479 = (A1L462 & (A1L463 & ((A1L478)))) # (!A1L462 & ((A1L313) # ((A1L463 & A1L478))));
+
+
+--A1L548 is show_num[6]~0 at LCCOMB_X24_Y22_N6
+A1L548 = (\p_data_seperation:state & !A1L479);
+
+
+--\p_data_seperation:v_rx_data[2] is \p_data_seperation:v_rx_data[2] at FF_X20_Y22_N13
+--register power-up is low
+
+\p_data_seperation:v_rx_data[2] = DFFEAS( , !GLOBAL(A1L356),  ,  , \p_data_seperation:state, A1L552,  ,  , VCC);
+
+
+--A1L411 is Decoder0~1 at LCCOMB_X25_Y23_N20
+A1L411 = (!\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & (!A1L462 & \p_data_seperation:cnt_data[0])));
+
+
+--A1L552 is v_rx_data~1 at LCCOMB_X20_Y22_N4
+A1L552 = (A1L411 & (!rx_bit)) # (!A1L411 & ((\p_data_seperation:v_rx_data[2])));
+
+
+--\p_data_seperation:v_rx_data[1] is \p_data_seperation:v_rx_data[1] at FF_X20_Y22_N19
+--register power-up is low
+
+\p_data_seperation:v_rx_data[1] = DFFEAS( , !GLOBAL(A1L356),  ,  , \p_data_seperation:state, A1L553,  ,  , VCC);
+
+
+--A1L412 is Decoder0~2 at LCCOMB_X25_Y23_N14
+A1L412 = (\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & (!A1L462 & !\p_data_seperation:cnt_data[0])));
+
+
+--A1L553 is v_rx_data~2 at LCCOMB_X20_Y22_N8
+A1L553 = (A1L412 & (!rx_bit)) # (!A1L412 & ((\p_data_seperation:v_rx_data[1])));
+
+
+--\p_data_seperation:v_rx_data[0] is \p_data_seperation:v_rx_data[0] at FF_X20_Y22_N27
+--register power-up is low
+
+\p_data_seperation:v_rx_data[0] = DFFEAS( , !GLOBAL(A1L356),  ,  , \p_data_seperation:state, A1L554,  ,  , VCC);
+
+
+--A1L413 is Decoder0~3 at LCCOMB_X25_Y23_N28
+A1L413 = (\p_data_seperation:cnt_data[1] & (\p_data_seperation:cnt_data[2] & (!A1L462 & \p_data_seperation:cnt_data[0])));
+
+
+--A1L554 is v_rx_data~3 at LCCOMB_X20_Y22_N30
+A1L554 = (A1L413 & (!rx_bit)) # (!A1L413 & ((\p_data_seperation:v_rx_data[0])));
+
+
+--\p_data_seperation:v_rx_data[6] is \p_data_seperation:v_rx_data[6] at FF_X19_Y23_N15
+--register power-up is low
+
+\p_data_seperation:v_rx_data[6] = DFFEAS(A1L108, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L414 is Decoder0~4 at LCCOMB_X25_Y23_N18
+A1L414 = (!\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & (!A1L462 & \p_data_seperation:cnt_data[0])));
+
+
+--A1L555 is v_rx_data~4 at LCCOMB_X20_Y23_N28
+A1L555 = (A1L414 & ((!rx_bit))) # (!A1L414 & (\p_data_seperation:v_rx_data[6]));
+
+
+--\p_data_seperation:v_rx_data[5] is \p_data_seperation:v_rx_data[5] at FF_X22_Y23_N3
+--register power-up is low
+
+\p_data_seperation:v_rx_data[5] = DFFEAS( , !GLOBAL(A1L356),  ,  , \p_data_seperation:state, A1L556,  ,  , VCC);
+
+
+--A1L415 is Decoder0~5 at LCCOMB_X25_Y23_N24
+A1L415 = (\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & (!A1L462 & !\p_data_seperation:cnt_data[0])));
+
+
+--A1L556 is v_rx_data~5 at LCCOMB_X20_Y23_N0
+A1L556 = (A1L415 & ((!rx_bit))) # (!A1L415 & (\p_data_seperation:v_rx_data[5]));
+
+
+--\p_data_seperation:v_rx_data[4] is \p_data_seperation:v_rx_data[4] at FF_X25_Y23_N7
+--register power-up is low
+
+\p_data_seperation:v_rx_data[4] = DFFEAS(A1L105, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L416 is Decoder0~6 at LCCOMB_X25_Y23_N16
+A1L416 = (\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & (!A1L462 & \p_data_seperation:cnt_data[0])));
+
+
+--A1L557 is v_rx_data~6 at LCCOMB_X20_Y23_N10
+A1L557 = (A1L416 & ((!rx_bit))) # (!A1L416 & (\p_data_seperation:v_rx_data[4]));
+
+
+--\p_data_seperation:v_rx_data[7] is \p_data_seperation:v_rx_data[7] at FF_X19_Y23_N5
+--register power-up is low
+
+\p_data_seperation:v_rx_data[7] = DFFEAS(A1L110, !GLOBAL(A1L356),  ,  , \p_data_seperation:state,  ,  ,  ,  );
+
+
+--A1L417 is Decoder0~7 at LCCOMB_X25_Y23_N10
+A1L417 = (!\p_data_seperation:cnt_data[1] & (!\p_data_seperation:cnt_data[2] & (!A1L462 & !\p_data_seperation:cnt_data[0])));
+
+
+--A1L558 is v_rx_data~7 at LCCOMB_X20_Y23_N24
+A1L558 = (A1L417 & ((!rx_bit))) # (!A1L417 & (\p_data_seperation:v_rx_data[7]));
+
+
+--A1L378 is cnt_data~22 at LCCOMB_X25_Y23_N0
+A1L378 = (A1L251 & A1L479);
+
+
+--A1L379 is cnt_data~23 at LCCOMB_X25_Y23_N22
+A1L379 = (A1L253 & A1L479);
+
+
+--A1L380 is cnt_data~24 at LCCOMB_X25_Y23_N4
+A1L380 = (A1L255 & A1L479);
+
+
+--A1L381 is cnt_data~25 at LCCOMB_X24_Y23_N24
+A1L381 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[3]))) # (!A1L462 & (A1L257))));
+
+
+--A1L382 is cnt_data~26 at LCCOMB_X24_Y23_N30
+A1L382 = (A1L364 & A1L479);
+
+
+--A1L383 is cnt_data~27 at LCCOMB_X24_Y23_N0
+A1L383 = (A1L365 & A1L479);
+
+
+--A1L384 is cnt_data~28 at LCCOMB_X24_Y23_N10
+A1L384 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[6]))) # (!A1L462 & (A1L263))));
+
+
+--A1L385 is cnt_data~29 at LCCOMB_X23_Y23_N20
+A1L385 = (A1L366 & A1L479);
+
+
+--A1L386 is cnt_data~30 at LCCOMB_X23_Y23_N30
+A1L386 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[8]))) # (!A1L462 & (A1L267))));
+
+
+--A1L387 is cnt_data~31 at LCCOMB_X23_Y23_N12
+A1L387 = (A1L367 & A1L479);
+
+
+--A1L388 is cnt_data~32 at LCCOMB_X23_Y23_N10
+A1L388 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[10]))) # (!A1L462 & (A1L271))));
+
+
+--A1L389 is cnt_data~33 at LCCOMB_X23_Y23_N6
+A1L389 = (A1L368 & A1L479);
+
+
+--A1L390 is cnt_data~34 at LCCOMB_X23_Y23_N0
+A1L390 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[12]))) # (!A1L462 & (A1L275))));
+
+
+--A1L391 is cnt_data~35 at LCCOMB_X24_Y23_N14
+A1L391 = (A1L369 & A1L479);
+
+
+--A1L392 is cnt_data~36 at LCCOMB_X24_Y23_N16
+A1L392 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[14]))) # (!A1L462 & (A1L279))));
+
+
+--A1L393 is cnt_data~37 at LCCOMB_X24_Y23_N22
+A1L393 = (A1L370 & A1L479);
+
+
+--A1L394 is cnt_data~38 at LCCOMB_X23_Y22_N0
+A1L394 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[16]))) # (!A1L462 & (A1L283))));
+
+
+--A1L395 is cnt_data~39 at LCCOMB_X23_Y22_N26
+A1L395 = (A1L371 & A1L479);
+
+
+--A1L396 is cnt_data~40 at LCCOMB_X23_Y23_N4
+A1L396 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[18]))) # (!A1L462 & (A1L287))));
+
+
+--A1L397 is cnt_data~41 at LCCOMB_X23_Y22_N28
+A1L397 = (A1L372 & A1L479);
+
+
+--A1L398 is cnt_data~42 at LCCOMB_X23_Y22_N2
+A1L398 = (A1L373 & A1L479);
+
+
+--A1L399 is cnt_data~43 at LCCOMB_X23_Y22_N24
+A1L399 = (A1L374 & A1L479);
+
+
+--A1L400 is cnt_data~44 at LCCOMB_X23_Y22_N22
+A1L400 = (A1L375 & A1L479);
+
+
+--A1L401 is cnt_data~45 at LCCOMB_X25_Y22_N18
+A1L401 = (A1L376 & A1L479);
+
+
+--A1L402 is cnt_data~46 at LCCOMB_X25_Y22_N0
+A1L402 = (A1L377 & A1L479);
+
+
+--A1L403 is cnt_data~47 at LCCOMB_X24_Y23_N4
+A1L403 = (A1L362 & A1L479);
+
+
+--A1L404 is cnt_data~48 at LCCOMB_X25_Y22_N14
+A1L404 = (A1L363 & A1L479);
+
+
+--A1L405 is cnt_data~49 at LCCOMB_X25_Y22_N4
+A1L405 = (A1L360 & A1L479);
+
+
+--A1L406 is cnt_data~50 at LCCOMB_X25_Y22_N10
+A1L406 = (A1L479 & ((A1L462 & ((\p_data_seperation:cnt_data[28]))) # (!A1L462 & (A1L307))));
+
+
+--A1L407 is cnt_data~51 at LCCOMB_X25_Y22_N20
+A1L407 = (A1L361 & A1L479);
+
+
+--\p_read_bit_val:o_smp_cnt[2] is \p_read_bit_val:o_smp_cnt[2] at FF_X19_Y23_N31
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[2] = DFFEAS(A1L116, !GLOBAL(A1L514),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_read_bit_val:o_smp_cnt[1] is \p_read_bit_val:o_smp_cnt[1] at FF_X19_Y23_N29
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[1] = DFFEAS(A1L114, !GLOBAL(A1L514),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_read_bit_val:o_smp_cnt[0] is \p_read_bit_val:o_smp_cnt[0] at FF_X19_Y23_N11
+--register power-up is low
+
+\p_read_bit_val:o_smp_cnt[0] = DFFEAS(A1L112, !GLOBAL(A1L514),  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L516 is rx_bit~0 at LCCOMB_X19_Y23_N20
+A1L516 = (\p_read_bit_val:o_smp_cnt[0] & (\p_read_bit_val:o_smp_cnt[2] & \p_read_bit_val:o_smp_cnt[1]));
+
+
+--\p_read_bit_val:rx_o_smp[0] is \p_read_bit_val:rx_o_smp[0] at FF_X20_Y23_N27
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[0] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, A1L520,  ,  , VCC);
+
+
+--\p_read_bit_val:rx_o_smp[1] is \p_read_bit_val:rx_o_smp[1] at FF_X20_Y23_N9
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[1] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, \p_read_bit_val:rx_o_smp[0],  ,  , VCC);
+
+
+--\p_read_bit_val:rx_o_smp[4] is \p_read_bit_val:rx_o_smp[4] at FF_X20_Y23_N5
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[4] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, \p_read_bit_val:rx_o_smp[3],  ,  , VCC);
+
+
+--\p_read_bit_val:rx_o_smp[3] is \p_read_bit_val:rx_o_smp[3] at FF_X20_Y23_N23
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[3] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, \p_read_bit_val:rx_o_smp[2],  ,  , VCC);
+
+
+--\p_read_bit_val:rx_o_smp[2] is \p_read_bit_val:rx_o_smp[2] at FF_X20_Y23_N19
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[2] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, \p_read_bit_val:rx_o_smp[1],  ,  , VCC);
+
+
+--A1L315 is Add7~0 at LCCOMB_X20_Y23_N2
+A1L315 = (\p_read_bit_val:rx_o_smp[3] & (\p_read_bit_val:rx_o_smp[4] $ (\p_read_bit_val:rx_o_smp[1] $ (\p_read_bit_val:rx_o_smp[2])))) # (!\p_read_bit_val:rx_o_smp[3] & ((\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[1] $ (\p_read_bit_val:rx_o_smp[2]))) # (!\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[1] & \p_read_bit_val:rx_o_smp[2]))));
+
+
+--A1L316 is Add7~1 at LCCOMB_X20_Y23_N18
+A1L316 = (\p_read_bit_val:rx_o_smp[4] & ((\p_read_bit_val:rx_o_smp[1] & ((\p_read_bit_val:rx_o_smp[2]) # (\p_read_bit_val:rx_o_smp[3]))) # (!\p_read_bit_val:rx_o_smp[1] & (\p_read_bit_val:rx_o_smp[2] & \p_read_bit_val:rx_o_smp[3])))) # (!\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[1] & (\p_read_bit_val:rx_o_smp[2] & \p_read_bit_val:rx_o_smp[3])));
+
+
+--A1L317 is Add7~2 at LCCOMB_X20_Y23_N14
+A1L317 = (A1L520 & ((A1L316) # ((\p_read_bit_val:rx_o_smp[0] & A1L315)))) # (!A1L520 & (A1L316 & ((\p_read_bit_val:rx_o_smp[0]) # (A1L315))));
+
+
+--\p_read_bit_val:rx_o_smp[5] is \p_read_bit_val:rx_o_smp[5] at FF_X20_Y23_N13
+--register power-up is low
+
+\p_read_bit_val:rx_o_smp[5] = DFFEAS( , !GLOBAL(A1L514),  ,  , A1L480, \p_read_bit_val:rx_o_smp[4],  ,  , VCC);
+
+
+--A1L318 is Add8~0 at LCCOMB_X20_Y23_N20
+A1L318 = \p_read_bit_val:rx_o_smp[0] $ (A1L520 $ (\p_read_bit_val:rx_o_smp[4] $ (\p_read_bit_val:rx_o_smp[2])));
+
+
+--A1L319 is Add8~1 at LCCOMB_X20_Y23_N6
+A1L319 = (A1L520 & ((\p_read_bit_val:rx_o_smp[4] & ((!\p_read_bit_val:rx_o_smp[2]) # (!\p_read_bit_val:rx_o_smp[0]))) # (!\p_read_bit_val:rx_o_smp[4] & ((\p_read_bit_val:rx_o_smp[0]) # (\p_read_bit_val:rx_o_smp[2]))))) # (!A1L520 & ((\p_read_bit_val:rx_o_smp[4] & ((\p_read_bit_val:rx_o_smp[0]) # (\p_read_bit_val:rx_o_smp[2]))) # (!\p_read_bit_val:rx_o_smp[4] & (\p_read_bit_val:rx_o_smp[0] & \p_read_bit_val:rx_o_smp[2]))));
+
+
+--A1L320 is Add8~2 at LCCOMB_X20_Y23_N8
+A1L320 = (A1L319 & ((\p_read_bit_val:rx_o_smp[3] & (!\p_read_bit_val:rx_o_smp[1] & !A1L318)) # (!\p_read_bit_val:rx_o_smp[3] & (\p_read_bit_val:rx_o_smp[1] $ (A1L318))))) # (!A1L319 & (\p_read_bit_val:rx_o_smp[3] & (\p_read_bit_val:rx_o_smp[1] & A1L318)));
+
+
+--A1L321 is Add8~3 at LCCOMB_X20_Y23_N12
+A1L321 = (\p_read_bit_val:rx_o_smp[5] & A1L320);
+
+
+--A1L517 is rx_bit~1 at LCCOMB_X20_Y23_N16
+A1L517 = (A1L516 & (((!A1L317 & !A1L321)))) # (!A1L516 & (rx_bit));
+
+
+--o_smp_clk is o_smp_clk at FF_X16_Y10_N23
+--register power-up is low
+
+o_smp_clk = DFFEAS( , GLOBAL(A1L359),  ,  , A1L443, A1L513,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[31] is \p_clock_division:o_smp_clk_cnt[31] at FF_X15_Y8_N31
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[31] = DFFEAS(A1L185, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[30] is \p_clock_division:o_smp_clk_cnt[30] at FF_X16_Y8_N13
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[30] = DFFEAS(A1L482, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[29] is \p_clock_division:o_smp_clk_cnt[29] at FF_X16_Y8_N7
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[29] = DFFEAS(A1L483, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[28] is \p_clock_division:o_smp_clk_cnt[28] at FF_X16_Y8_N9
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[28] = DFFEAS(A1L484, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[27] is \p_clock_division:o_smp_clk_cnt[27] at FF_X16_Y8_N23
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[27] = DFFEAS(A1L485, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[26] is \p_clock_division:o_smp_clk_cnt[26] at FF_X16_Y8_N29
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[26] = DFFEAS(A1L486, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[25] is \p_clock_division:o_smp_clk_cnt[25] at FF_X16_Y8_N11
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[25] = DFFEAS(A1L487, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[24] is \p_clock_division:o_smp_clk_cnt[24] at FF_X16_Y8_N17
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[24] = DFFEAS(A1L488, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[23] is \p_clock_division:o_smp_clk_cnt[23] at FF_X16_Y8_N19
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[23] = DFFEAS(A1L489, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[22] is \p_clock_division:o_smp_clk_cnt[22] at FF_X16_Y8_N25
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[22] = DFFEAS(A1L490, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[21] is \p_clock_division:o_smp_clk_cnt[21] at FF_X16_Y8_N15
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[21] = DFFEAS(A1L491, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[20] is \p_clock_division:o_smp_clk_cnt[20] at FF_X16_Y8_N5
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[20] = DFFEAS(A1L492, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[19] is \p_clock_division:o_smp_clk_cnt[19] at FF_X16_Y8_N3
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[19] = DFFEAS(A1L493, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[18] is \p_clock_division:o_smp_clk_cnt[18] at FF_X16_Y8_N21
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[18] = DFFEAS(A1L494, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[17] is \p_clock_division:o_smp_clk_cnt[17] at FF_X16_Y8_N31
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[17] = DFFEAS(A1L495, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[16] is \p_clock_division:o_smp_clk_cnt[16] at FF_X15_Y8_N17
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[16] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L496,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[15] is \p_clock_division:o_smp_clk_cnt[15] at FF_X15_Y9_N21
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[15] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L497,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[14] is \p_clock_division:o_smp_clk_cnt[14] at FF_X15_Y9_N3
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[14] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L498,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[13] is \p_clock_division:o_smp_clk_cnt[13] at FF_X15_Y9_N5
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[13] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L499,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[12] is \p_clock_division:o_smp_clk_cnt[12] at FF_X15_Y9_N31
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[12] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L500,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[11] is \p_clock_division:o_smp_clk_cnt[11] at FF_X15_Y9_N19
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[11] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L501,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[10] is \p_clock_division:o_smp_clk_cnt[10] at FF_X15_Y9_N23
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[10] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L502,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[9] is \p_clock_division:o_smp_clk_cnt[9] at FF_X15_Y9_N13
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[9] = DFFEAS( , GLOBAL(A1L359),  ,  ,  , A1L503,  ,  , VCC);
+
+
+--\p_clock_division:o_smp_clk_cnt[8] is \p_clock_division:o_smp_clk_cnt[8] at FF_X16_Y10_N9
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[8] = DFFEAS(A1L504, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[7] is \p_clock_division:o_smp_clk_cnt[7] at FF_X16_Y10_N25
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[7] = DFFEAS(A1L505, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[6] is \p_clock_division:o_smp_clk_cnt[6] at FF_X16_Y10_N5
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[6] = DFFEAS(A1L506, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[5] is \p_clock_division:o_smp_clk_cnt[5] at FF_X16_Y10_N21
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[5] = DFFEAS(A1L507, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[4] is \p_clock_division:o_smp_clk_cnt[4] at FF_X16_Y10_N19
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[4] = DFFEAS(A1L508, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[3] is \p_clock_division:o_smp_clk_cnt[3] at FF_X15_Y10_N21
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[3] = DFFEAS(A1L509, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[2] is \p_clock_division:o_smp_clk_cnt[2] at FF_X16_Y10_N29
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[2] = DFFEAS(A1L510, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[1] is \p_clock_division:o_smp_clk_cnt[1] at FF_X16_Y10_N1
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[1] = DFFEAS(A1L511, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--\p_clock_division:o_smp_clk_cnt[0] is \p_clock_division:o_smp_clk_cnt[0] at FF_X16_Y10_N7
+--register power-up is low
+
+\p_clock_division:o_smp_clk_cnt[0] = DFFEAS(A1L512, GLOBAL(A1L359),  ,  ,  ,  ,  ,  ,  );
+
+
+--A1L433 is LessThan0~0 at LCCOMB_X15_Y10_N18
+A1L433 = (!A1L159 & (!A1L157 & (!A1L161 & !A1L163)));
+
+
+--A1L434 is LessThan0~1 at LCCOMB_X15_Y10_N28
+A1L434 = (!A1L165 & (!A1L167 & (!A1L169 & A1L433)));
+
+
+--A1L435 is LessThan0~2 at LCCOMB_X16_Y10_N26
+A1L435 = ((!A1L125 & !A1L123)) # (!A1L127);
+
+
+--A1L436 is LessThan0~3 at LCCOMB_X15_Y10_N10
+A1L436 = (!A1L129 & (!A1L133 & (!A1L131 & A1L435)));
+
+
+--A1L437 is LessThan0~4 at LCCOMB_X15_Y10_N12
+A1L437 = ((!A1L137 & ((A1L436) # (!A1L135)))) # (!A1L139);
+
+
+--A1L438 is LessThan0~5 at LCCOMB_X15_Y10_N26
+A1L438 = (!A1L147 & (!A1L141 & (!A1L145 & !A1L143)));
+
+
+--A1L439 is LessThan0~6 at LCCOMB_X15_Y10_N8
+A1L439 = (!A1L151 & (!A1L149 & (!A1L153 & !A1L155)));
+
+
+--A1L440 is LessThan0~7 at LCCOMB_X15_Y10_N30
+A1L440 = (A1L438 & (!A1L171 & (A1L439 & A1L437)));
+
+
+--A1L441 is LessThan0~8 at LCCOMB_X15_Y10_N16
+A1L441 = (!A1L175 & (!A1L173 & (A1L440 & A1L434)));
+
+
+--A1L442 is LessThan0~9 at LCCOMB_X15_Y10_N6
+A1L442 = (!A1L179 & (!A1L177 & A1L441));
+
+
+--A1L443 is LessThan0~10 at LCCOMB_X15_Y10_N24
+A1L443 = (!A1L185 & ((A1L183) # ((A1L181) # (!A1L442))));
+
+
+--\p_clock_division:baud_clk_cnt[31] is \p_clock_division:baud_clk_cnt[31] at FF_X13_Y10_N31
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[31] = DFFEAS(A1L249, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[30] is \p_clock_division:baud_clk_cnt[30] at FF_X12_Y10_N5
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[30] = DFFEAS(A1L324, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[29] is \p_clock_division:baud_clk_cnt[29] at FF_X14_Y10_N25
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[29] = DFFEAS(A1L325, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[28] is \p_clock_division:baud_clk_cnt[28] at FF_X15_Y10_N3
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[28] = DFFEAS(A1L326, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[27] is \p_clock_division:baud_clk_cnt[27] at FF_X14_Y10_N11
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[27] = DFFEAS(A1L327, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[26] is \p_clock_division:baud_clk_cnt[26] at FF_X15_Y10_N1
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[26] = DFFEAS(A1L328, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[25] is \p_clock_division:baud_clk_cnt[25] at FF_X16_Y10_N11
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[25] = DFFEAS(A1L329, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[24] is \p_clock_division:baud_clk_cnt[24] at FF_X16_Y10_N15
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[24] = DFFEAS(A1L330, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[23] is \p_clock_division:baud_clk_cnt[23] at FF_X16_Y10_N13
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[23] = DFFEAS(A1L331, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[22] is \p_clock_division:baud_clk_cnt[22] at FF_X15_Y10_N15
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[22] = DFFEAS(A1L332, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[21] is \p_clock_division:baud_clk_cnt[21] at FF_X14_Y10_N29
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[21] = DFFEAS(A1L333, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[20] is \p_clock_division:baud_clk_cnt[20] at FF_X16_Y10_N17
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[20] = DFFEAS(A1L334, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[19] is \p_clock_division:baud_clk_cnt[19] at FF_X16_Y10_N31
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[19] = DFFEAS(A1L335, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[18] is \p_clock_division:baud_clk_cnt[18] at FF_X14_Y10_N19
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[18] = DFFEAS(A1L336, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[17] is \p_clock_division:baud_clk_cnt[17] at FF_X14_Y10_N9
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[17] = DFFEAS(A1L337, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[16] is \p_clock_division:baud_clk_cnt[16] at FF_X15_Y10_N5
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[16] = DFFEAS(A1L338, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[15] is \p_clock_division:baud_clk_cnt[15] at FF_X15_Y10_N23
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[15] = DFFEAS(A1L339, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[14] is \p_clock_division:baud_clk_cnt[14] at FF_X12_Y10_N1
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[14] = DFFEAS(A1L340, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[13] is \p_clock_division:baud_clk_cnt[13] at FF_X14_Y10_N27
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[13] = DFFEAS(A1L341, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[12] is \p_clock_division:baud_clk_cnt[12] at FF_X14_Y10_N13
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[12] = DFFEAS(A1L342, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[11] is \p_clock_division:baud_clk_cnt[11] at FF_X14_Y10_N23
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[11] = DFFEAS(A1L343, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[10] is \p_clock_division:baud_clk_cnt[10] at FF_X14_Y10_N1
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[10] = DFFEAS(A1L344, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[9] is \p_clock_division:baud_clk_cnt[9] at FF_X14_Y10_N3
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[9] = DFFEAS(A1L345, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[8] is \p_clock_division:baud_clk_cnt[8] at FF_X14_Y10_N21
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[8] = DFFEAS(A1L346, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[7] is \p_clock_division:baud_clk_cnt[7] at FF_X14_Y10_N7
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[7] = DFFEAS(A1L347, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[6] is \p_clock_division:baud_clk_cnt[6] at FF_X14_Y10_N17
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[6] = DFFEAS(A1L348, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[5] is \p_clock_division:baud_clk_cnt[5] at FF_X14_Y10_N31
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[5] = DFFEAS(A1L349, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[4] is \p_clock_division:baud_clk_cnt[4] at FF_X14_Y10_N5
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[4] = DFFEAS(A1L350, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[3] is \p_clock_division:baud_clk_cnt[3] at FF_X14_Y10_N15
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[3] = DFFEAS(A1L351, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[2] is \p_clock_division:baud_clk_cnt[2] at FF_X12_Y10_N15
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[2] = DFFEAS(A1L352, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[1] is \p_clock_division:baud_clk_cnt[1] at FF_X12_Y10_N3
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[1] = DFFEAS(A1L353, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--\p_clock_division:baud_clk_cnt[0] is \p_clock_division:baud_clk_cnt[0] at FF_X12_Y10_N7
+--register power-up is low
+
+\p_clock_division:baud_clk_cnt[0] = DFFEAS(A1L354, GLOBAL(A1L359),  ,  , A1L443,  ,  ,  ,  );
+
+
+--A1L444 is LessThan1~0 at LCCOMB_X12_Y10_N18
+A1L444 = (!A1L195 & (!A1L199 & (!A1L193 & !A1L197)));
+
+
+--A1L445 is LessThan1~1 at LCCOMB_X12_Y10_N26
+A1L445 = (!A1L201 & (!A1L207 & (!A1L205 & !A1L203)));
+
+
+--A1L446 is LessThan1~2 at LCCOMB_X12_Y10_N8
+A1L446 = (!A1L211 & (!A1L213 & (!A1L209 & !A1L215)));
+
+
+--A1L447 is LessThan1~3 at LCCOMB_X12_Y10_N20
+A1L447 = (!A1L221 & (!A1L219 & (!A1L217 & !A1L223)));
+
+
+--A1L448 is LessThan1~4 at LCCOMB_X12_Y10_N12
+A1L448 = (A1L445 & (A1L444 & (A1L446 & A1L447)));
+
+
+--A1L449 is LessThan1~5 at LCCOMB_X12_Y10_N10
+A1L449 = (!A1L225 & (!A1L229 & (!A1L227 & !A1L231)));
+
+
+--A1L450 is LessThan1~6 at LCCOMB_X12_Y10_N28
+A1L450 = (A1L449 & (!A1L235 & (!A1L233 & A1L448)));
+
+
+--A1L451 is LessThan1~7 at LCCOMB_X12_Y10_N24
+A1L451 = (!A1L241 & (!A1L237 & (!A1L239 & A1L450)));
+
+
+--A1L452 is LessThan1~8 at LCCOMB_X12_Y10_N30
+A1L452 = (!A1L247 & (!A1L243 & (!A1L245 & A1L451)));
+
+
+--A1L355 is baud_clk~0 at LCCOMB_X12_Y10_N16
+A1L355 = baud_clk $ (((!A1L249 & (!A1L452 & A1L443))));
+
+
+--A1L116 is \p_read_bit_val:o_smp_cnt[2]~0 at LCCOMB_X19_Y23_N30
+A1L116 = \p_read_bit_val:o_smp_cnt[2] $ (((\p_read_bit_val:o_smp_cnt[0] & \p_read_bit_val:o_smp_cnt[1])));
+
+
+--A1L114 is \p_read_bit_val:o_smp_cnt[1]~0 at LCCOMB_X19_Y23_N28
+A1L114 = \p_read_bit_val:o_smp_cnt[1] $ (\p_read_bit_val:o_smp_cnt[0]);
+
+
+--A1L480 is LessThan4~0 at LCCOMB_X19_Y23_N6
+A1L480 = (\p_read_bit_val:o_smp_cnt[0]) # ((\p_read_bit_val:o_smp_cnt[2]) # (\p_read_bit_val:o_smp_cnt[1]));
+
+
+--A1L482 is o_smp_clk_cnt~0 at LCCOMB_X16_Y8_N12
+A1L482 = (A1L185 & A1L183);
+
+
+--A1L483 is o_smp_clk_cnt~1 at LCCOMB_X16_Y8_N6
+A1L483 = (A1L181 & A1L185);
+
+
+--A1L484 is o_smp_clk_cnt~2 at LCCOMB_X16_Y8_N8
+A1L484 = (A1L179 & A1L185);
+
+
+--A1L485 is o_smp_clk_cnt~3 at LCCOMB_X16_Y8_N22
+A1L485 = (A1L177 & A1L185);
+
+
+--A1L486 is o_smp_clk_cnt~4 at LCCOMB_X16_Y8_N28
+A1L486 = (A1L175 & A1L185);
+
+
+--A1L487 is o_smp_clk_cnt~5 at LCCOMB_X16_Y8_N10
+A1L487 = (A1L173 & A1L185);
+
+
+--A1L488 is o_smp_clk_cnt~6 at LCCOMB_X16_Y8_N16
+A1L488 = (A1L171 & A1L185);
+
+
+--A1L489 is o_smp_clk_cnt~7 at LCCOMB_X16_Y8_N18
+A1L489 = (A1L169 & A1L185);
+
+
+--A1L490 is o_smp_clk_cnt~8 at LCCOMB_X16_Y8_N24
+A1L490 = (A1L167 & A1L185);
+
+
+--A1L491 is o_smp_clk_cnt~9 at LCCOMB_X16_Y8_N14
+A1L491 = (A1L165 & A1L185);
+
+
+--A1L492 is o_smp_clk_cnt~10 at LCCOMB_X16_Y8_N4
+A1L492 = (A1L163 & A1L185);
+
+
+--A1L493 is o_smp_clk_cnt~11 at LCCOMB_X16_Y8_N2
+A1L493 = (A1L161 & A1L185);
+
+
+--A1L494 is o_smp_clk_cnt~12 at LCCOMB_X16_Y8_N20
+A1L494 = (A1L159 & A1L185);
+
+
+--A1L495 is o_smp_clk_cnt~13 at LCCOMB_X16_Y8_N30
+A1L495 = (A1L157 & A1L185);
+
+
+--A1L496 is o_smp_clk_cnt~14 at LCCOMB_X14_Y8_N16
+A1L496 = (A1L155 & A1L185);
+
+
+--A1L497 is o_smp_clk_cnt~15 at LCCOMB_X16_Y9_N0
+A1L497 = (A1L153 & A1L185);
+
+
+--A1L498 is o_smp_clk_cnt~16 at LCCOMB_X16_Y9_N10
+A1L498 = (A1L151 & A1L185);
+
+
+--A1L499 is o_smp_clk_cnt~17 at LCCOMB_X16_Y9_N12
+A1L499 = (A1L149 & A1L185);
+
+
+--A1L500 is o_smp_clk_cnt~18 at LCCOMB_X16_Y9_N30
+A1L500 = (A1L147 & A1L185);
+
+
+--A1L501 is o_smp_clk_cnt~19 at LCCOMB_X16_Y9_N8
+A1L501 = (A1L145 & A1L185);
+
+
+--A1L502 is o_smp_clk_cnt~20 at LCCOMB_X16_Y9_N14
+A1L502 = (A1L143 & A1L185);
+
+
+--A1L503 is o_smp_clk_cnt~21 at LCCOMB_X16_Y9_N20
+A1L503 = (A1L141 & A1L185);
+
+
+--A1L504 is o_smp_clk_cnt~22 at LCCOMB_X16_Y10_N8
+A1L504 = (A1L139 & !A1L443);
+
+
+--A1L505 is o_smp_clk_cnt~23 at LCCOMB_X16_Y10_N24
+A1L505 = (A1L137 & !A1L443);
+
+
+--A1L506 is o_smp_clk_cnt~24 at LCCOMB_X16_Y10_N4
+A1L506 = (A1L135 & !A1L443);
+
+
+--A1L507 is o_smp_clk_cnt~25 at LCCOMB_X16_Y10_N20
+A1L507 = (A1L133 & !A1L443);
+
+
+--A1L508 is o_smp_clk_cnt~26 at LCCOMB_X16_Y10_N18
+A1L508 = (A1L131 & !A1L443);
+
+
+--A1L509 is o_smp_clk_cnt~27 at LCCOMB_X15_Y10_N20
+A1L509 = (A1L129 & !A1L443);
+
+
+--A1L510 is o_smp_clk_cnt~28 at LCCOMB_X16_Y10_N28
+A1L510 = (A1L127 & !A1L443);
+
+
+--A1L511 is o_smp_clk_cnt~29 at LCCOMB_X16_Y10_N0
+A1L511 = (A1L125 & !A1L443);
+
+
+--A1L512 is o_smp_clk_cnt~30 at LCCOMB_X16_Y10_N6
+A1L512 = (A1L123 & !A1L443);
+
+
+--A1L324 is baud_clk_cnt~0 at LCCOMB_X12_Y10_N4
+A1L324 = (A1L247 & A1L249);
+
+
+--A1L325 is baud_clk_cnt~1 at LCCOMB_X14_Y10_N24
+A1L325 = (A1L245 & A1L249);
+
+
+--A1L326 is baud_clk_cnt~2 at LCCOMB_X15_Y10_N2
+A1L326 = (A1L243 & A1L249);
+
+
+--A1L327 is baud_clk_cnt~3 at LCCOMB_X14_Y10_N10
+A1L327 = (A1L249 & A1L241);
+
+
+--A1L328 is baud_clk_cnt~4 at LCCOMB_X15_Y10_N0
+A1L328 = (A1L239 & A1L249);
+
+
+--A1L329 is baud_clk_cnt~5 at LCCOMB_X16_Y10_N10
+A1L329 = (A1L237 & A1L249);
+
+
+--A1L330 is baud_clk_cnt~6 at LCCOMB_X16_Y10_N14
+A1L330 = (A1L235 & A1L249);
+
+
+--A1L331 is baud_clk_cnt~7 at LCCOMB_X16_Y10_N12
+A1L331 = (A1L233 & A1L249);
+
+
+--A1L332 is baud_clk_cnt~8 at LCCOMB_X15_Y10_N14
+A1L332 = (A1L231 & A1L249);
+
+
+--A1L333 is baud_clk_cnt~9 at LCCOMB_X14_Y10_N28
+A1L333 = (A1L229 & A1L249);
+
+
+--A1L334 is baud_clk_cnt~10 at LCCOMB_X16_Y10_N16
+A1L334 = (A1L227 & A1L249);
+
+
+--A1L335 is baud_clk_cnt~11 at LCCOMB_X16_Y10_N30
+A1L335 = (A1L225 & A1L249);
+
+
+--A1L336 is baud_clk_cnt~12 at LCCOMB_X14_Y10_N18
+A1L336 = (A1L223 & A1L249);
+
+
+--A1L337 is baud_clk_cnt~13 at LCCOMB_X14_Y10_N8
+A1L337 = (A1L221 & A1L249);
+
+
+--A1L338 is baud_clk_cnt~14 at LCCOMB_X15_Y10_N4
+A1L338 = (A1L219 & A1L249);
+
+
+--A1L339 is baud_clk_cnt~15 at LCCOMB_X15_Y10_N22
+A1L339 = (A1L217 & A1L249);
+
+
+--A1L340 is baud_clk_cnt~16 at LCCOMB_X12_Y10_N0
+A1L340 = (A1L215 & A1L249);
+
+
+--A1L341 is baud_clk_cnt~17 at LCCOMB_X14_Y10_N26
+A1L341 = (A1L213 & A1L249);
+
+
+--A1L342 is baud_clk_cnt~18 at LCCOMB_X14_Y10_N12
+A1L342 = (A1L211 & A1L249);
+
+
+--A1L343 is baud_clk_cnt~19 at LCCOMB_X14_Y10_N22
+A1L343 = (A1L209 & A1L249);
+
+
+--A1L344 is baud_clk_cnt~20 at LCCOMB_X14_Y10_N0
+A1L344 = (A1L207 & A1L249);
+
+
+--A1L345 is baud_clk_cnt~21 at LCCOMB_X14_Y10_N2
+A1L345 = (A1L205 & A1L249);
+
+
+--A1L346 is baud_clk_cnt~22 at LCCOMB_X14_Y10_N20
+A1L346 = (A1L203 & A1L249);
+
+
+--A1L347 is baud_clk_cnt~23 at LCCOMB_X14_Y10_N6
+A1L347 = (A1L201 & A1L249);
+
+
+--A1L348 is baud_clk_cnt~24 at LCCOMB_X14_Y10_N16
+A1L348 = (A1L199 & A1L249);
+
+
+--A1L349 is baud_clk_cnt~25 at LCCOMB_X14_Y10_N30
+A1L349 = (A1L197 & A1L249);
+
+
+--A1L350 is baud_clk_cnt~26 at LCCOMB_X14_Y10_N4
+A1L350 = (A1L195 & A1L249);
+
+
+--A1L351 is baud_clk_cnt~27 at LCCOMB_X14_Y10_N14
+A1L351 = (A1L193 & A1L249);
+
+
+--A1L352 is baud_clk_cnt~28 at LCCOMB_X12_Y10_N14
+A1L352 = (A1L191 & ((A1L452) # (A1L249)));
+
+
+--A1L353 is baud_clk_cnt~29 at LCCOMB_X12_Y10_N2
+A1L353 = (A1L189 & ((A1L452) # (A1L249)));
+
+
+--A1L354 is baud_clk_cnt~30 at LCCOMB_X12_Y10_N6
+A1L354 = (A1L187 & ((A1L452) # (A1L249)));
+
+
+--A1L68 is \p_data_seperation:cnt_data[2]~2 at LCCOMB_X25_Y23_N8
+A1L68 = (\p_data_seperation:state & ((\p_data_seperation:cnt_data[31]) # ((!A1L479) # (!A1L461))));
+
+
+--A1L408 is cnt_data~52 at LCCOMB_X25_Y22_N30
+A1L408 = (A1L311 & (A1L313 & ((\p_data_seperation:cnt_data[31]) # (!A1L461))));
+
+
+--A1L409 is cnt_data~53 at LCCOMB_X25_Y22_N22
+A1L409 = (A1L313 & ((\p_data_seperation:cnt_data[31]) # (!A1L461)));
+
+
+--A1L550 is state~2 at LCCOMB_X25_Y22_N8
+A1L550 = (A1L479 & ((\p_data_seperation:cnt_data[31]) # ((\p_data_seperation:state) # (!A1L461))));
+
+
+--A1L112 is \p_read_bit_val:o_smp_cnt[0]~0 at LCCOMB_X19_Y23_N10
+A1L112 = !\p_read_bit_val:o_smp_cnt[0];
+
+
+--A1L513 is o_smp_clk~0 at LCCOMB_X16_Y10_N2
+A1L513 = !o_smp_clk;
+
+
+--A1L523 is seg_ut[0]~output at IOOBUF_X15_Y25_N16
+A1L523 = OUTPUT_BUFFER.O(.I(A1L420), , , , , , , , , , , , , , , , , );
+
+
+--seg_ut[0] is seg_ut[0] at PIN_D8
 seg_ut[0] = OUTPUT();
 
 
---A1L10 is seg_ut[1]~output at IOOBUF_X0_Y4_N2
-A1L10 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L525 is seg_ut[1]~output at IOOBUF_X15_Y25_N30
+A1L525 = OUTPUT_BUFFER.O(.I(A1L422), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[1] is seg_ut[1] at PIN_T1
+--seg_ut[1] is seg_ut[1] at PIN_A5
 seg_ut[1] = OUTPUT();
 
 
---A1L12 is seg_ut[2]~output at IOOBUF_X0_Y2_N9
-A1L12 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L527 is seg_ut[2]~output at IOOBUF_X15_Y25_N9
+A1L527 = OUTPUT_BUFFER.O(.I(A1L424), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[2] is seg_ut[2] at PIN_R2
+--seg_ut[2] is seg_ut[2] at PIN_A6
 seg_ut[2] = OUTPUT();
 
 
---A1L14 is seg_ut[3]~output at IOOBUF_X13_Y0_N16
-A1L14 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L529 is seg_ut[3]~output at IOOBUF_X15_Y25_N2
+A1L529 = OUTPUT_BUFFER.O(.I(A1L426), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[3] is seg_ut[3] at PIN_AA6
+--seg_ut[3] is seg_ut[3] at PIN_B7
 seg_ut[3] = OUTPUT();
 
 
---A1L16 is seg_ut[4]~output at IOOBUF_X3_Y10_N2
-A1L16 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L531 is seg_ut[4]~output at IOOBUF_X13_Y25_N16
+A1L531 = OUTPUT_BUFFER.O(.I(A1L428), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[4] is seg_ut[4] at PIN_C5
+--seg_ut[4] is seg_ut[4] at PIN_E9
 seg_ut[4] = OUTPUT();
 
 
---A1L18 is seg_ut[5]~output at IOOBUF_X1_Y10_N16
-A1L18 = OUTPUT_BUFFER.O(.I(GND), , , , , , , , , , , , , , , , , );
+--A1L533 is seg_ut[5]~output at IOOBUF_X15_Y25_N23
+A1L533 = OUTPUT_BUFFER.O(.I(A1L430), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[5] is seg_ut[5] at PIN_E6
+--seg_ut[5] is seg_ut[5] at PIN_D9
 seg_ut[5] = OUTPUT();
 
 
---A1L20 is seg_ut[6]~output at IOOBUF_X15_Y25_N23
-A1L20 = OUTPUT_BUFFER.O(.I(VCC), , , , , , , , , , , , , , , , , );
+--A1L535 is seg_ut[6]~output at IOOBUF_X10_Y22_N16
+A1L535 = OUTPUT_BUFFER.O(.I(A1L432), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[6] is seg_ut[6] at PIN_D9
+--seg_ut[6] is seg_ut[6] at PIN_F5
 seg_ut[6] = OUTPUT();
 
 
---A1L22 is seg_ut[7]~output at IOOBUF_X31_Y11_N2
-A1L22 = OUTPUT_BUFFER.O(.I(VCC), , , , , , , , , , , , , , , , , );
+--A1L537 is seg_ut[7]~output at IOOBUF_X15_Y0_N23
+A1L537 = OUTPUT_BUFFER.O(.I(VCC), , , , , , , , , , , , , , , , , );
 
 
---seg_ut[7] is seg_ut[7] at PIN_J21
+--seg_ut[7] is seg_ut[7] at PIN_V9
 seg_ut[7] = OUTPUT();
 
 
---A1L40 is ~QUARTUS_CREATED_GND~I at LCCOMB_X11_Y12_N16
-A1L40 = GND;
+--A1L520 is RX_sig~input at IOIBUF_X19_Y25_N22
+A1L520 = INPUT_BUFFER(.I(RX_sig), , );
+
+
+--RX_sig is RX_sig at PIN_B8
+RX_sig = INPUT();
+
+
+--A1L358 is clk~input at IOIBUF_X0_Y6_N15
+A1L358 = INPUT_BUFFER(.I(clk), , );
+
+
+--clk is clk at PIN_M8
+clk = INPUT();
+
+
+--A1L576 is ~QUARTUS_CREATED_GND~I at LCCOMB_X11_Y12_N16
+A1L576 = GND;
 
 
 
@@ -106,5 +2357,45 @@ A1L40 = GND;
 
 
 
+
+
+--A1L514 is o_smp_clk~clkctrl at CLKCTRL_G9
+A1L514 = fiftyfivenm_clkctrl(.INCLK[0] = o_smp_clk) WITH (clock_type = "Global Clock", ena_register_mode = "none");
+
+
+--A1L356 is baud_clk~clkctrl at CLKCTRL_G8
+A1L356 = fiftyfivenm_clkctrl(.INCLK[0] = baud_clk) WITH (clock_type = "Global Clock", ena_register_mode = "none");
+
+
+--A1L359 is clk~inputclkctrl at CLKCTRL_G3
+A1L359 = fiftyfivenm_clkctrl(.INCLK[0] = A1L358) WITH (clock_type = "Global Clock", ena_register_mode = "none");
+
+
+--A1L103 is \p_data_seperation:v_rx_data[3]~feeder at LCCOMB_X19_Y23_N24
+A1L103 = A1L551;
+
+
+--A1L543 is show_num[3]~feeder at LCCOMB_X20_Y22_N28
+A1L543 = A1L551;
+
+
+--A1L108 is \p_data_seperation:v_rx_data[6]~feeder at LCCOMB_X19_Y23_N14
+A1L108 = A1L555;
+
+
+--A1L545 is show_num[4]~feeder at LCCOMB_X20_Y22_N10
+A1L545 = A1L557;
+
+
+--A1L105 is \p_data_seperation:v_rx_data[4]~feeder at LCCOMB_X25_Y23_N6
+A1L105 = A1L557;
+
+
+--A1L110 is \p_data_seperation:v_rx_data[7]~feeder at LCCOMB_X19_Y23_N4
+A1L110 = A1L558;
+
+
+--A1L518 is rx_bit~feeder at LCCOMB_X20_Y23_N30
+A1L518 = A1L517;
 
 

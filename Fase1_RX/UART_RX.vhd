@@ -30,7 +30,7 @@ architecture rtl of uart_rx is
 -- data signals
 	signal rx_bit 			: std_logic := '1';
 	signal show_num 		: std_logic_vector(7 downto 0);
-	signal hex_display 		: std_logic_vector(7 downto 0);
+	signal ascii_display : std_logic_vector(7 downto 0);
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -70,27 +70,45 @@ begin
 	-- TODO
 	-- turn what is now binary values to ASCII values
 	-------------------------------------------------------------------------
+	/*
 	p_seg_handler : process (show_num)
 	begin	
 	 	case show_num is
-			when "00000000" =>	hex_display <= "11000000"; -- 0
-			when "00000001" =>	hex_display <= "11111001"; -- 1
-			when "00000011" =>	hex_display <= "10100100"; -- 3
-			when "00000010" =>	hex_display <= "10110000"; -- 2
-			when "00000100" =>	hex_display <= "10011001"; -- 4
-			when "00000101" =>	hex_display <= "10010010"; -- 5
-			when "00000110" =>	hex_display <= "10000010"; -- 6
-			when "00000111" =>	hex_display <= "11111000"; -- 7
-			when "00001000" =>	hex_display <= "10000000"; -- 8
-			when "00001001" =>	hex_display <= "10010000"; -- 9
-			when "00001010" =>	hex_display <= "10001000"; -- A
-			when "00001011" =>	hex_display <= "10000011"; -- B
-			when "00001100" =>	hex_display <= "11000110"; -- C
-			when "00001101" =>	hex_display <= "10000000"; -- D
-			when "00001110" =>	hex_display <= "10000110"; -- E
-			when others	 =>	hex_display <= "10001110"; -- F
+			when "00000000" =>	ascii_display <= "11000000"; -- 0
+			when "00000001" =>	ascii_display <= "11111001"; -- 1
+			when "00000011" =>	ascii_display <= "10100100"; -- 3
+			when "00000010" =>	ascii_display <= "10110000"; -- 2
+			when "00000100" =>	ascii_display <= "10011001"; -- 4
+			when "00000101" =>	ascii_display <= "10010010"; -- 5
+			when "00000110" =>	ascii_display <= "10000010"; -- 6
+			when "00000111" =>	ascii_display <= "11111000"; -- 7
+			when "00001000" =>	ascii_display <= "10000000"; -- 8
+			when "00001001" =>	ascii_display <= "10010000"; -- 9
+			when "00001010" =>	ascii_display <= "10001000"; -- A
+			when "00001011" =>	ascii_display <= "10000011"; -- B
+			when "00001100" =>	ascii_display <= "11000110"; -- C
+			when "00001101" =>	ascii_display <= "10000000"; -- D
+			when "00001110" =>	ascii_display <= "10000110"; -- E
+			when others	 =>	ascii_display <= "10001110"; -- F
 		end case;
 	end process;
+	*/
+	ascii_display <= "10001110" when show_num = "00001111" else
+				"11111001" when show_num = "00000001" else
+				"10100100" when show_num = "00000010" else
+				"10110000" when show_num = "00000011" else
+				"10011001" when show_num = "00000100" else
+				"10010010" when show_num = "00000101" else
+				"10000010" when show_num = "00000110" else
+				"11111000" when show_num = "00000111" else
+				"10000000" when show_num = "00001000" else
+				"10010000" when show_num = "00001001" else
+				"10001000" when show_num = "00001010" else
+				"10000011" when show_num = "00001011" else
+				"11000110" when show_num = "00001100" else
+				"10000000" when show_num = "00001101" else
+				"10000110" when show_num = "00001110" else
+				"11000000" ;
 	
 	-------------------------------------------------------------------------
 	-- Use system clock to generate oversampling clock and clk for baud rate.
@@ -173,7 +191,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts
 	-------------------------------------------------------------------------
-	seg_ut <= hex_display;
+	seg_ut <= ascii_display;
 	-- utgang <= baud_rate_clk;
 	
 end architecture;

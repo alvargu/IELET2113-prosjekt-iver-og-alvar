@@ -1,12 +1,12 @@
-Fitter Status : Successful - Wed Nov  1 10:23:47 2023
+Fitter Status : Successful - Wed Nov  1 13:01:07 2023
 Quartus Prime Version : 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 Revision Name : UART_RX
 Top-level Entity Name : uart_rx
 Family : MAX 10
 Device : 10M08DAF484C8G
 Timing Models : Final
-Total logic elements : 316 / 8,064 ( 4 % )
-    Total combinational functions : 306 / 8,064 ( 4 % )
+Total logic elements : 319 / 8,064 ( 4 % )
+    Total combinational functions : 305 / 8,064 ( 4 % )
     Dedicated logic registers : 125 / 8,064 ( 2 % )
 Total registers : 125
 Total pins : 10 / 250 ( 4 % )
