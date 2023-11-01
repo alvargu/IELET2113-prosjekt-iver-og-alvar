@@ -136,7 +136,7 @@ begin
 				when r_data =>
 					rx_busy <= '1';
 					if cnt_data < 8 then
-						v_rx_data(cnt_data) := rx_bit;
+						v_rx_data(7 - cnt_data) := rx_bit;
 						cnt_data := cnt_data + 1;
 						state := r_data;
 					end if;
