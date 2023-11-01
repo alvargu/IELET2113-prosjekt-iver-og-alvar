@@ -25,18 +25,12 @@ architecture rtl of uart_rx is
 	signal baud_clk 		: std_logic := '1';
 	signal o_smp_clk 		: std_logic := '1';
 -- hold signals
-	signal rx_busy			: std_logic := '0';
+	-- signal rx_busy			: std_logic := '0';
+	-- signal RX_bit_rdy : std_logic := '0';
 -- data signals
 	signal rx_bit 			: std_logic := '1';
-	-- signal RX_bit_rdy : std_logic := '0';
-	
-	
 	signal show_num 		: std_logic_vector(7 downto 0);
 	signal hex_display 		: std_logic_vector(7 downto 0);
-	
--- iver signals
-	-- signal o_smp_clk: std_logic := '0';
-	-- signal baud_clk: std_logic := '0';
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -45,7 +39,9 @@ architecture rtl of uart_rx is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
+		if check_vector(0) = '1' then count_ones := count_ones + 1;
+		end if;
+		if check_vector(1) = '1' then count_ones := count_ones + 1;
 		end if;
 		if check_vector(2) = '1' then count_ones := count_ones + 1;
 		end if;
@@ -57,7 +53,7 @@ architecture rtl of uart_rx is
 		end if;
 		if check_vector(6) = '1' then count_ones := count_ones + 1;
 		end if;
-		if count_ones > 2 then majority_val := '1';
+		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
 		end if;
 		return majority_val;
@@ -126,7 +122,6 @@ begin
 		type t_state is (n_data, r_data);
 		variable state : t_state := n_data;
 		variable cnt_data : integer := 0;
-		variable prev_baud_clk : std_logic := '0';
 		variable v_rx_data 		: std_logic_vector(7 downto 0) := "00000000";
 	begin
 		if rising_edge(baud_clk) then
@@ -160,11 +155,10 @@ begin
 	--------------------------------------------------------------------------
 	p_read_bit_val :process (o_smp_clk, rx_sig)
 		variable o_smp_cnt 		: integer range 0 to 8 := 0;
-		variable prev_o_smp_clk 	: std_logic := '0';
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
 	begin
 		if rising_edge(o_smp_clk) then 
-			if o_smp_cnt > 0 then 
+					if o_smp_cnt > 0 then 
 				RX_o_smp := RX_o_smp(5 downto 0) & RX_sig;
 				if o_smp_cnt = 7 then 
 					RX_bit <= majority_check(RX_o_smp);
