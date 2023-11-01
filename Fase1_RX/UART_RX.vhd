@@ -45,14 +45,15 @@ architecture rtl of uart_rx is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
-		if 	 check_vector(1) = '1' then count_ones := count_ones + 1;
+		if 	check_vector(0) = '1' then count_ones := count_ones + 1;
+		elsif check_vector(1) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(2) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(3) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(4) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(5) = '1' then count_ones := count_ones + 1;
 		elsif check_vector(6) = '1' then count_ones := count_ones + 1;
 		end if;
-		if count_ones > 2 then majority_val := '1';
+		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
 		end if;
 		return majority_val;
@@ -123,7 +124,7 @@ begin
 		variable cnt_data : integer := 0;
 		variable prev_baud_clk : std_logic := '0';
 	begin
-		-- if rising_edge(baud_clk) then
+		if rising_edge(baud_clk) then
 		-- if (baud_clk = '1') and (prev_baud_clk = '0') then
 		-- 	prev_baud_clk := '1';
 			case state is 
@@ -149,7 +150,7 @@ begin
 			end case;
 		-- if baud_clk = '0' then 
 		-- 	prev_baud_clk := '0';
-		-- end if;
+		end if;
 	end process;
 	
 	--------------------------------------------------------------------------
@@ -162,7 +163,7 @@ begin
 		variable rx_o_smp		: std_logic_vector(6 downto 0);
 	begin
 		-- solution 1: gave logic elements but dosent seem to work
-		-- if rising_edge(o_smp_clk) then 
+		if rising_edge(o_smp_clk) then 
 		-- solution 2: gives system 1 logic element
 		-- if (o_smp_clk = '1') and (prev_o_smp_clk = '0') then
 		-- 	prev_o_smp_clk := '1';
@@ -180,7 +181,7 @@ begin
 		-- if (o_smp_clk = '0') then
 		-- 	prev_o_smp_clk := '0';
 		-- for all solutions
-		-- end if;
+		end if;
 	end process;
 	-------------------------------------------------------------------------
 	-- Set signals that go out equal to their inn system counterparts

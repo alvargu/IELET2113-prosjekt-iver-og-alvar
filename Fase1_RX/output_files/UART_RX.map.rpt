@@ -1,9 +1,5 @@
 Analysis & Synthesis report for UART_RX
-<<<<<<< HEAD
-Tue Oct 31 19:13:51 2023
-=======
-Tue Oct 31 18:41:44 2023
->>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
+Tue Oct 31 20:15:40 2023
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -17,12 +13,14 @@ Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Parameter Settings for User Entity Instance: Top-level Entity: |UART_RX
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Equations
- 13. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Top-level Entity: |UART_RX
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
 
 
 
@@ -49,19 +47,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-<<<<<<< HEAD
-; Analysis & Synthesis Status        ; Successful - Tue Oct 31 19:13:51 2023          ;
-=======
-; Analysis & Synthesis Status        ; Successful - Tue Oct 31 18:41:44 2023          ;
->>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
+; Analysis & Synthesis Status        ; Successful - Tue Oct 31 20:15:40 2023          ;
 ; Quartus Prime Version              ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                      ; UART_RX                                        ;
 ; Top-level Entity Name              ; uart_rx                                        ;
 ; Family                             ; MAX 10                                         ;
-; Total logic elements               ; 0                                              ;
-;     Total combinational functions  ; 0                                              ;
-;     Dedicated logic registers      ; 0                                              ;
-; Total registers                    ; 0                                              ;
+; Total logic elements               ; 309                                            ;
+;     Total combinational functions  ; 301                                            ;
+;     Dedicated logic registers      ; 119                                            ;
+; Total registers                    ; 119                                            ;
 ; Total pins                         ; 10                                             ;
 ; Total virtual pins                 ; 0                                              ;
 ; Total memory bits                  ; 0                                              ;
@@ -164,55 +158,58 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 16          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 8           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-8         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                       ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                                                ; Library ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
-; UART_RX.vhd                      ; yes             ; User VHDL File  ; C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd ;         ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                          ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                   ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------+---------+
+; UART_RX.vhd                      ; yes             ; User VHDL File  ; C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary          ;
-+---------------------------------------------+--------+
-; Resource                                    ; Usage  ;
-+---------------------------------------------+--------+
-;                                             ;        ;
-; Total combinational functions               ; 0      ;
-; Logic element usage by number of LUT inputs ;        ;
-;     -- 4 input functions                    ; 0      ;
-;     -- 3 input functions                    ; 0      ;
-;     -- <=2 input functions                  ; 0      ;
-;                                             ;        ;
-; Logic elements by mode                      ;        ;
-;     -- normal mode                          ; 0      ;
-;     -- arithmetic mode                      ; 0      ;
-;                                             ;        ;
-; Total registers                             ; 0      ;
-;     -- Dedicated logic registers            ; 0      ;
-;     -- I/O registers                        ; 0      ;
-;                                             ;        ;
-; I/O pins                                    ; 10     ;
-;                                             ;        ;
-; Embedded Multiplier 9-bit elements          ; 0      ;
-;                                             ;        ;
-; Maximum fan-out node                        ; RX_sig ;
-; Maximum fan-out                             ; 1      ;
-; Total fan-out                               ; 10     ;
-; Average fan-out                             ; 0.50   ;
-+---------------------------------------------+--------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 309       ;
+;                                             ;           ;
+; Total combinational functions               ; 301       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 96        ;
+;     -- 3 input functions                    ; 16        ;
+;     -- <=2 input functions                  ; 189       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 208       ;
+;     -- arithmetic mode                      ; 93        ;
+;                                             ;           ;
+; Total registers                             ; 119       ;
+;     -- Dedicated logic registers            ; 119       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 10        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 66        ;
+; Total fan-out                               ; 1135      ;
+; Average fan-out                             ; 2.58      ;
++---------------------------------------------+-----------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -220,9 +217,19 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |uart_rx                   ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 10   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
+; |uart_rx                   ; 301 (301)           ; 119 (119)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 10   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; \p_read_bit_val:o_smp_cnt[3]          ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 1 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -230,14 +237,35 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 119   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Synchronous Load   ; 1     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 73    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; baud_clk                               ; 50      ;
+; rx_bit                                 ; 10      ;
+; o_smp_clk                              ; 5       ;
+; Total number of inverted registers = 3 ;         ;
++----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_rx|\p_data_seperation:cnt_data[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 
 
 +-------------------------------------------------------------------------+
@@ -258,12 +286,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 10                          ;
-; cycloneiii_lcell_comb ; 2                           ;
-;     normal            ; 2                           ;
-;         0 data inputs ; 2                           ;
+; cycloneiii_ff         ; 119                         ;
+;     ENA               ; 73                          ;
+;     SLD               ; 1                           ;
+;     plain             ; 45                          ;
+; cycloneiii_lcell_comb ; 302                         ;
+;     arith             ; 93                          ;
+;         2 data inputs ; 93                          ;
+;     normal            ; 209                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 96                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 11.00                       ;
+; Average LUT depth     ; 7.39                        ;
 +-----------------------+-----------------------------+
 
 
@@ -276,194 +314,37 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 
 
-+--------------------------------+
-; Analysis & Synthesis Equations ;
-+--------------------------------+
-The equations can be found in C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/output_files/UART_RX.map.eqn.
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-<<<<<<< HEAD
-    Info: Processing started: Tue Oct 31 19:13:43 2023
-=======
-    Info: Processing started: Tue Oct 31 18:41:33 2023
->>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
+    Info: Processing started: Tue Oct 31 20:15:31 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off UART_RX -c UART_RX
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file uart_rx.vhd
-    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 20
-    Info (12023): Found entity 1: uart_rx File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 5
+    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 20
+    Info (12023): Found entity 1: uart_rx File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 5
 Info (12021): Found 0 design units, including 0 entities, in source file seg_handling_pkg.vhd
 Info (12127): Elaborating entity "UART_RX" for the top level hierarchy
-<<<<<<< HEAD
-Warning (10036): Verilog HDL or VHDL warning at UART_RX.vhd(28): object "rx_busy" assigned a value but never read File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 28
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "prev_baud_clk", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "state", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "v_rx_data", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "cnt_data", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "show_num", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(161): inferring latch(es) for signal or variable "prev_o_smp_clk", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 161
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(161): inferring latch(es) for signal or variable "rx_o_smp", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 161
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(161): inferring latch(es) for signal or variable "rx_bit", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 161
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(161): inferring latch(es) for signal or variable "o_smp_cnt", which holds its previous value in one or more paths through the process File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 161
-Info (10041): Inferred latch for "rx_bit" at UART_RX.vhd(161) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 161
-Info (10041): Inferred latch for "p_read_bit_val:prev_o_smp_clk" at UART_RX.vhd(184) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 184
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[0]" at UART_RX.vhd(171) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 171
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[1]" at UART_RX.vhd(171) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 171
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[2]" at UART_RX.vhd(171) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 171
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[3]" at UART_RX.vhd(171) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 171
-Info (10041): Inferred latch for "show_num[0]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[1]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[2]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[3]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[4]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[5]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[6]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[7]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[0]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[1]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[2]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[3]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[4]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[5]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[6]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[7]" at UART_RX.vhd(120) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "p_data_seperation:prev_baud_clk" at UART_RX.vhd(152) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 152
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[0]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[1]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[2]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[3]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[4]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[5]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[6]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[7]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[8]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[9]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[10]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[11]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[12]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[13]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[14]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[15]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[16]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[17]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[18]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[19]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[20]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[21]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[22]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[23]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[24]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[25]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[26]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[27]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[28]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[29]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[30]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[31]" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-Info (10041): Inferred latch for "p_data_seperation:state" at UART_RX.vhd(128) File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 128
-=======
-Warning (10541): VHDL Signal Declaration warning at UART_RX.vhd(15): used implicit default value for signal "utgang" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
 Warning (10036): Verilog HDL or VHDL warning at UART_RX.vhd(28): object "rx_busy" assigned a value but never read File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at UART_RX.vhd(141): signal "v_rx_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 141
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "state", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "v_rx_data", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "cnt_data", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(120): inferring latch(es) for signal or variable "show_num", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(153): inferring latch(es) for signal or variable "rx_o_smp", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(153): inferring latch(es) for signal or variable "rx_bit", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Warning (10631): VHDL Process Statement warning at UART_RX.vhd(153): inferring latch(es) for signal or variable "o_smp_cnt", which holds its previous value in one or more paths through the process File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Info (10041): Inferred latch for "rx_bit" at UART_RX.vhd(153) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 153
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[0]" at UART_RX.vhd(159) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 159
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[1]" at UART_RX.vhd(159) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 159
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[2]" at UART_RX.vhd(159) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 159
-Info (10041): Inferred latch for "p_read_bit_val:o_smp_cnt[3]" at UART_RX.vhd(159) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 159
-Info (10041): Inferred latch for "show_num[0]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[1]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[2]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[3]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[4]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[5]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[6]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "show_num[7]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[0]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[1]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[2]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[3]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[4]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[5]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[6]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "v_rx_data[7]" at UART_RX.vhd(120) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 120
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[0]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[1]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[2]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[3]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[4]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[5]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[6]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[7]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[8]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[9]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[10]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[11]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[12]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[13]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[14]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[15]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[16]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[17]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[18]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[19]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[20]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[21]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[22]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[23]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[24]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[25]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[26]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[27]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[28]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[29]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[30]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:cnt_data[31]" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
-Info (10041): Inferred latch for "p_data_seperation:state" at UART_RX.vhd(126) File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 126
->>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "seg_ut[0]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[1]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[2]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[3]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[4]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[5]" is stuck at GND File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[6]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
-    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
+    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
+Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "RX_sig" File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 12
-    Warning (15610): No output dependent on input pin "clk" File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 13
-Info (21057): Implemented 10 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "RX_sig" File: C:/Users/iverl/Documents/Quartus/UART_RX/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 12
+Info (21057): Implemented 322 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
-<<<<<<< HEAD
     Info (21059): Implemented 8 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
-    Info: Peak virtual memory: 4800 megabytes
-    Info: Processing ended: Tue Oct 31 19:13:51 2023
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:07
-=======
-    Info (21059): Implemented 9 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 24 warnings
-    Info: Peak virtual memory: 4792 megabytes
-    Info: Processing ended: Tue Oct 31 18:41:44 2023
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:12
->>>>>>> 72f4fca95261c138016a27815039e2292f3356ee
+    Info (21061): Implemented 312 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 4869 megabytes
+    Info: Processing ended: Tue Oct 31 20:15:40 2023
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:11
 
 
