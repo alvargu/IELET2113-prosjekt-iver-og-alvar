@@ -20,7 +20,7 @@ architecture SimulationModel of UART_RX_tb is
 		------------------------------------------------------------------
 		-- define inputs and outputs of system
 		------------------------------------------------------------------
-		seg_ut 	: out std_logic_vector(NUM_BITS-1 downto 0);
+		ascii_display 	: out std_logic_vector(NUM_BITS-1 downto 0);
 		clk 		: in std_logic;
 		RX_sig 	: in std_logic
 		);
@@ -31,7 +31,7 @@ architecture SimulationModel of UART_RX_tb is
    -----------------------------------------------------------------------------
    -- DUT signals
 	
-	signal 	seg_ut    : std_logic_vector(NUM_BITS-1 downto 0);
+	signal 	ascii_display    : std_logic_vector(NUM_BITS-1 downto 0);
 	signal	clk 		: std_logic;
 	signal	RX_sig 	: std_logic;
 	
@@ -44,7 +44,7 @@ begin
    port map (
       clk     => clk,
       RX_sig => RX_sig,
-      seg_ut   => seg_ut
+      ascii_display   => ascii_display
    );
 
    -----------------------------------------------------------------------------
@@ -89,7 +89,7 @@ begin
 		wait for CLK_PER*5208;
           RX_sig <= '1';				-- stop bit
 			 
-		assert ( seg_ut = "11000000")
+		assert ( ascii_display = "11000000")
 			report "RX did not interprete the information correctly."
 			severity error;
 		----------------------
@@ -115,14 +115,14 @@ begin
           RX_sig <= '1';				-- stop bit
 		wait for CLK_PER*5208;
 		
-		assert ( seg_ut = "10001000")
+		assert ( ascii_display = "10001000")
 			report "RX did not interprete the information correctly."
 			severity error;
 		----------------------
 					wait for CLK_PER*5208*10;	-- Venter med å sende neste byte. 
 									-- Kan prøve å forsinke utenfor CLK_PER med ns.
 					
-		assert ( seg_ut = "10001000")
+		assert ( ascii_display = "10001000")
 			report "RX changed the information."
 			severity error;
 		----------------------
@@ -148,7 +148,7 @@ begin
           RX_sig <= '1';				-- stop bit
 		wait for CLK_PER*5208*3;
 		
-		assert ( seg_ut = "11111000")
+		assert ( ascii_display = "11111000")
 			report "RX did not interprete the information correctly."
 			severity error;
 		assert false report "Testbench finished" severity failure;

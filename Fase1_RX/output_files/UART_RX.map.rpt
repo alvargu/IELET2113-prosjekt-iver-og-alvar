@@ -1,5 +1,5 @@
 Analysis & Synthesis report for UART_RX
-Wed Nov  1 14:02:32 2023
+Thu Nov  2 12:33:40 2023
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -48,13 +48,13 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Nov  1 14:02:32 2023          ;
+; Analysis & Synthesis Status        ; Successful - Thu Nov  2 12:33:40 2023          ;
 ; Quartus Prime Version              ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                      ; UART_RX                                        ;
 ; Top-level Entity Name              ; uart_rx                                        ;
 ; Family                             ; MAX 10                                         ;
-; Total logic elements               ; 401                                            ;
-;     Total combinational functions  ; 386                                            ;
+; Total logic elements               ; 384                                            ;
+;     Total combinational functions  ; 369                                            ;
 ;     Dedicated logic registers      ; 160                                            ;
 ; Total registers                    ; 160                                            ;
 ; Total pins                         ; 11                                             ;
@@ -167,7 +167,8 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -185,16 +186,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 401       ;
+; Estimated Total logic elements              ; 384       ;
 ;                                             ;           ;
-; Total combinational functions               ; 386       ;
+; Total combinational functions               ; 369       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 116       ;
-;     -- 3 input functions                    ; 27        ;
-;     -- <=2 input functions                  ; 243       ;
+;     -- 4 input functions                    ; 121       ;
+;     -- 3 input functions                    ; 26        ;
+;     -- <=2 input functions                  ; 222       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 262       ;
+;     -- normal mode                          ; 245       ;
 ;     -- arithmetic mode                      ; 124       ;
 ;                                             ;           ;
 ; Total registers                             ; 160       ;
@@ -207,8 +208,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 99        ;
-; Total fan-out                               ; 1483      ;
-; Average fan-out                             ; 2.61      ;
+; Total fan-out                               ; 1459      ;
+; Average fan-out                             ; 2.65      ;
 +---------------------------------------------+-----------+
 
 
@@ -217,7 +218,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |uart_rx                   ; 386 (386)           ; 160 (160)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 11   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
+; |uart_rx                   ; 369 (369)           ; 160 (160)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 11   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -253,7 +254,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; \p_indicate_rx:rx_led_cnt[31]          ; 1       ;
-; rx_bit                                 ; 9       ;
+; rx_bit                                 ; 11      ;
 ; baud_clk                               ; 51      ;
 ; o_smp_clk                              ; 11      ;
 ; Total number of inverted registers = 4 ;         ;
@@ -276,6 +277,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+----------+---------------------------------------------+
 ; f_clk          ; 50000000 ; Signed Integer                              ;
 ; BAUD_RATE      ; 9600     ; Signed Integer                              ;
+; time_led_on    ; 50       ; Signed Integer                              ;
 ; o_smp_bits     ; 8        ; Signed Integer                              ;
 +----------------+----------+---------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -291,18 +293,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA               ; 120                         ;
 ;     SLD               ; 1                           ;
 ;     plain             ; 39                          ;
-; cycloneiii_lcell_comb ; 387                         ;
+; cycloneiii_lcell_comb ; 370                         ;
 ;     arith             ; 124                         ;
 ;         2 data inputs ; 124                         ;
-;     normal            ; 263                         ;
+;     normal            ; 246                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 7                           ;
-;         2 data inputs ; 112                         ;
-;         3 data inputs ; 27                          ;
-;         4 data inputs ; 116                         ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 26                          ;
+;         4 data inputs ; 121                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 9.30                        ;
-; Average LUT depth     ; 6.62                        ;
+; Average LUT depth     ; 6.42                        ;
 +-----------------------+-----------------------------+
 
 
@@ -311,7 +313,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -327,29 +329,29 @@ The equations can be found in C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-    Info: Processing started: Wed Nov  1 14:02:25 2023
+    Info: Processing started: Thu Nov  2 12:33:11 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off UART_RX -c UART_RX
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file uart_rx.vhd
-    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 20
+    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 21
     Info (12023): Found entity 1: uart_rx File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 5
 Info (12021): Found 0 design units, including 0 entities, in source file seg_handling_pkg.vhd
 Info (12127): Elaborating entity "UART_RX" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at UART_RX.vhd(201): signal "clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 201
+Warning (10492): VHDL Process Statement warning at UART_RX.vhd(200): signal "clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 200
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
+    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 16
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 423 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 406 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 9 output pins
-    Info (21061): Implemented 412 logic cells
+    Info (21061): Implemented 395 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4874 megabytes
-    Info: Processing ended: Wed Nov  1 14:02:32 2023
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 4890 megabytes
+    Info: Processing ended: Thu Nov  2 12:33:40 2023
+    Info: Elapsed time: 00:00:29
+    Info: Total CPU time (on all processors): 00:00:06
 
 

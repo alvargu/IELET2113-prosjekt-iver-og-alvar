@@ -1,5 +1,5 @@
 Flow report for UART_RX
-Wed Nov  1 14:02:43 2023
+Thu Nov  2 12:34:00 2023
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -41,15 +41,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Flow Summary                                                                        ;
 +------------------------------------+------------------------------------------------+
-; Flow Status                        ; Successful - Wed Nov  1 14:02:41 2023          ;
+; Flow Status                        ; Successful - Thu Nov  2 12:33:56 2023          ;
 ; Quartus Prime Version              ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                      ; UART_RX                                        ;
 ; Top-level Entity Name              ; uart_rx                                        ;
 ; Family                             ; MAX 10                                         ;
 ; Device                             ; 10M08DAF484C8G                                 ;
 ; Timing Models                      ; Final                                          ;
-; Total logic elements               ; 397 / 8,064 ( 5 % )                            ;
-;     Total combinational functions  ; 388 / 8,064 ( 5 % )                            ;
+; Total logic elements               ; 384 / 8,064 ( 5 % )                            ;
+;     Total combinational functions  ; 371 / 8,064 ( 5 % )                            ;
 ;     Dedicated logic registers      ; 160 / 8,064 ( 2 % )                            ;
 ; Total registers                    ; 160                                            ;
 ; Total pins                         ; 11 / 250 ( 4 % )                               ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/01/2023 14:02:25 ;
+; Start date & time ; 11/02/2023 12:33:13 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; UART_RX             ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 123360440878351.169884374503388        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 123360440878351.169892479314160        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -97,11 +97,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 4874 MB             ; 00:00:04                           ;
-; Fitter               ; 00:00:06     ; 1.2                     ; 6142 MB             ; 00:00:02                           ;
+; Analysis & Synthesis ; 00:00:29     ; 1.0                     ; 4890 MB             ; 00:00:06                           ;
+; Fitter               ; 00:00:11     ; 1.2                     ; 6151 MB             ; 00:00:03                           ;
 ; Assembler            ; 00:00:01     ; 1.0                     ; 4706 MB             ; 00:00:00                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.4                     ; 4876 MB             ; 00:00:01                           ;
-; Total                ; 00:00:16     ; --                      ; --                  ; 00:00:07                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.4                     ; 4888 MB             ; 00:00:01                           ;
+; Total                ; 00:00:44     ; --                      ; --                  ; 00:00:10                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -13,7 +13,7 @@ entity uart_rx is
 		RX_sig : in std_logic;
 		clk: in std_logic;
 		rx_busy_led: out std_logic;
-		seg_ut: out std_logic_vector(7 downto 0)
+		ascii_display: out std_logic_vector(7 downto 0)
 		);
 end entity;		
 
@@ -30,7 +30,7 @@ architecture rtl of uart_rx is
 -- data signals
 	signal rx_bit 			: std_logic := '1';
 	signal show_num 		: std_logic_vector(7 downto 0);
-	signal ascii_display 	: std_logic_vector(7 downto 0);
+	-- signal ascii_display 	: std_logic_vector(7 downto 0);
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -130,7 +130,7 @@ begin
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
-	p_data_seperation : process(baud_clk, rx_bit)
+	p_data_sep_sm : process(baud_clk, rx_bit)
 		type t_state is (n_data, r_data);
 		variable state 		: t_state := n_data;
 		variable cnt_data 	: integer := 0;
@@ -139,7 +139,7 @@ begin
 		if rising_edge(baud_clk) then
 			case state is 
 				when n_data =>
-					if rx_n_rdy = '0' then 
+					if rx_bit = '0' then 
 						state := r_data;
 						rx_n_rdy <= '1';
 					elsif rx_bit = '1' then 
@@ -211,5 +211,5 @@ begin
 	-- 
 	-------------------------------------------------------------------------
 	
-	seg_ut <= ascii_display;
+	-- seg_ut <= ascii_display;
 end architecture;
