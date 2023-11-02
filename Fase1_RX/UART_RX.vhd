@@ -6,6 +6,7 @@ entity uart_rx is
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant BAUD_RATE: integer := 9600;
+		constant time_led_on: integer := 50; /* 50 ms */
 		constant o_smp_bits: integer := 8
 		);
 	port (
@@ -25,11 +26,11 @@ architecture rtl of uart_rx is
 	signal baud_clk 		: std_logic := '1';
 	signal o_smp_clk 		: std_logic := '1';
 -- hold signals
-	signal rx_n_rdy			: std_logic := '0';
+	signal rx_n_rdy		: std_logic := '0';
 -- data signals
 	signal rx_bit 			: std_logic := '1';
 	signal show_num 		: std_logic_vector(7 downto 0);
-	signal ascii_display : std_logic_vector(7 downto 0);
+	signal ascii_display 	: std_logic_vector(7 downto 0);
 	
 ---------------------------------------------------------------------------------------------------------
 -- Define functions of circuit
@@ -38,6 +39,7 @@ architecture rtl of uart_rx is
 		variable majority_val : std_logic;
 		variable count_ones : integer := 0;
 	begin
+		/* Count number of ones in the vector */
 		if check_vector(0) = '1' then count_ones := count_ones + 1;
 		end if;
 		if check_vector(1) = '1' then count_ones := count_ones + 1;
@@ -52,6 +54,7 @@ architecture rtl of uart_rx is
 		end if;
 		if check_vector(6) = '1' then count_ones := count_ones + 1;
 		end if;
+		/* Return std_logic value 1 when most of the bits are 1 and 0 otherwise */
 		if count_ones > 3 then majority_val := '1';
 		else majority_val := '0';
 		end if;
@@ -63,12 +66,26 @@ architecture rtl of uart_rx is
 -------------------------------------------------------------------------------
 begin
 	
-	-------------------------------------------------------------------------
-	-- Process to handle segment display
-	-- 
-	-- TODO
-	-- turn what is now binary values to ASCII values
-	-------------------------------------------------------------------------
+	--------------------------------------------------------------------------
+	-- Code to handle segment display
+	--------------------------------------------------------------------------
+	with show_num select
+	ascii_display <= "11111001" when "00110001",
+				"10100100" when "00110010",
+				"10110000" when "00110011",
+				"10011001" when "00110100",
+				"10010010" when "00110101",
+				"10000010" when "00110110",
+				"11111000" when "00110111",
+				"10000000" when "00111000",
+				"10010000" when "00111001",
+				"10001000" when "01000001",
+				"10000011" when "01000010",
+				"11000110" when "01000011",
+				"10000000" when "01000100",
+				"10000110" when "01000101",
+				"10001110" when "01000110",
+				"11000000" when others;
 	/*
 	ascii_display <= "11111001" when show_num = "00110001" else
 				"10100100" when show_num = "00110010" else
@@ -87,24 +104,6 @@ begin
 				"10001110" when show_num = "01000110" else
 				"00110000";
 	*/
-	with show_num select
-	ascii_display <= "11111001" when "00110001",
-				"10100100" when "00110010",
-				"10110000" when "00110011",
-				"10011001" when "00110100",
-				"10010010" when "00110101",
-				"10000010" when "00110110",
-				"11111000" when "00110111",
-				"10000000" when "00111000",
-				"10010000" when "00111001",
-				"10001000" when "01000001",
-				"10000011" when "01000010",
-				"11000110" when "01000011",
-				"10000000" when "01000100",
-				"10000110" when "01000101",
-				"10001110" when "01000110",
-				"11000000" when others;
-	
 	-------------------------------------------------------------------------
 	-- Use system clock to generate oversampling clock and clk for baud rate.
 	-------------------------------------------------------------------------
@@ -116,12 +115,12 @@ begin
 		if rising_edge(clk) then
 			o_smp_clk_cnt := o_smp_clk_cnt + 1;
 			if (o_smp_clk_cnt >= o_smp_factor / 2) then 	-- Man deler på to fordi man endrer klokka etter en
-				o_smp_clk_cnt := 0;			-- periode, men man jo endre to ganger i løpe av en
-				o_smp_clk <= not o_smp_clk;		-- periode for å skape en puls.
+				o_smp_clk_cnt := 0;					-- periode, men man jo endre to ganger i løpe av en
+				o_smp_clk <= not o_smp_clk;			-- periode for å skape en puls.
 				
 				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
-				if (BAUD_clk_cnt >= o_smp_bits) then -- Baud rate clk sjekkes her for å effektivisere 
-					BAUD_clk_cnt := 0; -- programmet. Man unngår å sjekke hver eneste gang.
+				if (BAUD_clk_cnt >= o_smp_bits) then 	-- Baud rate clk sjekkes her for å effektivisere 
+					BAUD_clk_cnt := 0; 				-- programmet. Man unngår å sjekke hver eneste gang.
 					BAUD_clk <= not BAUD_clk;
 				end if;
 			end if;
@@ -178,8 +177,8 @@ begin
 				end if;
 			end if;
 			o_smp_cnt := o_smp_cnt + 1;
-			if o_smp_cnt >= 8 then -- siden vi sjekker etter at vi har økt telleren må
-				o_smp_cnt := 0;	  -- vi øke med en når man skal sjekke for samme tall.
+			if o_smp_cnt >= 8 then 	-- siden vi sjekker etter at vi har økt telleren må
+				o_smp_cnt := 0;	-- vi øke med en når man skal sjekke for samme tall.
 			end if;
 		end if;
 	end process;
@@ -201,7 +200,7 @@ begin
 			if rising_edge(clk) then
 				rx_led_cnt := rx_led_cnt + 1;
 				rx_busy_led <= '1';
-				if rx_led_cnt >= 50 /* 50 ms */ then 
+				if rx_led_cnt >= time_led_on /* 50 ms */ then 
 					rx_led_cnt := 0;
 					rx_busy_led <= '0';
 				end if;
