@@ -75,9 +75,9 @@ begin
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 2
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
+          RX_sig <= '1';				-- 3
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
+          RX_sig <= '1';				-- 4
 		wait for CLK_PER*5208;
           RX_sig <= '0';				-- 5
 		wait for CLK_PER*5208;
@@ -88,8 +88,9 @@ begin
           RX_sig <= '0'; 				-- 8
 		wait for CLK_PER*5208;
           RX_sig <= '1';				-- stop bit
+		wait for CLK_PER*5208;
 			 
-		assert ( ascii_display = "11000000")
+		assert ( ascii_display = "11000000") -- Test if recieved byte is displayed as 0
 			report "RX did not interprete the information correctly."
 			severity error;
 		----------------------
@@ -100,42 +101,9 @@ begin
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 2
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
+          RX_sig <= '1';				-- 3
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- 5
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 6
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- 7
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 8
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- stop bit
-		wait for CLK_PER*5208;
-		
-		assert ( ascii_display = "10001000")
-			report "RX did not interprete the information correctly."
-			severity error;
-		----------------------
-					wait for CLK_PER*5208*10;	-- Venter med å sende neste byte. 
-									-- Kan prøve å forsinke utenfor CLK_PER med ns.
-					
-		assert ( ascii_display = "10001000")
-			report "RX changed the information."
-			severity error;
-		----------------------
-
-		RX_sig <= '0';				-- start bit
-          wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 1
-          wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 2
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
+          RX_sig <= '1';				-- 4
 		wait for CLK_PER*5208;
           RX_sig <= '0';				-- 5
 		wait for CLK_PER*5208;
@@ -146,9 +114,42 @@ begin
           RX_sig <= '1';				-- 8
 		wait for CLK_PER*5208;
           RX_sig <= '1';				-- stop bit
+		wait for CLK_PER*5208;
+		
+		assert ( ascii_display = "11111000") -- Test if recieved byte is displayed as 7
+			report "RX did not interprete the information correctly."
+			severity error;
+		----------------------
+		wait for CLK_PER*5208*10;	-- Venter med å sende neste byte. 
+								-- Kan prøve å forsinke utenfor CLK_PER med ns.
+					
+		assert ( ascii_display = "11111000")
+			report "RX changed the information."
+			severity error;
+		----------------------
+
+		RX_sig <= '0';				-- start bit
+          wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 1
+          wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 2
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 3
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 4
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 5
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 6
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 7
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 8
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- stop bit
 		wait for CLK_PER*5208*3;
 		
-		assert ( ascii_display = "11111000")
+		assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
 			report "RX did not interprete the information correctly."
 			severity error;
 		assert false report "Testbench finished" severity failure;

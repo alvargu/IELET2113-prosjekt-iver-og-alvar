@@ -10,23 +10,23 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1_ModelSim
 Euart_rx
-Z0 w1698924714
+Z0 w1698929265
 Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 14
+!i122 18
 Z4 dC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX
 Z5 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
 Z6 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
 l0
 L5 1
-Vn]e4ZiS8e]RhklOin]?^A3
-!s100 JRo_aV;zF]23oXhn^SiDo2
+V[Yz:l@7KS:ZQlcPkDTQf11
+!s100 c8[^_4=^41Gz_L=DL8=lO2
 Z7 OV;C;2020.1;71
 33
-Z8 !s110 1698924970
+Z8 !s110 1698929604
 !i10b 1
-Z9 !s108 1698924970.000000
+Z9 !s108 1698929604.000000
 Z10 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
 Z11 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
 !i113 1
@@ -36,12 +36,12 @@ Artl
 R1
 R2
 R3
-DEx4 work 7 uart_rx 0 22 n]e4ZiS8e]RhklOin]?^A3
-!i122 14
+DEx4 work 7 uart_rx 0 22 [Yz:l@7KS:ZQlcPkDTQf11
+!i122 18
 l67
 L21 195
-V=I@711V`<:bgzFg9K;;P70
-!s100 _hfL`>g8mh@^ae_aT2Olm1
+VR92;Xlh][MWQQJjfA8]Oh3
+!s100 L??AAZOI?mc=iZNTej`dW2
 R7
 33
 R8
@@ -53,11 +53,11 @@ R11
 R12
 R13
 Euart_rx_tb
-Z14 w1698840985
+Z14 w1698929588
 R1
 R2
 R3
-!i122 15
+!i122 19
 R4
 Z15 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
 Z16 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
@@ -67,11 +67,11 @@ V`6mGWVKIXk4ADnneWUhaP0
 !s100 nkMZ[^^aG5;F@fE1O>[ie2
 R7
 33
-Z17 !s110 1698924971
+R8
 !i10b 1
 R9
-Z18 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
-Z19 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
+Z17 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
+Z18 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd|
 !i113 1
 R12
 R13
@@ -79,19 +79,19 @@ Asimulationmodel
 R1
 R2
 R3
-Z20 DEx4 work 10 uart_rx_tb 0 22 `6mGWVKIXk4ADnneWUhaP0
-!i122 15
+Z19 DEx4 work 10 uart_rx_tb 0 22 `6mGWVKIXk4ADnneWUhaP0
+!i122 19
 l38
-Z21 L9 149
-Z22 Vi<DBYZFXb1lzBCo?=]fXh2
-Z23 !s100 fd9C_^`Sg]b[CMe^SFDeR1
+Z20 L9 150
+V8Zni6joZ<4T0RCz>[1`Fh2
+!s100 ]XWFUIE^_fGf<8MCG2SVT1
 R7
 33
-R17
+R8
 !i10b 1
 R9
+R17
 R18
-R19
 !i113 1
 R12
 R13
