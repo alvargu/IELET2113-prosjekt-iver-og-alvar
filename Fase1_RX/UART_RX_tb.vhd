@@ -67,6 +67,8 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
+          RX_sig <= '1';				-- wait two periods
+          wait for CLK_PER*5208*2;
 		RX_sig <= '0';						-- start bit
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 1
@@ -124,8 +126,7 @@ begin
 			report "RX changed the information."
 			severity error;
 		----------------------
-          RX_sig <= '0';				-- wait two periods
-          wait for CLK_PER*5208*2;
+
 		RX_sig <= '0';				-- start bit
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 1
@@ -145,7 +146,7 @@ begin
           RX_sig <= '1';				-- 8
 		wait for CLK_PER*5208;
           RX_sig <= '1';				-- stop bit
-		wait for CLK_PER*5208;
+		wait for CLK_PER*5208*3;
 		
 		assert ( seg_ut = "11111000")
 			report "RX did not interprete the information correctly."
