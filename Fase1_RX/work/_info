@@ -10,23 +10,23 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1_ModelSim
 Euart_rx
-Z0 w1698774856
+Z0 w1698929265
 Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 4
+!i122 18
 Z4 dC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX
 Z5 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
 Z6 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd
 l0
 L5 1
-VAF=^Va1E@TJHTZj4Gh4ZB2
-!s100 ?]e6MC2cDJk6[Nk=XzWG_2
+V[Yz:l@7KS:ZQlcPkDTQf11
+!s100 c8[^_4=^41Gz_L=DL8=lO2
 Z7 OV;C;2020.1;71
 33
-Z8 !s110 1698775501
+Z8 !s110 1698929604
 !i10b 1
-Z9 !s108 1698775501.000000
+Z9 !s108 1698929604.000000
 Z10 !s90 -reportprogress|300|-work|work|C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
 Z11 !s107 C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd|
 !i113 1
@@ -36,12 +36,12 @@ Artl
 R1
 R2
 R3
-DEx4 work 7 uart_rx 0 22 AF=^Va1E@TJHTZj4Gh4ZB2
-!i122 4
-l64
-L20 164
-VNgP>fn66MnObM=ZYAXBMR2
-!s100 LRPKaVlK>M?;H>>cC>Z[90
+DEx4 work 7 uart_rx 0 22 [Yz:l@7KS:ZQlcPkDTQf11
+!i122 18
+l67
+L21 195
+VR92;Xlh][MWQQJjfA8]Oh3
+!s100 L??AAZOI?mc=iZNTej`dW2
 R7
 33
 R8
@@ -53,11 +53,11 @@ R11
 R12
 R13
 Euart_rx_tb
-Z14 w1698775483
+Z14 w1698929588
 R1
 R2
 R3
-!i122 5
+!i122 19
 R4
 Z15 8C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
 Z16 FC:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX_tb.vhd
@@ -80,11 +80,11 @@ R1
 R2
 R3
 Z19 DEx4 work 10 uart_rx_tb 0 22 `6mGWVKIXk4ADnneWUhaP0
-!i122 5
+!i122 19
 l38
-Z20 L9 148
-Z21 VQTYml:bORh^:YYRQ_3R`b3
-Z22 !s100 nRZ<gi2hFRmE``bc29ljn0
+Z20 L9 150
+V8Zni6joZ<4T0RCz>[1`Fh2
+!s100 ]XWFUIE^_fGf<8MCG2SVT1
 R7
 33
 R8

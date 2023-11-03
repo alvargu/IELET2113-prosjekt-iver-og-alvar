@@ -1,5 +1,5 @@
 Analysis & Synthesis report for UART_RX
-Wed Nov  1 13:00:58 2023
+Thu Nov  2 12:33:40 2023
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -48,16 +48,16 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Nov  1 13:00:58 2023          ;
+; Analysis & Synthesis Status        ; Successful - Thu Nov  2 12:33:40 2023          ;
 ; Quartus Prime Version              ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                      ; UART_RX                                        ;
 ; Top-level Entity Name              ; uart_rx                                        ;
 ; Family                             ; MAX 10                                         ;
-; Total logic elements               ; 318                                            ;
-;     Total combinational functions  ; 304                                            ;
-;     Dedicated logic registers      ; 125                                            ;
-; Total registers                    ; 125                                            ;
-; Total pins                         ; 10                                             ;
+; Total logic elements               ; 384                                            ;
+;     Total combinational functions  ; 369                                            ;
+;     Dedicated logic registers      ; 160                                            ;
+; Total registers                    ; 160                                            ;
+; Total pins                         ; 11                                             ;
 ; Total virtual pins                 ; 0                                              ;
 ; Total memory bits                  ; 0                                              ;
 ; Embedded Multiplier 9-bit elements ; 0                                              ;
@@ -167,7 +167,8 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -185,30 +186,30 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 318       ;
+; Estimated Total logic elements              ; 384       ;
 ;                                             ;           ;
-; Total combinational functions               ; 304       ;
+; Total combinational functions               ; 369       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 97        ;
-;     -- 3 input functions                    ; 17        ;
-;     -- <=2 input functions                  ; 190       ;
+;     -- 4 input functions                    ; 121       ;
+;     -- 3 input functions                    ; 26        ;
+;     -- <=2 input functions                  ; 222       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 211       ;
-;     -- arithmetic mode                      ; 93        ;
+;     -- normal mode                          ; 245       ;
+;     -- arithmetic mode                      ; 124       ;
 ;                                             ;           ;
-; Total registers                             ; 125       ;
-;     -- Dedicated logic registers            ; 125       ;
+; Total registers                             ; 160       ;
+;     -- Dedicated logic registers            ; 160       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 10        ;
+; I/O pins                                    ; 11        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 66        ;
-; Total fan-out                               ; 1170      ;
-; Average fan-out                             ; 2.61      ;
+; Maximum fan-out                             ; 99        ;
+; Total fan-out                               ; 1459      ;
+; Average fan-out                             ; 2.65      ;
 +---------------------------------------------+-----------+
 
 
@@ -217,7 +218,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |uart_rx                   ; 304 (304)           ; 125 (125)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 10   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
+; |uart_rx                   ; 369 (369)           ; 160 (160)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 11   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -237,12 +238,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 125   ;
+; Total registers                              ; 160   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 1     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 87    ;
+; Number of registers using Clock Enable       ; 120   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -252,10 +253,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; rx_bit                                 ; 10      ;
-; baud_clk                               ; 50      ;
+; \p_indicate_rx:rx_led_cnt[31]          ; 1       ;
+; rx_bit                                 ; 11      ;
+; baud_clk                               ; 51      ;
 ; o_smp_clk                              ; 11      ;
-; Total number of inverted registers = 3 ;         ;
+; Total number of inverted registers = 4 ;         ;
 +----------------------------------------+---------+
 
 
@@ -264,7 +266,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_rx|\p_data_seperation:cnt_data[0] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_rx|\p_data_seperation:cnt_data[2] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 
 
@@ -275,6 +277,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+----------+---------------------------------------------+
 ; f_clk          ; 50000000 ; Signed Integer                              ;
 ; BAUD_RATE      ; 9600     ; Signed Integer                              ;
+; time_led_on    ; 50       ; Signed Integer                              ;
 ; o_smp_bits     ; 8        ; Signed Integer                              ;
 +----------------+----------+---------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -285,23 +288,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 10                          ;
-; cycloneiii_ff         ; 125                         ;
-;     ENA               ; 87                          ;
+; boundary_port         ; 11                          ;
+; cycloneiii_ff         ; 160                         ;
+;     ENA               ; 120                         ;
 ;     SLD               ; 1                           ;
-;     plain             ; 37                          ;
-; cycloneiii_lcell_comb ; 305                         ;
-;     arith             ; 93                          ;
-;         2 data inputs ; 93                          ;
-;     normal            ; 212                         ;
+;     plain             ; 39                          ;
+; cycloneiii_lcell_comb ; 370                         ;
+;     arith             ; 124                         ;
+;         2 data inputs ; 124                         ;
+;     normal            ; 246                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 5                           ;
-;         2 data inputs ; 92                          ;
-;         3 data inputs ; 17                          ;
-;         4 data inputs ; 97                          ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 26                          ;
+;         4 data inputs ; 121                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 11.00                       ;
-; Average LUT depth     ; 7.51                        ;
+; Max LUT depth         ; 9.30                        ;
+; Average LUT depth     ; 6.42                        ;
 +-----------------------+-----------------------------+
 
 
@@ -310,7 +313,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -326,29 +329,29 @@ The equations can be found in C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-    Info: Processing started: Wed Nov  1 13:00:50 2023
+    Info: Processing started: Thu Nov  2 12:33:11 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off UART_RX -c UART_RX
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file uart_rx.vhd
-    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 20
+    Info (12022): Found design unit 1: uart_rx-rtl File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 21
     Info (12023): Found entity 1: uart_rx File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 5
 Info (12021): Found 0 design units, including 0 entities, in source file seg_handling_pkg.vhd
 Info (12127): Elaborating entity "UART_RX" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at UART_RX.vhd(28): object "rx_busy" assigned a value but never read File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 28
+Warning (10492): VHDL Process Statement warning at UART_RX.vhd(200): signal "clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 200
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 15
+    Warning (13410): Pin "seg_ut[7]" is stuck at VCC File: C:/Users/agudd/OneDrive/Documents/Skole/IELET2113/my_designs/Prosjekt/IELET2113-prosjekt-iver-og-alvar/Fase1_RX/UART_RX.vhd Line: 16
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 338 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 406 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 328 logic cells
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 395 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4871 megabytes
-    Info: Processing ended: Wed Nov  1 13:00:58 2023
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 4890 megabytes
+    Info: Processing ended: Thu Nov  2 12:33:40 2023
+    Info: Elapsed time: 00:00:29
+    Info: Total CPU time (on all processors): 00:00:06
 
 

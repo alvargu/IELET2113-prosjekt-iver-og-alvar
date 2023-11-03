@@ -20,7 +20,7 @@ architecture SimulationModel of UART_RX_tb is
 		------------------------------------------------------------------
 		-- define inputs and outputs of system
 		------------------------------------------------------------------
-		seg_ut 	: out std_logic_vector(NUM_BITS-1 downto 0);
+		ascii_display 	: out std_logic_vector(NUM_BITS-1 downto 0);
 		clk 		: in std_logic;
 		RX_sig 	: in std_logic
 		);
@@ -31,7 +31,7 @@ architecture SimulationModel of UART_RX_tb is
    -----------------------------------------------------------------------------
    -- DUT signals
 	
-	signal 	seg_ut    : std_logic_vector(NUM_BITS-1 downto 0);
+	signal 	ascii_display    : std_logic_vector(NUM_BITS-1 downto 0);
 	signal	clk 		: std_logic;
 	signal	RX_sig 	: std_logic;
 	
@@ -44,7 +44,7 @@ begin
    port map (
       clk     => clk,
       RX_sig => RX_sig,
-      seg_ut   => seg_ut
+      ascii_display   => ascii_display
    );
 
    -----------------------------------------------------------------------------
@@ -67,15 +67,17 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
+          RX_sig <= '1';				-- wait two periods
+          wait for CLK_PER*5208*2;
 		RX_sig <= '0';						-- start bit
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 1
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 2
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
+          RX_sig <= '1';				-- 3
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
+          RX_sig <= '1';				-- 4
 		wait for CLK_PER*5208;
           RX_sig <= '0';				-- 5
 		wait for CLK_PER*5208;
@@ -86,8 +88,9 @@ begin
           RX_sig <= '0'; 				-- 8
 		wait for CLK_PER*5208;
           RX_sig <= '1';				-- stop bit
+		wait for CLK_PER*5208;
 			 
-		assert ( seg_ut = "11000000")
+		assert ( ascii_display = "11000000") -- Test if recieved byte is displayed as 0
 			report "RX did not interprete the information correctly."
 			severity error;
 		----------------------
@@ -98,43 +101,9 @@ begin
           wait for CLK_PER*5208;
           RX_sig <= '0';				-- 2
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
+          RX_sig <= '1';				-- 3
 		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- 5
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 6
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- 7
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 8
-		wait for CLK_PER*5208;
-          RX_sig <= '1';				-- stop bit
-		wait for CLK_PER*5208;
-		
-		assert ( seg_ut = "10001000")
-			report "RX did not interprete the information correctly."
-			severity error;
-		----------------------
-					wait for CLK_PER*5208*10;	-- Venter med å sende neste byte. 
-									-- Kan prøve å forsinke utenfor CLK_PER med ns.
-					
-		assert ( seg_ut = "10001000")
-			report "RX changed the information."
-			severity error;
-		----------------------
-          RX_sig <= '0';				-- wait two periods
-          wait for CLK_PER*5208*2;
-		RX_sig <= '0';				-- start bit
-          wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 1
-          wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 2
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 3
-		wait for CLK_PER*5208;
-          RX_sig <= '0';				-- 4
+          RX_sig <= '1';				-- 4
 		wait for CLK_PER*5208;
           RX_sig <= '0';				-- 5
 		wait for CLK_PER*5208;
@@ -147,7 +116,40 @@ begin
           RX_sig <= '1';				-- stop bit
 		wait for CLK_PER*5208;
 		
-		assert ( seg_ut = "11111000")
+		assert ( ascii_display = "11111000") -- Test if recieved byte is displayed as 7
+			report "RX did not interprete the information correctly."
+			severity error;
+		----------------------
+		wait for CLK_PER*5208*10;	-- Venter med å sende neste byte. 
+								-- Kan prøve å forsinke utenfor CLK_PER med ns.
+					
+		assert ( ascii_display = "11111000")
+			report "RX changed the information."
+			severity error;
+		----------------------
+
+		RX_sig <= '0';				-- start bit
+          wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 1
+          wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 2
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 3
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 4
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 5
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 6
+		wait for CLK_PER*5208;
+          RX_sig <= '0';				-- 7
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- 8
+		wait for CLK_PER*5208;
+          RX_sig <= '1';				-- stop bit
+		wait for CLK_PER*5208*3;
+		
+		assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
 			report "RX did not interprete the information correctly."
 			severity error;
 		assert false report "Testbench finished" severity failure;

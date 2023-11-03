@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Wed Nov  1 13:00:58 2023
+Analysis & Synthesis Status : Successful - Thu Nov  2 12:33:40 2023
 Quartus Prime Version : 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 Revision Name : UART_RX
 Top-level Entity Name : uart_rx
 Family : MAX 10
-Total logic elements : 318
-    Total combinational functions : 304
-    Dedicated logic registers : 125
-Total registers : 125
-Total pins : 10
+Total logic elements : 384
+    Total combinational functions : 369
+    Dedicated logic registers : 160
+Total registers : 160
+Total pins : 11
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
