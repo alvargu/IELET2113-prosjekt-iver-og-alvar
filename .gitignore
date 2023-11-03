@@ -1,13 +1,14 @@
-Fase1_RX/db/
-Fase1_RX/incremental_db/
-
 # Ignore everything
 *
 
 # But not these files...
 !.gitignore
+!UART_RX.qpf
+!UART_RX.qsf
 !UART_RX.vhd
 !UART_RX_tb.vhd
+!UART_TX.qpf
+!UART_TX.qsf
 !UART_TX.vhd
 !UART_TX_tb.vhd
 # etc...
