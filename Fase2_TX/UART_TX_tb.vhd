@@ -115,15 +115,17 @@ begin
     -- type   : sequential
     --inputs  : BAUD_clk
     -----------------------------------------------------------------------------
-    p_collecting_bits : process(BAUD_clk, TX)
+    p_collecting_bits : process(BAUD_clk, TX, TX_on)
     variable bits_cnt: integer := 0; 
     begin
-        if rising_edge(BAUD_clk) then
-            bits_cnt := bits_cnt + 1;
-            x <= x(6 downto 0) & TX; -- Vet ikke hva x skal hete enda.
-            if (bits_cnt = 10) then
+        if TX_on = 1 then                       Vet ikke helt enda, må se på denne på nytt. IKKE FERDIG!
+            if rising_edge(BAUD_clk) then
+                bits_cnt := bits_cnt + 1;
+                x <= x(6 downto 0) & TX; -- Vet ikke hva x skal hete enda.
+                if (bits_cnt = 10) then
 
-                bits_cnt := 0;
+                    bits_cnt := 0;
+                end if;
             end if;
         end if;
     end process p_collecting_bits;
