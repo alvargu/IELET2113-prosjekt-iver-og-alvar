@@ -6,15 +6,15 @@ Fase1_RX/incremental_db/
 
 # But not these files...
 !.gitignore
-!*/Fase1_RX/UART_RX.vhd
-!*/Fase1_RX/UART_RX_tb.vhd
-!*/Fase2_TX/UART_TX.vhd
-!*/Fase2_TX/UART_TX_tb.vhd
+!UART_RX.vhd
+!UART_RX_tb.vhd
+!UART_TX.vhd
+!UART_TX_tb.vhd
 # etc...
 
 # ...even if they are in subdirectories
 !*/
 
 # if the files to be tracked are in subdirectories
-!*/a/b/file1.txt
-!*/a/b/c/*
+#!*/a/b/file1.txt
+#!*/a/b/c/*
