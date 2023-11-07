@@ -123,7 +123,7 @@ begin
                 bits_cnt := bits_cnt + 1;
                 col_bits <= col_bits(6 downto 0) & TX; -- Vet ikke hva x skal hete enda.
                 if (bits_cnt = 10) then
-
+                    col_bits <= "0000000";
                     bits_cnt := 0;
                 end if;
             end if;
