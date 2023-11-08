@@ -33,9 +33,9 @@ architecture SimulationModel of UART_TX_tb is
    -----------------------------------------------------------------------------
    -- DUT signals
 	
-   TX_byte 	: in std_logic_vector(NUM_BITS-1 downto 0);
-   TX_on, clk 		: in std_logic;
-   TX, TX_busy	: out std_logic;
+   signal TX_byte: std_logic_vector(NUM_BITS-1 downto 0);
+   signal TX_on, clk: std_logic;
+   signal TX, TX_busy: std_logic;
 
    signal BAUD_clk: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
@@ -82,7 +82,7 @@ begin
             end if;
             BAUD_cnt := BAUD_cnt + 1;
         end if;
-	end process p_clk;
+	end process p_BAUD_clk;
 
      -----------------------------------------------------------------------------
    -- purpose: control the input of the TX module.
@@ -108,7 +108,7 @@ begin
         wait for CLK_PER*5208*(10+1);   -- er skrudd på. Signalet vil bli sendt
                                         -- på nytt fordi vi rekker ikke å skru
                                         -- av sendesignalet på grunn av wait.
-        end process p_clk;
+        end process p_tx_byte;
 
     -----------------------------------------------------------------------------
     -- purpose: Collecting bits into a byte
@@ -117,7 +117,7 @@ begin
     -----------------------------------------------------------------------------
     p_collecting_bits : process(BAUD_clk, TX, TX_on)
     variable bits_cnt: integer := 0; 
-    variable s
+    --variable s
     begin
             if rising_edge(BAUD_clk) then
                 bits_cnt := bits_cnt + 1;
@@ -149,12 +149,12 @@ begin
 			report "TX did not send the information correctly."
 			severity error;
 
-        wait for CLK_PER*5208*(10+1)
+        wait for CLK_PER*5208*(10+1);
         assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
-            wait for CLK_PER*5208*(10+1)
+        wait for CLK_PER*5208*(10+1);
         assert ( col_bits = "10000001") -- 
 			report "TX did not send the information correctly."
 			severity error;

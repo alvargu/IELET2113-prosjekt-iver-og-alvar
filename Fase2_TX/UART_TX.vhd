@@ -48,8 +48,8 @@ begin
 	begin
 		if rising_edge(clk) then
 		baud_clk_cnt := baud_clk_cnt + 1; 
-			if (baud_clk_cnt >= baud_factor / 2) then 	-- baud rate clk sjekkes her for å effektivisere 
-				baud_clk_cnt := 0; 				-- programmet. Man unngår å sjekke hver eneste gang.
+			if (baud_clk_cnt >= baud_factor / 2) then
+				baud_clk_cnt := 0; 				
 				baud_clk <= not baud_clk;
 			end if;
 		end if;	
