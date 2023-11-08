@@ -33,9 +33,9 @@ architecture SimulationModel of UART_TX_tb is
    -----------------------------------------------------------------------------
    -- DUT signals
 	
-   TX_byte 	: in std_logic_vector(NUM_BITS-1 downto 0);
-   TX_on, clk 		: in std_logic;
-   TX, TX_busy	: out std_logic;
+   signal TX_byte: std_logic_vector(NUM_BITS-1 downto 0);
+   signal TX_on, clk: std_logic;
+   signal TX, TX_busy: std_logic;
 
    signal BAUD_clk: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
