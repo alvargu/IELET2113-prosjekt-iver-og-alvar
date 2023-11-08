@@ -11,8 +11,8 @@ entity uart is
 		);
 	port (
 		clk: in std_logic;
-     
-          tx_byte: in std_logic_vector(7 downto 0);
+		
+		tx_byte: in std_logic_vector(7 downto 0);
 		tx_on: in std_logic;
 		tx : out std_logic;
 		tx_busy: out std_logic;
