@@ -38,7 +38,7 @@ architecture SimulationModel of UART_TX_tb is
    TX, TX_busy	: out std_logic;
 
    signal BAUD_clk: std_logic := '0'; 
-   signal col_bits: std_logic_vector(N-1 downto 0) := "00000000";
+   signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
 	
 begin 
 
@@ -93,19 +93,19 @@ begin
 	begin 
 		TX_byte <= "00000000";          -- Sender en byte av null, passer å skru på
         TX_on <= '1';                   -- sendesignalet.
-        wait for CLK_PER*5208*(10)
+        wait for CLK_PER*5208*(10);
 
         TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
         TX_on <= '0';                   -- etter den er sendt.
-        wait for CLK_PER*5208*(10)
+        wait for CLK_PER*5208*(10);
 
 
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
-        wait for CLK_PER*5208*(10+1)    -- sendesignalet er skrudd av.
+        wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
 
         TX_on <= '1';                   
         TX_byte <= "10000001";          -- Signalet blir send fordi sendesignalet
-        wait for CLK_PER*5208*(10+1)    -- er skrudd på. Signalet vil bli sendt
+        wait for CLK_PER*5208*(10+1);   -- er skrudd på. Signalet vil bli sendt
                                         -- på nytt fordi vi rekker ikke å skru
                                         -- av sendesignalet på grunn av wait.
         end process p_clk;
@@ -115,17 +115,20 @@ begin
     -- type   : sequential
     --inputs  : BAUD_clk
     -----------------------------------------------------------------------------
-    p_collecting_bits : process(BAUD_clk, TX)
+    p_collecting_bits : process(BAUD_clk, TX, TX_on)
     variable bits_cnt: integer := 0; 
+    variable s
     begin
-        if rising_edge(BAUD_clk) then
-            bits_cnt := bits_cnt + 1;
-            x <= x(6 downto 0) & TX; -- Vet ikke hva x skal hete enda.
-            if (bits_cnt = 10) then
-
-                bits_cnt := 0;
+            if rising_edge(BAUD_clk) then
+                bits_cnt := bits_cnt + 1;
+                if bits_cnt < 2 AND bits_cnt < 10 then
+                    col_bits <= col_bits(6 downto 0) & TX;
+                end if;
+                if (bits_cnt = 10) then
+                    --col_bits <= "00000000";
+                    bits_cnt := 0;
+                end if;
             end if;
-        end if;
     end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------
@@ -136,8 +139,24 @@ begin
 	p_main : process
 	begin 
         
-        assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
-			report "RX did not interprete the information correctly."
+        wait for CLK_PER*5208*(10);
+        assert ( col_bits = "00000000") -- 
+			report "TX did not send the information correctly."
+			severity error;
+
+        wait for CLK_PER*5208*(10);
+        assert ( col_bits = "00001111") -- 
+			report "TX did not send the information correctly."
+			severity error;
+
+        wait for CLK_PER*5208*(10+1)
+        assert ( col_bits = "11110000") -- 
+			report "TX did not send the information correctly."
+			severity error;
+
+            wait for CLK_PER*5208*(10+1)
+        assert ( col_bits = "10000001") -- 
+			report "TX did not send the information correctly."
 			severity error;
         
 
