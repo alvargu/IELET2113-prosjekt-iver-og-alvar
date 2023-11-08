@@ -20,6 +20,7 @@
 !uart_tb.vhd
 !rx_pkg.vhd
 !tx_pkg.vhd
+!control_module.vhd
 # etc...
 
 # ...even if they are in subdirectories
