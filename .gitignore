@@ -3,14 +3,23 @@
 
 # But not these files...
 !.gitignore
+# Recieve module files 
 !UART_RX.qpf
 !UART_RX.qsf
 !UART_RX.vhd
 !UART_RX_tb.vhd
+# Transmit module files 
 !UART_TX.qpf
 !UART_TX.qsf
 !UART_TX.vhd
 !UART_TX_tb.vhd
+# Full project / UART module files 
+!uart.qpf
+!uart.qsf
+!uart.vhd
+!uart_tb.vhd
+!rx_pkg.vhd
+!tx_pkg.vhd
 # etc...
 
 # ...even if they are in subdirectories

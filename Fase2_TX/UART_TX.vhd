@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity uart_tx is 
 	generic (
 		constant f_clk: integer := 50_000_000;
-		constant baud_RATE: integer := 9600;
+		constant baud_rate: integer := 9600;
 		constant time_led_on: integer := 50 /* 50 ms */
 		);
 	port (
@@ -62,34 +62,99 @@ begin
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
 	p_data_tx : process(baud_clk, tx_byte, tx_on)
-		type t_state is (n_data, t_data);
-		variable state 	: t_state := n_data;
+		type t_state is (no_tx, t_start, t_byte, t_stop);
+		variable state 	: t_state := no_tx;
 		variable cnt_data 	: integer := 0;
 		variable tx_bit 	: std_logic := '1';
 	begin
 		if rising_edge(baud_clk) then
 			case state is 
-				when n_data =>
+				when no_tx =>
+					if tx_on = '0' then 
+						state := no_tx;
+						tx_rdy <= '0';
+					elsif tx_on = '1' then 
+						state := t_start;
+					end if;
+				when t_start =>
 					if tx_bit = '0' then 
-						state := t_data;
+						state := t_start;
 						tx_rdy <= '0';
 					elsif tx_bit = '1' then 
-						state := n_data;
+						if tx_on = '0' then 
+							state := no_tx;
+							tx_rdy <= '0';
+						elsif tx_on = '1' then 
+							state := t_start;
+						end if;
 					end if;
-				when t_data =>
+				when t_byte =>
 					if cnt_data < 8 then
 						tx_bit := tx_byte(7 - cnt_data);
+
 						cnt_data := cnt_data + 1;
-						state := t_data;
+						state := t_byte;
 					end if;
 					if cnt_data >= 8 then
-						state := n_data;
+						state := t_stop;
 						cnt_data := 0;
 						tx_rdy <= '1';
-					end if;						
+					end if;
+					tx <= tx_bit;
+				when t_stop =>
+					tx <= '1';
+					state := no_tx;						
 			end case;
 		end if;
 	end process;
+	/* 
+	p_data_tx : process(baud_clk, tx_byte, tx_on)
+		type t_state is (no_tx, t_start, t_byte, t_stop);
+		variable state 	: t_state := no_tx;
+		variable cnt_data 	: integer := 0;
+		variable tx_bit 	: std_logic := '1';
+	begin
+		if rising_edge(baud_clk) then
+			case state is 
+				when no_tx =>
+					if tx_on = '0' then 
+						state := no_tx;
+						tx_rdy <= '0';
+					elsif tx_on = '1' then 
+						state := t_start;
+					end if;
+				when t_start =>
+					if tx_bit = '0' then 
+						state := t_start;
+						tx_rdy <= '0';
+					elsif tx_bit = '1' then 
+						if tx_on = '0' then 
+							state := no_tx;
+							tx_rdy <= '0';
+						elsif tx_on = '1' then 
+							state := t_start;
+						end if;
+					end if;
+				when t_byte =>
+					if cnt_data < 8 then
+						tx_bit := tx_byte(7 - cnt_data);
+
+						cnt_data := cnt_data + 1;
+						state := t_byte;
+					end if;
+					if cnt_data >= 8 then
+						state := t_stop;
+						cnt_data := 0;
+						tx_rdy <= '1';
+					end if;
+					tx <= tx_bit;
+				when t_stop =>
+					tx <= '1';
+					state := no_tx;						
+			end case;
+		end if;
+	end process;
+	 */
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
