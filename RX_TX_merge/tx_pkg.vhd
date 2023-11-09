@@ -48,8 +48,8 @@ begin
 	begin
 		if rising_edge(clk) then
 		baud_clk_cnt := baud_clk_cnt + 1; 
-			if (baud_clk_cnt >= baud_factor / 2) then 	-- baud rate clk sjekkes her for å effektivisere 
-				baud_clk_cnt := 0; 				-- programmet. Man unngår å sjekke hver eneste gang.
+			if (baud_clk_cnt >= baud_factor / 2) then
+				baud_clk_cnt := 0; 				
 				baud_clk <= not baud_clk;
 			end if;
 		end if;	
@@ -73,25 +73,16 @@ begin
 					if tx_on = '0' then 
 						state := no_tx;
 						tx_rdy <= '0';
+						tx_bit := '1';
 					elsif tx_on = '1' then 
 						state := t_start;
 					end if;
 				when t_start =>
-					if tx_bit = '0' then 
-						state := t_start;
-						tx_rdy <= '0';
-					elsif tx_bit = '1' then 
-						if tx_on = '0' then 
-							state := no_tx;
-							tx_rdy <= '0';
-						elsif tx_on = '1' then 
-							state := t_start;
-						end if;
-					end if;
+					tx <= '0';
+					state := t_byte;
 				when t_byte =>
-					if cnt_data < 8 then
+					if cnt_data <= 7 then
 						tx_bit := tx_byte(7 - cnt_data);
-
 						cnt_data := cnt_data + 1;
 						state := t_byte;
 					end if;
@@ -123,34 +114,21 @@ begin
 					elsif tx_on = '1' then 
 						state := t_start;
 					end if;
-				when t_start =>
-					if tx_bit = '0' then 
-						state := t_start;
-						tx_rdy <= '0';
-					elsif tx_bit = '1' then 
-						if tx_on = '0' then 
-							state := no_tx;
-							tx_rdy <= '0';
-						elsif tx_on = '1' then 
-							state := t_start;
-						end if;
-					end if;
 				when t_byte =>
-					if cnt_data < 8 then
+					if cnt_data = 0 then
+						tx_bit := '0';
+						state := t_byte;
+					elsif cnt_data <= 8 then
 						tx_bit := tx_byte(7 - cnt_data);
-
 						cnt_data := cnt_data + 1;
 						state := t_byte;
-					end if;
-					if cnt_data >= 8 then
-						state := t_stop;
+					elsif cnt_data >= 9 then
+						state := no_tx;
 						cnt_data := 0;
 						tx_rdy <= '1';
+						tx_bit := '1';
 					end if;
-					tx <= tx_bit;
-				when t_stop =>
-					tx <= '1';
-					state := no_tx;						
+					tx <= tx_bit;						
 			end case;
 		end if;
 	end process;
