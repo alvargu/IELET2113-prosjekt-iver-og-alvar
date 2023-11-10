@@ -62,29 +62,26 @@ begin
 	-- Seperates data bits from stop and start bits
 	-------------------------------------------------------------------------
 	p_data_tx : process(baud_clk, tx_byte, tx_on)
-		type t_state is (no_tx, t_start, t_byte, t_stop);
-		variable state 	: t_state := no_tx;
+		type t_state is (t_start, t_byte, t_stop);
+		variable state 	: t_state := t_start;
 		variable cnt_data 	: integer := 0;
 		variable tx_bit 	: std_logic := '1';
 		variable transmiting_byte : std_logic_vector(7 downto 0) := "00000000";
+		variable tx_on_save : std_logic := '0';
 	begin
-		case state is 
-			when no_tx =>
-				if tx_on = '0' then 
-					state := no_tx;
-					tx_rdy <= '0';
-					tx <= '1';
-				elsif tx_on = '1' then 
-					state := t_start;
-					transmiting_byte := tx_byte;
-				end if;
-			when t_start =>
-				if rising_edge(baud_clk) then
+		if tx_on = '0' then 
+			tx_rdy <= '0'; -- look over this
+			tx <= '1';
+		elsif tx_on = '1' then 
+			tx_on_save := '1';
+		end if;
+		if rising_edge(baud_clk) and (tx_on or tx_on_save) then
+			case state is
+				when t_start =>
 					tx <= '0';
 					state := t_byte;
-				end if;
-			when t_byte =>
-				if rising_edge(baud_clk) then
+					transmiting_byte := tx_byte;
+				when t_byte =>
 					if cnt_data <= 7 then
 						tx_bit := transmiting_byte(7 - cnt_data);
 						cnt_data := cnt_data + 1;
@@ -93,16 +90,15 @@ begin
 					if cnt_data >= 8 then
 						state := t_stop;
 						cnt_data := 0;
-						tx_rdy <= '1';
+						tx_rdy <= '1'; -- look over this
 					end if;
 					tx <= tx_bit;
-				end if;
-			when t_stop =>
-				if rising_edge(baud_clk) then
+				when t_stop =>
 					tx <= '1';
-					state := no_tx;	
-				end if;					
-		end case;
+					state := t_start;
+					tx_on_save := '0';
+			end case;
+		end if;
 	end process;
 	/* 
 	p_data_tx : process(baud_clk, tx_byte, tx_on)
