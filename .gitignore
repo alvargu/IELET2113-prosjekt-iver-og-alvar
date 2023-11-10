@@ -13,6 +13,7 @@
 !UART_TX.qsf
 !UART_TX.vhd
 !UART_TX_tb.vhd
+!UART_TX_tb_V2.vhd
 # Full project / UART module files 
 !uart.qpf
 !uart.qsf
