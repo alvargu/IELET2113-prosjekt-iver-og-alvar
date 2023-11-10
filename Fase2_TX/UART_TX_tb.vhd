@@ -96,6 +96,7 @@ begin
         wait for CLK_PER*5208*(10);
 
         TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
+        wait for CLK_PER*5208*(1);
         TX_on <= '0';                   -- etter den er sendt.
         wait for CLK_PER*5208*(10);
 
