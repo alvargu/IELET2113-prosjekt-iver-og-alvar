@@ -12,7 +12,7 @@ entity uart_tx is
 		tx_byte: in std_logic_vector(7 downto 0);
 		clk: in std_logic;
 		tx_on: in std_logic;
-		tx : out std_logic;
+		tx : out std_logic := '1';
 		tx_busy: out std_logic
 		-- ascii_display: out std_logic_vector(7 downto 0)
 		);
@@ -66,23 +66,27 @@ begin
 		variable state 	: t_state := no_tx;
 		variable cnt_data 	: integer := 0;
 		variable tx_bit 	: std_logic := '1';
+		variable transmiting_byte : std_logic_vector(7 downto 0) := "00000000";
 	begin
-		if rising_edge(baud_clk) then
-			case state is 
-				when no_tx =>
-					if tx_on = '0' then 
-						state := no_tx;
-						tx_rdy <= '0';
-						tx_bit := '1';
-					elsif tx_on = '1' then 
-						state := t_start;
-					end if;
-				when t_start =>
+		case state is 
+			when no_tx =>
+				if tx_on = '0' then 
+					state := no_tx;
+					tx_rdy <= '0';
+					tx <= '1';
+				elsif tx_on = '1' then 
+					state := t_start;
+					transmiting_byte := tx_byte;
+				end if;
+			when t_start =>
+				if rising_edge(baud_clk) then
 					tx <= '0';
 					state := t_byte;
-				when t_byte =>
+				end if;
+			when t_byte =>
+				if rising_edge(baud_clk) then
 					if cnt_data <= 7 then
-						tx_bit := tx_byte(7 - cnt_data);
+						tx_bit := transmiting_byte(7 - cnt_data);
 						cnt_data := cnt_data + 1;
 						state := t_byte;
 					end if;
@@ -92,11 +96,13 @@ begin
 						tx_rdy <= '1';
 					end if;
 					tx <= tx_bit;
-				when t_stop =>
+				end if;
+			when t_stop =>
+				if rising_edge(baud_clk) then
 					tx <= '1';
-					state := no_tx;						
-			end case;
-		end if;
+					state := no_tx;	
+				end if;					
+		end case;
 	end process;
 	/* 
 	p_data_tx : process(baud_clk, tx_byte, tx_on)
