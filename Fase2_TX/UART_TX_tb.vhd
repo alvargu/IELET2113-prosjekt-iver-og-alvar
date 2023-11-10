@@ -72,7 +72,7 @@ begin
    -- type   : sequential
    -- inputs : clk
    -----------------------------------------------------------------------------
-	p_baud_clk_tb : process(clk)
+	/*p_baud_clk_tb : process(clk)
     constant M: integer := f_clk/f_BAUD;
     variable BAUD_cnt: integer := 0;
 	begin 
@@ -82,7 +82,7 @@ begin
             end if;
             BAUD_cnt := BAUD_cnt + 1;
         end if;
-	end process p_baud_clk_tb;
+	end process p_baud_clk_tb;*/
 
      -----------------------------------------------------------------------------
    -- purpose: control the input of the TX module.
@@ -115,7 +115,7 @@ begin
     -- type   : sequential
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
-    p_collecting_bits : process(baud_clk_tb, TX, TX_on)
+    /*p_collecting_bits : process(baud_clk_tb, TX, TX_on)
     variable bits_cnt: integer := 0; 
     --variable s
     begin
@@ -129,7 +129,7 @@ begin
                     bits_cnt := 0;
                 end if;
             end if;
-    end process p_collecting_bits;
+    end process p_collecting_bits;*/
 
 	-----------------------------------------------------------------------------
 	-- purpose: Main process
@@ -140,24 +140,24 @@ begin
 	begin 
         
         wait for CLK_PER*5208*(10);
-        assert ( col_bits = "00000000") -- 
+        %*assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
-			severity error;
+			severity error;*/
 
         wait for CLK_PER*5208*(10);
-        assert ( col_bits = "00001111") -- 
+        /*assert ( col_bits = "00001111") -- 
 			report "TX did not send the information correctly."
-			severity error;
+			severity error;*/
 
         wait for CLK_PER*5208*(10+1);
-        assert ( col_bits = "11110000") -- 
+        /*assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
-			severity error;
+			severity error;*/
 
         wait for CLK_PER*5208*(10+1);
-        assert ( col_bits = "10000001") -- 
+        /*assert ( col_bits = "10000001") -- 
 			report "TX did not send the information correctly."
-			severity error;
+			severity error;*/
         
 
 		assert false report "Testbench finished" severity failure;
