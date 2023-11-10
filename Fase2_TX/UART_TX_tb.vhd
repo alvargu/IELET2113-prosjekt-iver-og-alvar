@@ -140,7 +140,7 @@ begin
 	begin 
         
         wait for CLK_PER*5208*(10);
-        %*assert ( col_bits = "00000000") -- 
+        /*assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
 			severity error;*/
 
