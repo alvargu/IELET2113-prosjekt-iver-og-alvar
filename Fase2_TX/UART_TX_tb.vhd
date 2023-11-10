@@ -37,7 +37,7 @@ architecture SimulationModel of UART_TX_tb is
    signal TX_on, clk: std_logic;
    signal TX, TX_busy: std_logic;
 
-   signal BAUD_clk: std_logic := '0'; 
+   signal baud_clk_tb: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
 	
 begin 
@@ -68,21 +68,21 @@ begin
 	end process p_clk;
 
        -----------------------------------------------------------------------------
-   -- purpose: control the BAUD_clk-signal
+   -- purpose: control the baud_clk_tb-signal
    -- type   : sequential
    -- inputs : clk
    -----------------------------------------------------------------------------
-	p_BAUD_clk : process(clk)
+	p_baud_clk_tb : process(clk)
     constant M: integer := f_clk/f_BAUD;
     variable BAUD_cnt: integer := 0;
 	begin 
 		if rising_edge(clk) then
             if BAUD_cnt = M/2 then 
-                BAUD_clk <= not BAUD_clk;
+                baud_clk_tb <= not baud_clk_tb;
             end if;
             BAUD_cnt := BAUD_cnt + 1;
         end if;
-	end process p_BAUD_clk;
+	end process p_baud_clk_tb;
 
      -----------------------------------------------------------------------------
    -- purpose: control the input of the TX module.
@@ -113,13 +113,13 @@ begin
     -----------------------------------------------------------------------------
     -- purpose: Collecting bits into a byte
     -- type   : sequential
-    --inputs  : BAUD_clk
+    --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
-    p_collecting_bits : process(BAUD_clk, TX, TX_on)
+    p_collecting_bits : process(baud_clk_tb, TX, TX_on)
     variable bits_cnt: integer := 0; 
     --variable s
     begin
-            if rising_edge(BAUD_clk) then
+            if rising_edge(baud_clk_tb) then
                 bits_cnt := bits_cnt + 1;
                 if bits_cnt < 2 AND bits_cnt < 10 then
                     col_bits <= col_bits(6 downto 0) & TX;
