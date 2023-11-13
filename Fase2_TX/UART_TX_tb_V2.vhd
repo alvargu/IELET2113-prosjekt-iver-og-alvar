@@ -39,6 +39,9 @@ architecture SimulationModel of UART_TX_tb is
 
    signal baud_clk_tb: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
+   signal cnt_test: integer := 0;
+
+	
 	
 begin 
 
@@ -102,7 +105,7 @@ begin
 
 
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
-        wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
+        wait for CLK_PER*5208*(10);   -- sendesignalet er skrudd av.
 
         TX_on <= '1';
         TX_byte <= "10000001";
@@ -119,23 +122,25 @@ begin
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
     p_collecting_bits : process(baud_clk_tb, TX, TX_on)
-    variable bits_cnt: integer := 0; 
-    variable tx_on_save: std_logic := '0';
+    	variable bits_cnt: integer := 0; 
+    	variable tx_on_save: std_logic := '0';
     begin
 	
-    if rising_edge(baud_clk_tb) then
-        if TX_on = '1' or tx_on_save = '1' then
-            tx_on_save := '1';
-            bits_cnt := bits_cnt + 1;
-            if bits_cnt > 2 AND bits_cnt < 10 then
-                col_bits <= col_bits(6 downto 0) & TX;
-            elsif (bits_cnt = 10) then
-                --col_bits <= "00000000";
-                bits_cnt := 0;
-                tx_on_save := '0';
-            end if;
-        end if;
+    	if rising_edge(baud_clk_tb) then
+        	if TX_on = '1' or tx_on_save = '1' then
+           		tx_on_save := '1';
+            		if bits_cnt > 0 AND bits_cnt < 9 then
+                		col_bits <= col_bits(6 downto 0) & TX;
+			end if;
+			bits_cnt := bits_cnt + 1;
+            		if (bits_cnt = 10) then
+                		--col_bits <= "00000000";
+                		bits_cnt := 0;
+                		tx_on_save := '0';
+           	 	end if;
+       		end if;
 	end if;
+	cnt_test <= bits_cnt;
     end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------
@@ -151,17 +156,17 @@ begin
 			report "TX did not send the information correctly."
 			severity error;
 
-        wait for CLK_PER*5208*(10+1);
+        wait for CLK_PER*5208*(10);
         assert ( col_bits = "00001111") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
-        wait for CLK_PER*5208*(10+1);
+        wait for CLK_PER*5208*(10);
         assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
-        wait for CLK_PER*5208*(10+1);
+        wait for CLK_PER*5208*(10+2);
         assert ( col_bits = "10000001") -- 
 			report "TX did not send the information correctly."
 			severity error;
