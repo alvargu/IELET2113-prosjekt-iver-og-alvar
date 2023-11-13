@@ -5,15 +5,15 @@ use ieee.numeric_std.all;
 entity uart_tx is 
 	generic (
 		constant f_clk: integer := 50_000_000;
-		constant baud_rate: integer := 9600;
-		constant time_led_on: integer := 50 /* 50 ms */
+		constant baud_rate: integer := 9600
+		-- constant time_led_on: integer := 50 /* 50 ms */
 		);
 	port (
 		tx_byte: in std_logic_vector(7 downto 0);
 		clk: in std_logic;
 		tx_on: in std_logic;
 		tx : out std_logic := '1';
-		tx_busy: out std_logic
+		tx_busy: out std_logic := '0'
 		-- ascii_display: out std_logic_vector(7 downto 0)
 		);
 end entity;		
@@ -157,7 +157,7 @@ begin
 			if rising_edge(clk) then
 				tx_led_cnt := tx_led_cnt + 1;
 				tx_led <= '1';
-				if tx_led_cnt >= time_led_on /* 50 ms / then 
+				if tx_led_cnt >= time_led_on then -- 50 ms
 					tx_led_cnt := 0;
 					tx_led <= '0';
 				end if;
