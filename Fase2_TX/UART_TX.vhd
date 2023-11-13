@@ -69,35 +69,37 @@ begin
 		variable transmiting_byte : std_logic_vector(7 downto 0) := "00000000";
 		variable tx_on_save : std_logic := '0';
 	begin
-		if tx_on = '0' then 
-			tx_rdy <= '0'; -- look over this
-			tx <= '1';
-		elsif tx_on = '1' then 
-			tx_on_save := '1';
-		end if;
-		if rising_edge(baud_clk) and (tx_on = '1' or tx_on_save = '1') then
-			case state is
-				when t_start =>
-					tx <= '0';
-					state := t_byte;
-					transmiting_byte := tx_byte;
-				when t_byte =>
-					if cnt_data <= 7 then
-						tx_bit := transmiting_byte(7 - cnt_data);
-						cnt_data := cnt_data + 1;
+		if rising_edge(baud_clk) then
+			if tx_on = '0' then 
+				tx_rdy <= '0'; -- look over this
+				tx <= '1';
+			elsif tx_on = '1' then 
+				tx_on_save := '1';
+			end if;
+			if (tx_on = '1' or tx_on_save = '1') then
+				case state is
+					when t_start =>
+						tx <= '0';
 						state := t_byte;
-					end if;
-					if cnt_data >= 8 then
-						state := t_stop;
-						cnt_data := 0;
-						tx_rdy <= '1'; -- look over this
-					end if;
-					tx <= tx_bit;
-				when t_stop =>
-					tx <= '1';
-					state := t_start;
-					tx_on_save := '0';
-			end case;
+						transmiting_byte := tx_byte;
+					when t_byte =>
+						if cnt_data <= 7 then
+							tx_bit := transmiting_byte(7 - cnt_data);
+							cnt_data := cnt_data + 1;
+							state := t_byte;
+						end if;
+						if cnt_data >= 8 then
+							state := t_stop;
+							cnt_data := 0;
+							tx_rdy <= '1'; -- look over this
+						end if;
+						tx <= tx_bit;
+					when t_stop =>
+						tx <= '1';
+						state := t_start;
+						tx_on_save := '0';
+				end case;
+			end if;
 		end if;
 	end process;
 	/* 
