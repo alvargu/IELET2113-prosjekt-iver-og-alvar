@@ -13,7 +13,7 @@ entity uart_tx is
 		clk: in std_logic;
 		tx_on: in std_logic;
 		tx : out std_logic := '1';
-		tx_led: out std_logic
+		tx_busy: out std_logic
 		-- ascii_display: out std_logic_vector(7 downto 0)
 		);
 end entity;		
@@ -26,7 +26,7 @@ architecture rtl of uart_tx is
 -- clk signals
 	signal baud_clk 	: std_logic := '1';
 -- hold signals
-	signal tx_rdy		: std_logic := '0';
+	-- signal tx_rdy		: std_logic := '0';
 -- data signals
 	
 	
@@ -71,12 +71,13 @@ begin
 	begin
 		if rising_edge(baud_clk) then
 			if tx_on = '0' then 
-				tx_rdy <= '0'; -- look over this
+				tx_busy <= '0'; -- look over this
 				tx <= '1';
 			elsif tx_on = '1' then 
 				tx_on_save := '1';
 			end if;
 			if (tx_on = '1' or tx_on_save = '1') then
+				tx_busy <= '1';
 				case state is
 					when t_start =>
 						tx <= '0';
@@ -97,7 +98,7 @@ begin
 						tx <= '1';
 						state := t_start;
 						tx_on_save := '0';
-						tx_rdy <= '1'; -- look over this
+						tx_busy <= '0'; -- look over this
 				end case;
 			end if;
 		end if;
@@ -144,6 +145,7 @@ begin
 	-------------------------------------------------------------------------
 	-- 
 	-------------------------------------------------------------------------
+	/*
 	p_indicate_tx : process (tx_rdy)
 		variable tx_led_cnt : integer;
 		variable tx_led_on : std_logic := '0';
@@ -155,13 +157,13 @@ begin
 			if rising_edge(clk) then
 				tx_led_cnt := tx_led_cnt + 1;
 				tx_led <= '1';
-				if tx_led_cnt >= time_led_on /* 50 ms */ then 
+				if tx_led_cnt >= time_led_on /* 50 ms / then 
 					tx_led_cnt := 0;
 					tx_led <= '0';
 				end if;
 			end if;
 		end if;
-	end process;
+	end process;*/
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
