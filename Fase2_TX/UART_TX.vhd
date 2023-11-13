@@ -75,7 +75,7 @@ begin
 		elsif tx_on = '1' then 
 			tx_on_save := '1';
 		end if;
-		if rising_edge(baud_clk) and (tx_on or tx_on_save) then
+		if rising_edge(baud_clk) and (tx_on = '1' or tx_on_save = '1') then
 			case state is
 				when t_start =>
 					tx <= '0';
