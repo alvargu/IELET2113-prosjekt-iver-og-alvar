@@ -48,8 +48,7 @@ begin
      tx_module : entity work.uart_tx
           generic map (
                f_clk => f_clk,
-               baud_rate => baud_rate,
-               time_led_on => time_led_on
+               baud_rate => baud_rate
                )
           port map (
                tx_byte => tx_byte,
