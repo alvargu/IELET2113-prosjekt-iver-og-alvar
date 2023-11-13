@@ -98,46 +98,10 @@ begin
 						tx <= '1';
 						state := t_start;
 						tx_on_save := '0';
-						tx_busy <= '0'; -- look over this
 				end case;
 			end if;
 		end if;
 	end process;
-	/* 
-	p_data_tx : process(baud_clk, tx_byte, tx_on)
-		type t_state is (no_tx, t_start, t_byte, t_stop);
-		variable state 	: t_state := no_tx;
-		variable cnt_data 	: integer := 0;
-		variable tx_bit 	: std_logic := '1';
-	begin
-		if rising_edge(baud_clk) then
-			case state is 
-				when no_tx =>
-					if tx_on = '0' then 
-						state := no_tx;
-						tx_rdy <= '0';
-					elsif tx_on = '1' then 
-						state := t_start;
-					end if;
-				when t_byte =>
-					if cnt_data = 0 then
-						tx_bit := '0';
-						state := t_byte;
-					elsif cnt_data <= 8 then
-						tx_bit := tx_byte(7 - cnt_data);
-						cnt_data := cnt_data + 1;
-						state := t_byte;
-					elsif cnt_data >= 9 then
-						state := no_tx;
-						cnt_data := 0;
-						tx_rdy <= '1';
-						tx_bit := '1';
-					end if;
-					tx <= tx_bit;						
-			end case;
-		end if;
-	end process;
-	 */
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
