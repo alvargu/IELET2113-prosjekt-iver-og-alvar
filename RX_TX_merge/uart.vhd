@@ -21,31 +21,28 @@ entity uart is
 		rx_busy_led: out std_logic;
 		ascii_display: out std_logic_vector(7 downto 0)
 		);
-	
-
 end entity;
 		
 architecture rtl of uart is 
 
+     signal rx_n_rdy : std_logic := '0';
+     signal show_num : std_logic_vector(7 downto 0);
 
-
-begin 
-
-     rx_module : entity work.uart_rx
+begin
+     rx_module : entity work.uart_rx_pkg
           generic map (
                f_clk => f_clk,
                BAUD_RATE => BAUD_RATE,
-               time_led_on => time_led_on,
                o_smp_bits => o_smp_bits
                )
           port map (
                RX_sig => RX_sig,
                clk => clk,
-               rx_busy_led => rx_busy_led,
-               ascii_display => ascii_display
+               rx_n_rdy => rx_n_rdy,
+               show_num => show_num
                );
 
-     tx_module : entity work.uart_tx
+     tx_module : entity work.uart_tx_pkg
           generic map (
                f_clk => f_clk,
                baud_rate => baud_rate
@@ -57,10 +54,10 @@ begin
                tx => tx,
                tx_busy => tx_busy
                );
-
-     --------------------------------------------------------------------------
+					
+	--  rx Control module ############################
+	--------------------------------------------------------------------------
 	-- Code to handle segment display
-     -- Control module ############################
 	--------------------------------------------------------------------------
 	with show_num select
 	ascii_display <= "11111001" when "00110001", -- 1
@@ -80,8 +77,11 @@ begin
 				"10001110" when "01000110", -- F
 				"11000000" when others; -- 0
 	-------------------------------------------------------------------------
-	-- 
+	-- ######################################################################
 	-------------------------------------------------------------------------
+	--------------------------------------------------------------------------
+	-- Code to handle rx indication led
+	--------------------------------------------------------------------------
 	p_indicate_rx : process (rx_n_rdy)
 		variable rx_led_cnt : integer;
 		variable rx_led_on : std_logic := '0';
@@ -101,6 +101,17 @@ begin
 		end if;
 	end process;
 	-------------------------------------------------------------------------
-	-- 
+	-- ######################################################################
 	-------------------------------------------------------------------------
+	
+	--  tx Control module ############################
+	--------------------------------------------------------------------------
+	-- 
+	--------------------------------------------------------------------------
+	
+	-------------------------------------------------------------------------
+	-- ######################################################################
+	-------------------------------------------------------------------------
+	
+	
 end architecture;

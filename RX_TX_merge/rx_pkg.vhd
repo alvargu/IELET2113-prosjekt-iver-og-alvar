@@ -2,23 +2,24 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity uart_rx is 
+entity uart_rx_pkg is 
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant BAUD_RATE: integer := 9600;
-		constant time_led_on: integer := 50; /* 50 ms */
+		-- constant time_led_on: integer := 50; /* 50 ms */
 		constant o_smp_bits: integer := 8
 		);
 	port (
-		RX_sig : in std_logic;
-		clk: in std_logic;
-		rx_busy_led: out std_logic;
-		ascii_display: out std_logic_vector(7 downto 0)
+		RX_sig 		: in std_logic;
+		clk			: in std_logic;
+		rx_n_rdy		: out std_logic;
+		show_num 		: out std_logic_vector(7 downto 0)
+		-- ascii_display	: out std_logic_vector(7 downto 0)
 		);
 end entity;		
 
 		
-architecture rtl of uart_rx is 
+architecture rtl of uart_rx_pkg is 
 -------------------------------------------------------------------------------
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
@@ -26,10 +27,9 @@ architecture rtl of uart_rx is
 	signal baud_clk 		: std_logic := '1';
 	signal o_smp_clk 		: std_logic := '1';
 -- hold signals
-	signal rx_n_rdy		: std_logic := '0';
+	
 -- data signals
 	signal rx_bit 			: std_logic := '1';
-	signal show_num 		: std_logic_vector(7 downto 0);
 	-- signal ascii_display 	: std_logic_vector(7 downto 0);
 	
 ---------------------------------------------------------------------------------------------------------
