@@ -104,7 +104,7 @@ begin
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
         wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
 
-        TX_on <= '1';                   
+        TX_on <= '1';
         TX_byte <= "10000001";
 	wait for CLK_PER*5208*(1);
 	TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
@@ -122,14 +122,14 @@ begin
     variable bits_cnt: integer := 0; 
     variable tx_on_save: std_logic := '0';
     begin
-	if TX_on = '1' or tx_on_save = '1' then
-        tx_on_save := '1';
-        if rising_edge(baud_clk_tb) then
+	
+    if rising_edge(baud_clk_tb) then
+        if TX_on = '1' or tx_on_save = '1' then
+            tx_on_save := '1';
             bits_cnt := bits_cnt + 1;
             if bits_cnt > 2 AND bits_cnt < 10 then
                 col_bits <= col_bits(6 downto 0) & TX;
-            end if;
-            if (bits_cnt = 10) then
+            elsif (bits_cnt = 10) then
                 --col_bits <= "00000000";
                 bits_cnt := 0;
                 tx_on_save := '0';
