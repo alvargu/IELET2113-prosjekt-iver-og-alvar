@@ -101,7 +101,7 @@ begin
 
         TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
         TX_on <= '0';                   -- etter den er sendt.
-        wait for CLK_PER*5208*(10);
+        wait for CLK_PER*5208*(10+1);
 
 
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
@@ -109,8 +109,8 @@ begin
 
         TX_on <= '1';
         TX_byte <= "10000001";
-	wait for CLK_PER*5208*(1);
-	TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
+	    wait for CLK_PER*5208*(1);
+	    TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
         wait for CLK_PER*5208*(10+1);   -- er skrudd pÃ¥. Signalet vil bli sendt
                                         -- pÃ¥ nytt fordi vi rekker ikke Ã¥ skru
                                         -- av sendesignalet pÃ¥ grunn av wait.
