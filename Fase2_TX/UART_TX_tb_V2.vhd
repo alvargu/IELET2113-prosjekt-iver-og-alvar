@@ -118,19 +118,21 @@ begin
     -----------------------------------------------------------------------------
     p_collecting_bits : process(baud_clk_tb, TX, TX_on)
     variable bits_cnt: integer := 0; 
-    --variable s
+    variable tx_on_save: std_logic := '0';
     begin
-	if TX_on = '1' then
-            if rising_edge(baud_clk_tb) then
-                bits_cnt := bits_cnt + 1;
-                if bits_cnt > 2 AND bits_cnt < 10 then
-                    col_bits <= col_bits(6 downto 0) & TX;
-                end if;
-                if (bits_cnt = 10) then
-                    --col_bits <= "00000000";
-                    bits_cnt := 0;
-                end if;
+	if TX_on = '1' or tx_on_save = '1' then
+        tx_on_save := '1';
+        if rising_edge(baud_clk_tb) then
+            bits_cnt := bits_cnt + 1;
+            if bits_cnt > 2 AND bits_cnt < 10 then
+                col_bits <= col_bits(6 downto 0) & TX;
             end if;
+            if (bits_cnt = 10) then
+                --col_bits <= "00000000";
+                bits_cnt := 0;
+                tx_on_save := '0';
+            end if;
+        end if;
 	end if;
     end process p_collecting_bits;
 
