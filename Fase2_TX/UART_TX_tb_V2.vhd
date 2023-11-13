@@ -105,7 +105,9 @@ begin
         wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
 
         TX_on <= '1';                   
-        TX_byte <= "10000001";          -- Signalet blir send fordi sendesignalet
+        TX_byte <= "10000001";
+	wait for CLK_PER*5208*(1);
+	TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
         wait for CLK_PER*5208*(10+1);   -- er skrudd pÃ¥. Signalet vil bli sendt
                                         -- pÃ¥ nytt fordi vi rekker ikke Ã¥ skru
                                         -- av sendesignalet pÃ¥ grunn av wait.
