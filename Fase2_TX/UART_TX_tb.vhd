@@ -145,7 +145,7 @@ begin
 			report "TX did not send the information correctly."
 			severity error;*/
 
-        wait for CLK_PER*5208*(10);
+        wait for CLK_PER*5208*(10+1);
         /*assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
 			severity error;*/
