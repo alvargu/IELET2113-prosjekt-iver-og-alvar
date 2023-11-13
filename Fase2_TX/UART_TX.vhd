@@ -13,7 +13,7 @@ entity uart_tx is
 		clk: in std_logic;
 		tx_on: in std_logic;
 		tx : out std_logic := '1';
-		tx_busy: out std_logic
+		tx_led: out std_logic
 		-- ascii_display: out std_logic_vector(7 downto 0)
 		);
 end entity;		
@@ -91,13 +91,13 @@ begin
 						if cnt_data >= 8 then
 							state := t_stop;
 							cnt_data := 0;
-							tx_rdy <= '1'; -- look over this
 						end if;
 						tx <= tx_bit;
 					when t_stop =>
 						tx <= '1';
 						state := t_start;
 						tx_on_save := '0';
+						tx_rdy <= '1'; -- look over this
 				end case;
 			end if;
 		end if;
@@ -154,10 +154,10 @@ begin
 		if tx_led_on = '1' then
 			if rising_edge(clk) then
 				tx_led_cnt := tx_led_cnt + 1;
-				tx_busy <= '1';
+				tx_led <= '1';
 				if tx_led_cnt >= time_led_on /* 50 ms */ then 
 					tx_led_cnt := 0;
-					tx_busy <= '0';
+					tx_led <= '0';
 				end if;
 			end if;
 		end if;
