@@ -92,18 +92,21 @@ begin
    -----------------------------------------------------------------------------
 	p_tx_byte : process
 	begin 
+        -----------------------------------------------------------------------
 		TX_byte <= "00000000";          -- Sender en byte av null, passer Ã¥ skru pÃ¥
         TX_on <= '1';                   -- sendesignalet.
         wait for CLK_PER*5208*(10);
 
+        -----------------------------------------------------------------------
         TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
         TX_on <= '0';                   -- etter den er sendt.
-        wait for CLK_PER*5208*(10+1);
+        wait for CLK_PER*5208*(10);
 
-
+        -----------------------------------------------------------------------
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
-        wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
+        wait for CLK_PER*5208*(10);   -- sendesignalet er skrudd av.
         
+        -----------------------------------------------------------------------
         TX_on <= '1';
         TX_byte <= "10000001";
 	    wait for CLK_PER*5208*(1);
@@ -119,23 +122,23 @@ begin
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
     p_collecting_bits : process(baud_clk_tb, TX, TX_on)
-    variable bits_cnt: integer := 0; 
-    variable tx_on_save: std_logic := '0';
+        variable bits_cnt: integer := 0; 
+        variable tx_on_save: std_logic := '0';
     begin
-	
-    if rising_edge(baud_clk_tb) then
-        if TX_on = '1' or tx_on_save = '1' then
-            tx_on_save := '1';
-            bits_cnt := bits_cnt + 1;
-            if bits_cnt > 2 AND bits_cnt < 10 then
-                col_bits <= col_bits(6 downto 0) & TX;
-            elsif (bits_cnt = 10) then
-                --col_bits <= "00000000";
-                bits_cnt := 0;
-                tx_on_save := '0';
+        if rising_edge(baud_clk_tb) then
+            if TX_on = '1' or tx_on_save = '1' then
+                tx_on_save := '1';
+                if bits_cnt > 1 AND bits_cnt < 9 then
+                    col_bits <= col_bits(6 downto 0) & TX;
+                end if;
+                bits_cnt := bits_cnt + 1;
+                if (bits_cnt = 10) then
+                    --col_bits <= "00000000";
+                    bits_cnt := 0;
+                    tx_on_save := '0';
+                end if;
             end if;
         end if;
-	end if;
     end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------
@@ -145,22 +148,24 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
-        
+        -----------------------------------------------------------------------
         wait for CLK_PER*5208*(10);
         assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
-        wait for CLK_PER*5208*(10+1);
-        assert ( col_bits = "00001111") -- 
-			report "TX did not send the information correctly."
-			severity error;
+        -----------------------------------------------------------------------
+        wait for CLK_PER*5208*(10);
+        assert ( col_bits = "00001111") 
+            report "TX did not send the information correctly." severity error;
 
-        wait for CLK_PER*5208*(10+1);
+        -----------------------------------------------------------------------
+        wait for CLK_PER*5208*(10);
         assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
+        -----------------------------------------------------------------------
         wait for CLK_PER*5208*(10+2);
         assert ( col_bits = "10000001") -- 
 			report "TX did not send the information correctly."
