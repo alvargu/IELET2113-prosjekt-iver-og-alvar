@@ -72,17 +72,18 @@ begin
    -- type   : sequential
    -- inputs : clk
    -----------------------------------------------------------------------------
-	/*p_baud_clk_tb : process(clk)
-    constant M: integer := f_clk/f_BAUD;
-    variable BAUD_cnt: integer := 0;
+	p_baud_clk_tb : process(clk)
+    		constant M: integer := f_clk/f_BAUD;
+    		variable BAUD_cnt: integer := 0;
 	begin 
-		if rising_edge(clk) then
-            if BAUD_cnt = M/2 then 
-                baud_clk_tb <= not baud_clk_tb;
-            end if;
-            BAUD_cnt := BAUD_cnt + 1;
-        end if;
-	end process p_baud_clk_tb;*/
+	    if rising_edge(clk) then
+            	if BAUD_cnt = M/2 then 
+                	baud_clk_tb <= not baud_clk_tb;
+			BAUD_cnt := 0;
+            	end if;
+            	BAUD_cnt := BAUD_cnt + 1;
+        	end if;
+	end process p_baud_clk_tb;
 
      -----------------------------------------------------------------------------
    -- purpose: control the input of the TX module.
@@ -91,24 +92,28 @@ begin
    -----------------------------------------------------------------------------
 	p_tx_byte : process
 	begin 
-		TX_byte <= "00000000";          -- Sender en byte av null, passer å skru på
+        -----------------------------------------------------------------------
+		TX_byte <= "00000000";          -- Sender en byte av null, passer Ã¥ skru pÃ¥
         TX_on <= '1';                   -- sendesignalet.
         wait for CLK_PER*5208*(10);
 
+        -----------------------------------------------------------------------
         TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
-        wait for CLK_PER*5208*(1);
         TX_on <= '0';                   -- etter den er sendt.
         wait for CLK_PER*5208*(10);
 
-
+        -----------------------------------------------------------------------
         TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
-        wait for CLK_PER*5208*(10+1);   -- sendesignalet er skrudd av.
-
-        TX_on <= '1';                   
-        TX_byte <= "10000001";          -- Signalet blir send fordi sendesignalet
-        wait for CLK_PER*5208*(10+1);   -- er skrudd på. Signalet vil bli sendt
-                                        -- på nytt fordi vi rekker ikke å skru
-                                        -- av sendesignalet på grunn av wait.
+        wait for CLK_PER*5208*(10);   -- sendesignalet er skrudd av.
+        
+        -----------------------------------------------------------------------
+        TX_on <= '1';
+        TX_byte <= "10000001";
+	    wait for CLK_PER*5208*(1);
+	    TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
+        wait for CLK_PER*5208*(10+1);   -- er skrudd pÃ¥. Signalet vil bli sendt
+                                        -- pÃ¥ nytt fordi vi rekker ikke Ã¥ skru
+                                        -- av sendesignalet pÃ¥ grunn av wait.
         end process p_tx_byte;
 
     -----------------------------------------------------------------------------
@@ -116,21 +121,25 @@ begin
     -- type   : sequential
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
-    /*p_collecting_bits : process(baud_clk_tb, TX, TX_on)
-    variable bits_cnt: integer := 0; 
-    --variable s
+    p_collecting_bits : process(baud_clk_tb, TX, TX_on)
+        variable bits_cnt: integer := 0; 
+        variable tx_on_save: std_logic := '0';
     begin
-            if rising_edge(baud_clk_tb) then
-                bits_cnt := bits_cnt + 1;
-                if bits_cnt < 2 AND bits_cnt < 10 then
+        if rising_edge(baud_clk_tb) then
+            if TX_on = '1' or tx_on_save = '1' then
+                tx_on_save := '1';
+                if bits_cnt > 1 AND bits_cnt < 9 then
                     col_bits <= col_bits(6 downto 0) & TX;
                 end if;
+                bits_cnt := bits_cnt + 1;
                 if (bits_cnt = 10) then
                     --col_bits <= "00000000";
                     bits_cnt := 0;
+                    tx_on_save := '0';
                 end if;
             end if;
-    end process p_collecting_bits;*/
+        end if;
+    end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------
 	-- purpose: Main process
@@ -139,26 +148,27 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
-        
+        -----------------------------------------------------------------------
         wait for CLK_PER*5208*(10);
-        /*assert ( col_bits = "00000000") -- 
+        assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
-			severity error;*/
+			severity error;
 
-        wait for CLK_PER*5208*(10+1);
-        /*assert ( col_bits = "11110000") -- 
+        wait for CLK_PER*5208*(10);
+        assert ( col_bits = "00001111") -- 
 			report "TX did not send the information correctly."
-			severity error;*/
+			severity error;
 
-        wait for CLK_PER*5208*(10+1);
-        /*assert ( col_bits = "00001111") -- 
+        wait for CLK_PER*5208*(10);
+        assert ( col_bits = "11110000") -- 
 			report "TX did not send the information correctly."
-			severity error;*/
+			severity error;
 
-        wait for CLK_PER*5208*(10+1);
-        /*assert ( col_bits = "10000001") -- 
+        -----------------------------------------------------------------------
+        wait for CLK_PER*5208*(10+2);
+        assert ( col_bits = "10000001") -- 
 			report "TX did not send the information correctly."
-			severity error;*/
+			severity error;
         
 
 		assert false report "Testbench finished" severity failure;
