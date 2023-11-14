@@ -24,8 +24,9 @@ architecture SimulationModel of UART_tb is
 		------------------------------------------------------------------
 		-- define inputs and outputs of system
 		------------------------------------------------------------------
-		TX_byte : in std_logic_vector(NUM_BITS-1 downto 0);
-		TX_on, clk, TX_button : in std_logic;
+		TX_byte : inout std_logic_vector(NUM_BITS-1 downto 0);
+		TX_on : inout std_logic;
+		clk, TX_button : in std_logic;
 		TX, TX_busy	: out std_logic;
 		
 		RX_sig : in std_logic;
@@ -49,7 +50,7 @@ architecture SimulationModel of UART_tb is
 	
    signal baud_clk_tb: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
-   signal cnt_test: integer := 0;
+   -- signal cnt_test: integer := 0;
 
 	
 	
@@ -158,7 +159,7 @@ begin
            	 	end if;
        		end if;
 	end if;
-	cnt_test <= bits_cnt;
+	-- cnt_test <= bits_cnt;
     end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------

@@ -6,7 +6,7 @@ entity uart is
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant baud_rate: integer := 9600;
-		constant time_led_on: integer := 50; /* 50 ms */
+		constant time_led_on: integer := 50; /* 50 clk cycles */
 		constant o_smp_bits: integer := 8;
           constant predefined_char : std_logic_vector(7 downto 0) := "00111001"
 		);
@@ -28,7 +28,7 @@ end entity;
 architecture rtl of uart is 
 
      signal rx_n_rdy : std_logic := '0';
-     signal show_num : std_logic_vector(7 downto 0);
+     signal ascii_char : std_logic_vector(7 downto 0);
 
 begin
 	--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ begin
                RX_sig => RX_sig,
                clk => clk,
                rx_n_rdy => rx_n_rdy,
-               show_num => show_num
+               ascii_char => ascii_char
                );
 
 	--------------------------------------------------------------------------
@@ -71,9 +71,9 @@ begin
 	--------------------------------------------------------------------------
 	-- purpose: Code to handle segment display through ascii charachters form rx
      -- type   : concurrent
-     -- inputs : show_num
+     -- inputs : ascii_char
 	--------------------------------------------------------------------------
-	with show_num select
+	with ascii_char select
 	ascii_display <= "11111001" when "00110001", -- 1
 				"10100100" when "00110010", -- 2
 				"10110000" when "00110011", -- 3
@@ -110,7 +110,7 @@ begin
 			if rising_edge(clk) then
 				rx_led_cnt := rx_led_cnt + 1;
 				rx_busy_led <= '1';
-				if rx_led_cnt >= time_led_on /* 50 ms */ then 
+				if rx_led_cnt >= time_led_on /* 50 clk cycles */ then 
 					rx_led_cnt := 0;
 					rx_busy_led <= '0';
 				end if;
