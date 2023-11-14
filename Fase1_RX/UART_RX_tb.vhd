@@ -1,6 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+library work;
+use work.test_pkg.all;
 
 entity UART_RX_tb is
 end entity UART_RX_tb;
@@ -67,7 +69,7 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
-          RX_sig <= '1';				-- wait two periods
+          /*RX_sig <= '1';				-- wait two periods
           wait for CLK_PER*5208*2;
 		RX_sig <= '0';						-- start bit
           wait for CLK_PER*5208;
@@ -152,7 +154,10 @@ begin
 		assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
 			report "RX did not interprete the information correctly."
 			severity error;
-		assert false report "Testbench finished" severity failure;
+		assert false report "Testbench finished" severity failure;*/
+		
+		test_pkg.RX_test;
+		
 	end process p_main;
 
 end architecture SimulationModel;
