@@ -7,8 +7,8 @@ entity uart is
 		constant f_clk: integer := 50_000_000;
 		constant baud_rate: integer := 9600;
 		constant time_led_on: integer := 50; /* 50 ms */
-		constant o_smp_bits: integer := 8
-          constant predefined_char : std_logic_vector(7 downto 0) := "00000000";
+		constant o_smp_bits: integer := 8;
+          constant predefined_char : std_logic_vector(7 downto 0) := "00000000"
 		);
 	port (
 		clk: in std_logic;
