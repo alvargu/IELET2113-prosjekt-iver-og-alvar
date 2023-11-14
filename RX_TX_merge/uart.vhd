@@ -20,18 +20,23 @@ entity uart is
 		tx_byte: inout std_logic_vector(7 downto 0);
 		tx_on: inout std_logic;
           tx_button : in std_logic;
-		tx : out std_logic;
-		tx_busy: out std_logic
+		tx_busy: out std_logic;
+		tx : out std_logic
 		);
 end entity;
-		
+
 architecture rtl of uart is 
 
      signal rx_n_rdy : std_logic := '0';
      signal show_num : std_logic_vector(7 downto 0);
 
 begin
-     rx_module : entity work.uart_rx_pkg
+	--------------------------------------------------------------------------
+	-- purpose: Code for rx_module
+     -- type   : entity
+     -- inputs : RX_sig, clk
+	--------------------------------------------------------------------------
+     rx_module : entity work.uart_rx_module
           generic map (
                f_clk => f_clk,
                BAUD_RATE => BAUD_RATE,
@@ -44,7 +49,12 @@ begin
                show_num => show_num
                );
 
-     tx_module : entity work.uart_tx_pkg
+	--------------------------------------------------------------------------
+	-- purpose: Code for tx_module
+     -- type   : entity
+     -- inputs : tx_byte, clk, tx_on
+	--------------------------------------------------------------------------
+     tx_module : entity work.uart_tx_module
           generic map (
                f_clk => f_clk,
                baud_rate => baud_rate
@@ -59,7 +69,9 @@ begin
 					
 	--  rx Control module ############################
 	--------------------------------------------------------------------------
-	-- Code to handle segment display
+	-- purpose: Code to handle segment display through ascii charachters form rx
+     -- type   : concurrent
+     -- inputs : show_num
 	--------------------------------------------------------------------------
 	with show_num select
 	ascii_display <= "11111001" when "00110001", -- 1
@@ -81,8 +93,11 @@ begin
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
+
 	--------------------------------------------------------------------------
-	-- Code to handle rx indication led
+	-- purpose: Code to handle rx indication led
+     -- type   : sequential
+     -- inputs : rx_n_rdy
 	--------------------------------------------------------------------------
 	p_indicate_rx : process (rx_n_rdy)
 		variable rx_led_cnt : integer;
@@ -105,10 +120,13 @@ begin
 	-------------------------------------------------------------------------
 	-- ######################################################################
 	-------------------------------------------------------------------------
-	
+
+	-------------------------------------------------------------------------
 	--  tx Control module ############################
 	-------------------------------------------------------------------------
-     -- purpose: transmit a byte when a button is pushed
+
+	-------------------------------------------------------------------------
+	-- purpose: transmit a byte when a button is pushed
      -- type   : sequential
      -- inputs : tx_button
      -------------------------------------------------------------------------
@@ -121,6 +139,7 @@ begin
           end if;
           if transmit_byte = '1' then
                tx_byte <= predefined_char;
+			tx_on_cnt := tx_on_cnt + 1; 
                if tx_on_cnt < 50 then
                     tx_on <= '1';
                else 

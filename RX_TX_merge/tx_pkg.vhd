@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity uart_tx_pkg is 
+entity uart_tx_module is 
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant baud_rate: integer := 9600
@@ -19,7 +19,7 @@ entity uart_tx_pkg is
 end entity;		
 
 		
-architecture rtl of uart_tx_pkg is 
+architecture rtl of uart_tx_module is 
 -------------------------------------------------------------------------------
 -- Define internal signals of circuit
 -------------------------------------------------------------------------------
