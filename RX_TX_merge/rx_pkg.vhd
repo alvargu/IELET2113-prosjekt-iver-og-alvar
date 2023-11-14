@@ -12,8 +12,8 @@ entity uart_rx_module is
 	port (
 		RX_sig 		: in std_logic;
 		clk			: in std_logic;
-		rx_n_rdy		: out std_logic;
-		show_num 		: out std_logic_vector(7 downto 0)
+		rx_n_rdy		: out std_logic := '0';
+		ascii_char 	: out std_logic_vector(7 downto 0)
 		-- ascii_display	: out std_logic_vector(7 downto 0)
 		);
 end entity;		
@@ -114,7 +114,7 @@ begin
 					end if;
 					if cnt_data >= 8 then
 						state := n_data;
-						show_num <= v_rx_data; 
+						ascii_char <= v_rx_data; 
 						cnt_data := 0;
 						rx_n_rdy <= '0';
 					end if;						
