@@ -47,6 +47,7 @@ architecture SimulationModel of UART_tb is
 	signal RX_busy_led : std_logic;
 	signal ascii_display : std_logic_vector(7 downto 0);
 	
+	----
    signal baud_clk_tb: std_logic := '0'; 
    signal col_bits: std_logic_vector(NUM_BITS-1 downto 0) := "00000000";
    signal cnt_test: integer := 0;
@@ -112,8 +113,7 @@ begin
    -----------------------------------------------------------------------------
 	p_tx_byte : process
 	begin 
-			wait for CLK_PER*5208*(45);
-		TX_byte <= "00000000";          -- Sender en byte av null, passer Ã¥ skru pÃ¥
+		  TX_byte <= "00000000";          -- Sender en byte av null, passer Ã¥ skru pÃ¥
         TX_on <= '1';                   -- sendesignalet.
         wait for CLK_PER*5208*(10);
 
@@ -147,10 +147,10 @@ begin
     	if rising_edge(baud_clk_tb) then
         	if TX_on = '1' or tx_on_save = '1' then
            		tx_on_save := '1';
-            		if bits_cnt > 0 AND bits_cnt < 9 then
-                		col_bits <= col_bits(6 downto 0) & TX;
-			end if;
-			bits_cnt := bits_cnt + 1;
+            	if bits_cnt > 0 AND bits_cnt < 9 then
+                	col_bits <= col_bits(6 downto 0) & TX;
+					end if;
+				bits_cnt := bits_cnt + 1;
             		if (bits_cnt = 10) then
                 		--col_bits <= "00000000";
                 		bits_cnt := 0;
@@ -166,7 +166,7 @@ begin
 	-- type   : sequential
 	-- inputs : none
 	-----------------------------------------------------------------------------
-	p_main : process
+	p_main_1 : process
 	begin 
 
 
@@ -257,11 +257,22 @@ begin
 		assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
 			report "RX did not interprete the information correctly."
 			severity error;
+			
+		assert false report "Testbench finished" severity failure;
 	
 	-----------------------------------------------------------------------------
 	
+	end process p_main_1;
 	
+	
+		-----------------------------------------------------------------------------
+	-- purpose: Main process
+	-- type   : sequential
+	-- inputs : none
 	-----------------------------------------------------------------------------
+	p_main_2 : process
+	begin
+		-----------------------------------------------------------------------------
 	/* TX sin test. MÅ OPPDATERE PORSESSEN p_tx_byte slik at det passer i tid. */
 		wait for CLK_PER*5208*(10);
         assert ( col_bits = "00000000") -- 
@@ -307,8 +318,6 @@ begin
 		
 	-----------------------------------------------------------------------------
 	
-
-		assert false report "Testbench finished" severity failure;
-	end process p_main;
+	end process p_main_2;
 
 end architecture SimulationModel;
