@@ -60,6 +60,9 @@ architecture rtl of uart_rx_module is
 		end if;
 		return majority_val;
 	end function;
+---------------------------------------------------------------------------------------------------------
+#########################################################################################################
+---------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
 -- Begin architecture
@@ -75,18 +78,21 @@ begin
 	begin
 		if rising_edge(clk) then
 			o_smp_clk_cnt := o_smp_clk_cnt + 1;
-			if (o_smp_clk_cnt >= o_smp_factor / 2) then 	-- Man deler på to fordi man endrer klokka etter en
-				o_smp_clk_cnt := 0;					-- periode, men man jo endre to ganger i løpe av en
-				o_smp_clk <= not o_smp_clk;			-- periode for å skape en puls.
+			if (o_smp_clk_cnt >= o_smp_factor / 2) then 	-- Dividing by two because one
+				o_smp_clk_cnt := 0;					-- have to change the signal twice within a 
+				o_smp_clk <= not o_smp_clk;			-- period to make a pulse.
 				
 				BAUD_clk_cnt := BAUD_clk_cnt + 1; 
-				if (BAUD_clk_cnt >= o_smp_bits) then 	-- Baud rate clk sjekkes her for å effektivisere 
-					BAUD_clk_cnt := 0; 				-- programmet. Man unngår å sjekke hver eneste gang.
+				if (BAUD_clk_cnt >= o_smp_bits) then 	-- Baud rate clk ia checked here for effiency.
+					BAUD_clk_cnt := 0; 				-- Avoids checking every single time.
 					BAUD_clk <= not BAUD_clk;
 				end if;
 			end if;
 		end if;	
 	end process;
+	-------------------------------------------------------------------------
+	#########################################################################
+	-------------------------------------------------------------------------
 	
 	-------------------------------------------------------------------------
 	-- Seperates data bits from stop and start bits
@@ -98,10 +104,10 @@ begin
 		variable v_rx_data 	: std_logic_vector(7 downto 0) := "00000000";
 	begin
 		if rising_edge(baud_clk) then
-			case state is 
-				when n_data =>
-					if rx_bit = '0' then 
-						state := r_data;
+			case state is	-- State machine in RX. Purpose is to seperate data bits 
+				when n_data => -- from stop and start bit. The functionality
+					if rx_bit = '0' then	-- also gatherts the bits into one
+						state := r_data;	-- vector and sends it to the output.
 						rx_n_rdy <= '1';
 					elsif rx_bit = '1' then 
 						state := n_data;
@@ -121,6 +127,9 @@ begin
 			end case;
 		end if;
 	end process;
+	-------------------------------------------------------------------------
+	#########################################################################
+	-------------------------------------------------------------------------
 	
 	--------------------------------------------------------------------------
 	-- Process for reading RX_sig preforming 8 times oversampling and using 
@@ -138,12 +147,12 @@ begin
 				end if;
 			end if;
 			o_smp_cnt := o_smp_cnt + 1;
-			if o_smp_cnt >= 8 then 	-- siden vi sjekker etter at vi har økt telleren må
-				o_smp_cnt := 0;	-- vi øke med en når man skal sjekke for samme tall.
+			if o_smp_cnt >= 8 then 	-- Since we check after the counter has increased
+				o_smp_cnt := 0;	-- we havce to increase the condition with one too.
 			end if;
 		end if;
 	end process;
 	-------------------------------------------------------------------------
-	-- Set signals that go out equal to their inn system counterparts
+	-- ######################################################################
 	-------------------------------------------------------------------------
 end architecture;
