@@ -21,6 +21,8 @@
 !uart_tb.vhd
 !rx_pkg.vhd
 !tx_pkg.vhd
+!rx_module.vhd
+!tx_module.vhd
 !control_module.vhd
 # etc...
 
