@@ -13,7 +13,7 @@ entity uart is
 	port (
 		clk: in std_logic;
 		
-          rx_sig : in std_logic;
+        rx_sig : in std_logic;
 		rx_busy_led: out std_logic;
 		ascii_display: out std_logic_vector(7 downto 0);
 
