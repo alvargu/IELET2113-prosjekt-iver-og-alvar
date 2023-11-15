@@ -111,7 +111,7 @@ begin
    -- type   : sequential
    -- inputs : TX_byte
    -----------------------------------------------------------------------------
-	p_tx_byte : process()
+	p_tx_byte : process
 	begin 
 		TX_byte <= "00000000";          -- Sending a byte of zeros, makes sure that the
         TX_on <= '1';                   -- sending signal is active.
