@@ -143,7 +143,7 @@ begin
      -- type   : sequential
      -- inputs : tx_button
      -------------------------------------------------------------------------
-     p_tx_trigger : process (tx_button)
+     p_tx_trigger : process (tx_button, tx_byte_in, tx_on_in)
           variable transmit_byte : std_logic := '0';
           variable tx_on_cnt : integer range 0 to 5 := 0;
      begin

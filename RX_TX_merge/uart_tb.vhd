@@ -22,8 +22,8 @@ architecture SimulationModel of UART_tb is
 		------------------------------------------------------------------
 		-- define inputs and outputs of system
 		------------------------------------------------------------------
-		TX_byte : in std_logic_vector(NUM_BITS-1 downto 0);
-		TX_on : in std_logic;
+		TX_byte_in : in std_logic_vector(NUM_BITS-1 downto 0);
+		TX_on_in : in std_logic;
 		clk, TX_button : in std_logic;
 		TX, TX_busy	: out std_logic;
 		
@@ -38,8 +38,8 @@ architecture SimulationModel of UART_tb is
    -----------------------------------------------------------------------------
    -- DUT signals
 	
-   signal TX_byte: std_logic_vector(NUM_BITS-1 downto 0);
-   signal TX_on: std_logic;
+   signal TX_byte_in: std_logic_vector(NUM_BITS-1 downto 0);
+   signal TX_on_in: std_logic;
 	signal clk, TX_button: std_logic;
    signal TX, TX_busy: std_logic;
 
@@ -62,10 +62,10 @@ begin
    i_UART: component UART
    port map (
       clk     => clk,
-      TX_byte => TX_byte,
+      TX_byte_in => TX_byte_in,
       TX   => TX,
       TX_busy => TX_busy,
-      TX_on => TX_on,
+      TX_on_in => TX_on_in,
 		TX_button => TX_button,
 		
 		RX_sig => RX_sig,
@@ -109,49 +109,49 @@ begin
      -----------------------------------------------------------------------------
    -- purpose: control the input of the TX module.
    -- type   : sequential
-   -- inputs : TX_byte
+   -- inputs : TX_byte_in
    -----------------------------------------------------------------------------
-	p_tx_byte : process
+	p_TX_byte_in : process
 	begin 
-		TX_byte <= "00000000";          -- Sending a byte of zeros, makes sure that the
-        TX_on <= '1';                   -- sending signal is active.
+		TX_byte_in <= "00000000";          -- Sending a byte of zeros, makes sure that the
+        TX_on_in <= '1';                   -- sending signal is active.
         wait for CLK_PER*5208*(10);
 
-        TX_byte <= "00001111";          -- Not sending a byte, because the sending signal
-        TX_on <= '0';                   -- is turned of at the same time.
+        TX_byte_in <= "00001111";          -- Not sending a byte, because the sending signal
+        TX_on_in <= '0';                   -- is turned of at the same time.
         wait for CLK_PER*5208*(10);
 
 
-        TX_byte <= "11110000";          -- This byte is not sent baecause the
+        TX_byte_in <= "11110000";          -- This byte is not sent baecause the
         wait for CLK_PER*5208*(10);   -- sending signal is turned off.
 
-        TX_on <= '1';
-        TX_byte <= "10000001";
+        TX_on_in <= '1';
+        TX_byte_in <= "10000001";
 	wait for CLK_PER*5208*(1);
-		TX_on <= '0';          		-- The signal is sent beacuse the sending signal is on.
+		TX_on_in <= '0';          		-- The signal is sent beacuse the sending signal is on.
         wait for CLK_PER*5208*(10+1);   -- The sending signal is turned off so
-        end process p_tx_byte;			 -- no more bytes will be sent.
+        end process p_TX_byte_in;			 -- no more bytes will be sent.
 
     -----------------------------------------------------------------------------
     -- purpose: Collecting bits into a byte. Trying to make the tb shorter.
     -- type   : sequential
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
-    p_collecting_bits : process(baud_clk_tb, TX, TX_on)
+    p_collecting_bits : process(baud_clk_tb, TX, TX_on_in)
     	variable bits_cnt: integer := 0; 
-    	variable tx_on_save: std_logic := '0';
+    	variable TX_on_in_save: std_logic := '0';
     begin
 	
     	if rising_edge(baud_clk_tb) then
-        	if TX_on = '1' or tx_on_save = '1' then	-- We are not interested in collecting
-           		tx_on_save := '1';						-- bits if the TX is turned off.
+        	if TX_on_in = '1' or TX_on_in_save = '1' then	-- We are not interested in collecting
+           		TX_on_in_save := '1';						-- bits if the TX is turned off.
             	if bits_cnt > 0 AND bits_cnt < 9 then	-- Not interested in collecing stop and start bit.
                 	col_bits <= col_bits(6 downto 0) & TX; -- Shift register.
 					end if;
 				bits_cnt := bits_cnt + 1;
             		if (bits_cnt = 10) then
                 		bits_cnt := 0;
-                		tx_on_save := '0';
+                		TX_on_in_save := '0';
            	 	end if;
        		end if;
 	end if;
@@ -269,7 +269,7 @@ begin
 	p_main_2 : process
 	begin
 		-----------------------------------------------------------------------------
-	/* TX sin test. MAKE SURE THE PROCESS p_tx_byte IS MATCHED. */
+	/* TX sin test. MAKE SURE THE PROCESS p_TX_byte_in IS MATCHED. */
 		wait for CLK_PER*5208*(10);
         assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
