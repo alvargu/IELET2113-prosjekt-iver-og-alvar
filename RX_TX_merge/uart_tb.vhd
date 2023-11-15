@@ -92,7 +92,7 @@ begin
    -- purpose: control the baud_clk_tb-signal
    -- type   : sequential
    -- inputs : clk
-   -----------------------------------------------------------------------------
+   ---------------------------------------------------------------------------------
 	p_baud_clk_tb : process(clk)
     		constant M: integer := f_clk/f_BAUD; -- Factor that determines how many times
     		variable BAUD_cnt: integer := 0;	-- one should count to get the baud_clk
@@ -168,7 +168,7 @@ begin
 
 	-----------------------------------------------------------------------------
 	/* RX sin test */
-	   RX_sig <= '1';				-- wait two periods
+	   RX_sig <= '1';				-- wait two periods before sending message.
           wait for CLK_PER*5208*2;
 		RX_sig <= '0';						-- start bit
           wait for CLK_PER*5208;
