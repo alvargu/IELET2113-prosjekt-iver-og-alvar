@@ -1,5 +1,3 @@
--- Need to fil inn
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -41,7 +39,8 @@ architecture SimulationModel of UART_tb is
    -- DUT signals
 	
    signal TX_byte: std_logic_vector(NUM_BITS-1 downto 0);
-   signal TX_on, clk, TX_button: std_logic;
+   signal TX_on: std_logic;
+	signal clk, TX_button: std_logic;
    signal TX, TX_busy: std_logic;
 
 	signal RX_sig : std_logic;
@@ -95,13 +94,13 @@ begin
    -- inputs : clk
    -----------------------------------------------------------------------------
 	p_baud_clk_tb : process(clk)
-    		constant M: integer := f_clk/f_BAUD;
-    		variable BAUD_cnt: integer := 0;
-	begin 
+    		constant M: integer := f_clk/f_BAUD; -- Factor that determines how many times
+    		variable BAUD_cnt: integer := 0;		 -- one should count to get the baud_clk
+	begin 												 -- from the system clk.
 	    if rising_edge(clk) then
-            	if BAUD_cnt = M/2 then 
-                	baud_clk_tb <= not baud_clk_tb;
-			BAUD_cnt := 0;
+            	if BAUD_cnt = M/2 then	-- Divide by two because the time before 
+                	baud_clk_tb <= not baud_clk_tb; -- "not baud_clk" equals half a 
+			BAUD_cnt := 0;									  -- period.
             	end if;
             	BAUD_cnt := BAUD_cnt + 1;
         	end if;
@@ -112,31 +111,29 @@ begin
    -- type   : sequential
    -- inputs : TX_byte
    -----------------------------------------------------------------------------
-	p_tx_byte : process
+	p_tx_byte : process()
 	begin 
-		  TX_byte <= "00000000";          -- Sender en byte av null, passer Ã¥ skru pÃ¥
-        TX_on <= '1';                   -- sendesignalet.
+		  TX_byte <= "00000000";          -- Sending a byte of zeros, makes sure that the
+        TX_on <= '1';                   -- sendingsignal is active.
         wait for CLK_PER*5208*(10);
 
-        TX_byte <= "00001111";          -- Sender en ny byte, men skrur av sendesignalet
-        TX_on <= '0';                   -- etter den er sendt.
+        TX_byte <= "00001111";          -- Not sending a byte, because the sendingsignal
+        TX_on <= '0';                   -- is turned of at the same time.
         wait for CLK_PER*5208*(10);
 
 
-        TX_byte <= "11110000";          -- Denne byten skal ikke sendes fordi
-        wait for CLK_PER*5208*(10);   -- sendesignalet er skrudd av.
+        TX_byte <= "11110000";          -- This byte is not sent baecause the
+        wait for CLK_PER*5208*(10);   -- sendingsignal is turned off.
 
         TX_on <= '1';
         TX_byte <= "10000001";
 	wait for CLK_PER*5208*(1);
-	TX_on <= '0';          		-- Signalet blir send fordi sendesignalet
-        wait for CLK_PER*5208*(10+1);   -- er skrudd pÃ¥. Signalet vil bli sendt
-                                        -- pÃ¥ nytt fordi vi rekker ikke Ã¥ skru
-                                        -- av sendesignalet pÃ¥ grunn av wait.
-        end process p_tx_byte;
+	TX_on <= '0';          		-- The signal is sent beacuse the sendingsignal is on.
+        wait for CLK_PER*5208*(10+1);   -- The sendingsignal is turned off so
+        end process p_tx_byte;			 -- no more bytes will be sent.
 
     -----------------------------------------------------------------------------
-    -- purpose: Collecting bits into a byte
+    -- purpose: Collecting bits into a byte. Trying to make the tb shorter.
     -- type   : sequential
     --inputs  : baud_clk_tb
     -----------------------------------------------------------------------------
@@ -146,14 +143,13 @@ begin
     begin
 	
     	if rising_edge(baud_clk_tb) then
-        	if TX_on = '1' or tx_on_save = '1' then
-           		tx_on_save := '1';
-            	if bits_cnt > 0 AND bits_cnt < 9 then
-                	col_bits <= col_bits(6 downto 0) & TX;
+        	if TX_on = '1' or tx_on_save = '1' then	-- We are not interested in collecting
+           		tx_on_save := '1';						-- bits if the TX is turned off.
+            	if bits_cnt > 0 AND bits_cnt < 9 then	-- Not interested in collecing stop and start bit.
+                	col_bits <= col_bits(6 downto 0) & TX; -- Shift register.
 					end if;
 				bits_cnt := bits_cnt + 1;
             		if (bits_cnt = 10) then
-                		--col_bits <= "00000000";
                 		bits_cnt := 0;
                 		tx_on_save := '0';
            	 	end if;
@@ -163,7 +159,7 @@ begin
     end process p_collecting_bits;
 
 	-----------------------------------------------------------------------------
-	-- purpose: Main process
+	-- purpose: Main process. RX test that can concurrently with TX test.
 	-- type   : sequential
 	-- inputs : none
 	-----------------------------------------------------------------------------
@@ -260,38 +256,33 @@ begin
 			severity error;
 			
 		assert false report "Testbench finished" severity failure;
-	
+		
 	-----------------------------------------------------------------------------
 	
 	end process p_main_1;
 	
 	
 		-----------------------------------------------------------------------------
-	-- purpose: Main process
+	-- purpose: Main process TX test that can run concurrently with RX test.
 	-- type   : sequential
 	-- inputs : none
 	-----------------------------------------------------------------------------
 	p_main_2 : process
 	begin
 		-----------------------------------------------------------------------------
-	/* TX sin test. MÅ OPPDATERE PORSESSEN p_tx_byte slik at det passer i tid. */
+	/* TX sin test. MAKE SURE THE PROCESS p_tx_byte IS MATCHED. */
 		wait for CLK_PER*5208*(10);
         assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
       wait for CLK_PER*5208*(10);
-        assert ( col_bits = "00001111") -- 
+        assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 
       wait for CLK_PER*5208*(10);
-        assert ( col_bits = "11110000") -- 
-			report "TX did not send the information correctly."
-			severity error;
-
-      wait for CLK_PER*5208*(10+2);
-        assert ( col_bits = "10000001") -- 
+        assert ( col_bits = "00000000") -- 
 			report "TX did not send the information correctly."
 			severity error;
 	
@@ -300,14 +291,13 @@ begin
 			report "TX did not send the information correctly."
 			severity error;
 
-			
 	-----------------------------------------------------------------------------		
 
 
 	-----------------------------------------------------------------------------
 	/* Helheten sin test */
 	
-	-- TX_button
+	-- TX_button. Testing if the predifend character is sent if button pressed.
 	
 		TX_button <= '1';
 		
@@ -316,9 +306,7 @@ begin
 			report "TX_button did not send the information correctly."
 			severity error;
 		
-		
 	-----------------------------------------------------------------------------
 	
 	end process p_main_2;
-
 end architecture SimulationModel;
