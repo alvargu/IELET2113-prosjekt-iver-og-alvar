@@ -17,8 +17,8 @@ entity uart is
 		rx_busy_led: out std_logic;
 		ascii_display: out std_logic_vector(7 downto 0);
 
-		tx_byte: inout std_logic_vector(7 downto 0);
-		tx_on: inout std_logic;
+		tx_byte_in: in std_logic_vector(7 downto 0);
+		tx_on_in: in std_logic;
           tx_button : in std_logic;
 		tx_busy: out std_logic;
 		tx : out std_logic
@@ -29,6 +29,9 @@ architecture rtl of uart is
 
      signal rx_n_rdy : std_logic := '0';
      signal ascii_char : std_logic_vector(7 downto 0);
+
+	signal tx_byte: std_logic_vector(7 downto 0);
+	signal tx_on: std_logic;
 
 begin
 	--------------------------------------------------------------------------
@@ -113,6 +116,7 @@ begin
 				if rx_led_cnt >= time_led_on /* 50 clk cycles */ then 
 					rx_led_cnt := 0;
 					rx_busy_led <= '0';
+					rx_led_on := '0';
 				end if;
 			end if;
 		end if;
@@ -137,7 +141,10 @@ begin
           if rising_edge(tx_button) then
                transmit_byte := '1';
           end if;
-          if transmit_byte = '1' then
+		if transmit_byte = '0' then
+			tx_byte <= tx_byte_in;
+			tx_on <= tx_on_in;
+          elsif transmit_byte = '1' then
                tx_byte <= predefined_char;
 			tx_on_cnt := tx_on_cnt + 1; 
                if tx_on_cnt < 50 then
