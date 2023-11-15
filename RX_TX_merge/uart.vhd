@@ -102,7 +102,7 @@ begin
      -- type   : sequential
      -- inputs : rx_n_rdy
 	--------------------------------------------------------------------------
-	p_indicate_rx : process (rx_n_rdy)
+	p_indicate_rx : process (clk, rx_n_rdy)
 		variable rx_led_cnt : integer;
 		variable rx_led_on : std_logic := '0';
 	begin
