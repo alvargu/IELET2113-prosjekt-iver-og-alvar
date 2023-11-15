@@ -6,7 +6,7 @@ entity uart is
 	generic (
 		constant f_clk: integer := 50_000_000;
 		constant baud_rate: integer := 9600;
-		constant time_led_on: integer := 50; /* 50 clk cycles */
+		constant time_led_on: integer := 50; /* 50 ms */
 		constant o_smp_bits: integer := 8;
           constant predefined_char : std_logic_vector(7 downto 0) := "00111001"
 		);
@@ -106,11 +106,11 @@ begin
 		variable rx_led_cnt : integer;
 		variable rx_led_on : std_logic := '0';
 	begin
-		if rising_edge(rx_n_rdy) then 
-			rx_led_on := '1';
-		end if;
-		if rx_led_on = '1' then
-			if rising_edge(clk) then
+		if rising_edge(clk) then
+			if rx_n_rdy = '1' then 
+				rx_led_on := '1';
+			end if;
+			if rx_led_on = '1' then
 				rx_led_cnt := rx_led_cnt + 1;
 				rx_busy_led <= '1';
 				if rx_led_cnt >= time_led_on /* 50 clk cycles */ then 
