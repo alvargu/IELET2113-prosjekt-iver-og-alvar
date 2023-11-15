@@ -141,28 +141,31 @@ begin
 	-------------------------------------------------------------------------
 	-- purpose: transmit a byte when a button is pushed
      -- type   : sequential
-     -- inputs : tx_button
+     -- inputs : clk, tx_button, tx_byte_in, tx_on_in
      -------------------------------------------------------------------------
-     p_tx_trigger : process (tx_button, tx_byte_in, tx_on_in)
+     p_tx_trigger : process (clk, tx_button, tx_byte_in, tx_on_in)
           variable transmit_byte : std_logic := '0';
           variable tx_on_cnt : integer range 0 to 5 := 0;
      begin
-          if rising_edge(tx_button) then
-               transmit_byte := '1';
-          end if;
-		if transmit_byte = '0' then
-			tx_byte <= tx_byte_in;
-			tx_on <= tx_on_in;
-          elsif transmit_byte = '1' then
-               tx_byte <= predefined_char;
-			tx_on_cnt := tx_on_cnt + 1; 
-               if tx_on_cnt < 50 then
-                    tx_on <= '1';
-               else 
-                    tx_on <= '0';
-                    transmit_byte := '0';
-               end if;
-          end if;
+		if rising_edge(clk) then
+			if tx_button = '1' then
+				transmit_byte := '1';
+			end if;
+			if transmit_byte = '0' then
+				tx_byte <= tx_byte_in;
+				tx_on <= tx_on_in;
+			elsif transmit_byte = '1' then
+				tx_byte <= predefined_char;
+				tx_on_cnt := tx_on_cnt + 1; 
+				if tx_on_cnt < 50 then
+					tx_on <= '1';
+				elsif tx_on_cnt >= 50 and tx_on_cnt < 5208 then
+					tx_on <= '0';
+				else
+					transmit_byte := '0';
+				end if;
+			end if;
+		end if;
      end process;
 	-------------------------------------------------------------------------
 	-- ######################################################################
