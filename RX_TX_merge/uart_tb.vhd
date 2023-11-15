@@ -95,12 +95,12 @@ begin
    -----------------------------------------------------------------------------
 	p_baud_clk_tb : process(clk)
     		constant M: integer := f_clk/f_BAUD; -- Factor that determines how many times
-    		variable BAUD_cnt: integer := 0;		 -- one should count to get the baud_clk
-	begin 												 -- from the system clk.
+    		variable BAUD_cnt: integer := 0;	-- one should count to get the baud_clk
+	begin 										-- from the system clk.
 	    if rising_edge(clk) then
             	if BAUD_cnt = M/2 then	-- Divide by two because the time before 
                 	baud_clk_tb <= not baud_clk_tb; -- "not baud_clk" equals half a 
-			BAUD_cnt := 0;									  -- period.
+			BAUD_cnt := 0;							-- period.
             	end if;
             	BAUD_cnt := BAUD_cnt + 1;
         	end if;
@@ -113,23 +113,23 @@ begin
    -----------------------------------------------------------------------------
 	p_tx_byte : process()
 	begin 
-		  TX_byte <= "00000000";          -- Sending a byte of zeros, makes sure that the
-        TX_on <= '1';                   -- sendingsignal is active.
+		TX_byte <= "00000000";          -- Sending a byte of zeros, makes sure that the
+        TX_on <= '1';                   -- sending signal is active.
         wait for CLK_PER*5208*(10);
 
-        TX_byte <= "00001111";          -- Not sending a byte, because the sendingsignal
+        TX_byte <= "00001111";          -- Not sending a byte, because the sending signal
         TX_on <= '0';                   -- is turned of at the same time.
         wait for CLK_PER*5208*(10);
 
 
         TX_byte <= "11110000";          -- This byte is not sent baecause the
-        wait for CLK_PER*5208*(10);   -- sendingsignal is turned off.
+        wait for CLK_PER*5208*(10);   -- sending signal is turned off.
 
         TX_on <= '1';
         TX_byte <= "10000001";
 	wait for CLK_PER*5208*(1);
-	TX_on <= '0';          		-- The signal is sent beacuse the sendingsignal is on.
-        wait for CLK_PER*5208*(10+1);   -- The sendingsignal is turned off so
+		TX_on <= '0';          		-- The signal is sent beacuse the sending signal is on.
+        wait for CLK_PER*5208*(10+1);   -- The sending signal is turned off so
         end process p_tx_byte;			 -- no more bytes will be sent.
 
     -----------------------------------------------------------------------------
@@ -165,7 +165,6 @@ begin
 	-----------------------------------------------------------------------------
 	p_main_1 : process
 	begin 
-
 
 	-----------------------------------------------------------------------------
 	/* RX sin test */
