@@ -69,7 +69,7 @@ begin
 	-----------------------------------------------------------------------------
 	p_main : process
 	begin 
-          /*RX_sig <= '1';				-- wait two periods
+        RX_sig <= '1';				-- wait two periods before sending message.
           wait for CLK_PER*5208*2;
 		RX_sig <= '0';						-- start bit
           wait for CLK_PER*5208;
@@ -154,9 +154,7 @@ begin
 		assert ( ascii_display = "10000110") -- Test if recieved byte is displayed as E
 			report "RX did not interprete the information correctly."
 			severity error;
-		assert false report "Testbench finished" severity failure;*/
-		
-		test_pkg.RX_test;
+		assert false report "Testbench finished" severity failure;
 		
 	end process p_main;
 
