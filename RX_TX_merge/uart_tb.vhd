@@ -22,8 +22,8 @@ architecture SimulationModel of UART_tb is
 		------------------------------------------------------------------
 		-- define inputs and outputs of system
 		------------------------------------------------------------------
-		TX_byte : inout std_logic_vector(NUM_BITS-1 downto 0);
-		TX_on : inout std_logic;
+		TX_byte : in std_logic_vector(NUM_BITS-1 downto 0);
+		TX_on : in std_logic;
 		clk, TX_button : in std_logic;
 		TX, TX_busy	: out std_logic;
 		
